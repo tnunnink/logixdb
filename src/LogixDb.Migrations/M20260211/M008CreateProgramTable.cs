@@ -12,7 +12,6 @@ public class M008CreateProgramTable : AutoReversingMigration
         Create.Table("program")
             .WithPrimaryId("program_id")
             .WithCascadeForeignKey("snapshot_id", "snapshot")
-            .WithColumn("hash").AsString().NotNullable()
             .WithColumn("name").AsString(128).NotNullable()
             .WithColumn("program_type").AsString(32).Nullable()
             .WithColumn("description").AsString(256).Nullable()
@@ -22,7 +21,8 @@ public class M008CreateProgramTable : AutoReversingMigration
             .WithColumn("is_folder").AsBoolean().Nullable()
             .WithColumn("has_test_edits").AsBoolean().Nullable()
             .WithColumn("parent_name").AsString(128).Nullable()
-            .WithColumn("task_name").AsString(128).Nullable();
+            .WithColumn("task_name").AsString(128).Nullable()
+            .WithColumn("record_hash").AsString(32).NotNullable();
 
         Create.Index()
             .OnTable("program")
@@ -32,7 +32,7 @@ public class M008CreateProgramTable : AutoReversingMigration
         
         Create.Index()
             .OnTable("program")
-            .OnColumn("hash").Ascending()
+            .OnColumn("record_hash").Ascending()
             .OnColumn("snapshot_id").Ascending();
     }
 }

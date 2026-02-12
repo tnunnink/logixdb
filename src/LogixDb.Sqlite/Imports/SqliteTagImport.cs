@@ -11,14 +11,8 @@ namespace LogixDb.Sqlite.Imports;
 /// by using a specific set of preconfigured SQL commands and mappings. It works in
 /// conjunction with a parent transaction to ensure atomic operations are performed safely.
 /// </remarks>
-internal class SqliteTagImport() : SqliteElementImport<Tag>(InsertTag, new TagMap())
+internal class SqliteTagImport() : SqliteElementImport<Tag>(new TagMap())
 {
-    private const string InsertTag =
-        """
-        INSERT INTO tag (snapshot_id, reference, base_name, tag_name, scope_level, scope_name, tag_depth, tag_usage, data_type, value, description, dimensions, radix, external_access, opcua_access, constant, tag_type, alias_for, component_class, hash)
-        VALUES (@snapshot_id, @reference, @base_name, @tag_name, @scope_level, @scope_name, @tag_depth, @tag_usage, @data_type, @value, @description, @dimensions, @radix, @external_access, @opcua_access, @constant, @tag_type, @alias_for, @component_class, @hash)
-        """;
-
     /// <inheritdoc />
     protected override IEnumerable<Tag> GetRecords(L5X content)
     {

@@ -7,7 +7,7 @@ namespace LogixDb.Core.Maps;
 public class ControllerMap : TableMap<Controller>
 {
     // <inheritdoc />
-    public override string TableName => "controller";
+    protected override string TableName => "controller";
 
     // <inheritdoc />
     public override IReadOnlyList<ColumnMap<Controller>> Columns =>

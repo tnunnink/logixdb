@@ -20,9 +20,9 @@ internal static class SqliteExtensions
     {
         return columnType switch
         {
-            ColumnType.Boolean or ColumnType.Int16 or ColumnType.Int32 => SqliteType.Integer,
-            ColumnType.Text => SqliteType.Text,
-            ColumnType.DateTime => SqliteType.Text,
+            ColumnType.Boolean or ColumnType.Byte or ColumnType.Int16 or ColumnType.Int32 => SqliteType.Integer,
+            ColumnType.Float => SqliteType.Real,
+            ColumnType.Text or ColumnType.DateTime => SqliteType.Text,
             ColumnType.Blob => SqliteType.Blob,
             _ => throw new ArgumentOutOfRangeException(nameof(columnType), columnType, null)
         };

@@ -14,11 +14,33 @@ public abstract class TableMap<TElement> where TElement : ILogixElement
     /// <summary>
     /// Gets the name of the database table that will store the mapped Logix elements.
     /// </summary>
-    public abstract string TableName { get; }
+    protected abstract string TableName { get; }
 
     /// <summary>
     /// Gets the collection of column mappings that define how properties of the Logix element
     /// are mapped to columns in the database table.
     /// </summary>
     public abstract IReadOnlyList<ColumnMap<TElement>> Columns { get; }
+
+    /// <summary>
+    /// Constructs an SQL INSERT statement for a table defined by the implementing TableMap.
+    /// The statement includes named parameters corresponding to the table's columns and
+    /// additional fields such as a snapshot ID and record hash.
+    /// </summary>
+    /// <returns>
+    /// A string representing the SQL INSERT statement including column names and parameters.
+    /// The resulting statement follows the format:
+    /// "INSERT INTO {TableName} (snapshot_id, {column names}, record_hash)
+    /// VALUES (@snapshot_id, {parameters}, @record_hash);"
+    /// </returns>
+    public string BuildInsertStatement()
+    {
+        var columns = string.Join(", ", Columns.Select(c => c.Name));
+        var parameters = string.Join(", ", Columns.Select(c => $"@{c.Name}"));
+
+        return $"""
+                INSERT INTO {TableName} (snapshot_id, {columns}, record_hash)
+                VALUES (@snapshot_id, {parameters}, @record_hash);
+                """;
+    }
 }

@@ -98,21 +98,19 @@ internal class SqliteDatabase(SqlConnectionInfo info, IEnumerable<ILogixDatabase
     /// <inheritdoc />
     public async Task<Snapshot> Import(Snapshot snapshot, string? targetKey = null, CancellationToken token = default)
     {
-        await using var connection = await OpenConnectionAsync(token);
-        await using var transaction = (SqliteTransaction)await connection.BeginTransactionAsync(token);
-        var session = new SqliteDatabaseSession(connection, transaction);
+        await using var session = await SqliteDatabaseSession.OpenAsync(this, token);
 
         try
         {
             foreach (var import in imports)
                 await import.Process(snapshot, session, token);
 
-            await transaction.CommitAsync(token);
+            await session.GetTransaction<SqliteTransaction>().CommitAsync(token);
             return snapshot;
         }
         catch (Exception)
         {
-            await transaction.RollbackAsync(token);
+            await session.GetTransaction<SqliteTransaction>().RollbackAsync(token);
             throw;
         }
     }
@@ -137,7 +135,7 @@ internal class SqliteDatabase(SqlConnectionInfo info, IEnumerable<ILogixDatabase
     /// </summary>
     /// <param name="token">A cancellation token that can be used to cancel the asynchronous operation.</param>
     /// <returns>A task that represents the asynchronous operation. The task result contains an open database connection.</returns>
-    private async Task<SqliteConnection> OpenConnectionAsync(CancellationToken token)
+    public async Task<SqliteConnection> OpenConnectionAsync(CancellationToken token)
     {
         var connection = new SqliteConnection(_connectionString);
         await connection.OpenAsync(token);

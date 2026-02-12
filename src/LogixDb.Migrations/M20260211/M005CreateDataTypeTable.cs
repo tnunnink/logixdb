@@ -12,11 +12,11 @@ public class M005CreateDataTypeTable : AutoReversingMigration
         Create.Table("data_type")
             .WithPrimaryId("type_id")
             .WithCascadeForeignKey("snapshot_id", "snapshot")
-            .WithColumn("name").AsString(256).NotNullable()
+            .WithColumn("name").AsString(128).NotNullable()
             .WithColumn("type_class").AsString(32).Nullable()
             .WithColumn("type_family").AsString(32).Nullable()
             .WithColumn("description").AsString(int.MaxValue).Nullable()
-            .WithColumn("hash").AsString().NotNullable();
+            .WithColumn("record_hash").AsString(32).NotNullable();
         
         Create.Index()
             .OnTable("data_type")
@@ -26,7 +26,7 @@ public class M005CreateDataTypeTable : AutoReversingMigration
 
         Create.Index()
             .OnTable("data_type")
-            .OnColumn("hash").Ascending()
+            .OnColumn("record_hash").Ascending()
             .OnColumn("snapshot_id").Ascending();
     }
 }

@@ -7,8 +7,10 @@ namespace LogixDb.Core.Common;
 public enum ColumnType
 {
     Boolean,
+    Byte,
     Int16,
     Int32,
+    Float,
     Text,
     DateTime,
     Blob

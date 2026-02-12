@@ -12,7 +12,6 @@ public class SqliteDatabaseTests() : SqliteTestFixture("logix_test.db")
     public void EnsureThatWeCanBuildTheTestDatabaseUsingBaseClassServiceProviderAndFactory()
     {
         var database = BuildDatabase();
-
         Assert.That(database, Is.Not.Null);
         FileAssert.Exists(DataSource);
     }

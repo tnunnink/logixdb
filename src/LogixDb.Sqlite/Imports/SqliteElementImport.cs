@@ -1,3 +1,5 @@
+using System.Globalization;
+using System.Text;
 using L5Sharp.Core;
 using LogixDb.Core.Abstractions;
 using LogixDb.Core.Common;
@@ -7,15 +9,20 @@ using Task = System.Threading.Tasks.Task;
 namespace LogixDb.Sqlite.Imports;
 
 /// <summary>
-/// Represents an import process for a specific type of Logix element into a database, using a given SQL
-/// statement and table mapping for the transformation of data from an external source into the target database.
+/// Provides an abstract base class for importing database elements into an SQLite database.
+/// This class maps elements of type <typeparamref name="TElement"/> to SQLite database tables
+/// using the provided table mapping and performs optimized bulk insertion of data.
 /// </summary>
-/// <typeparam name="TElement">The type of Logix element being imported, constrained to types implementing
-/// the <see cref="ILogixElement"/> interface.</typeparam>
-/// <param name="sql">The SQL statement used for the import operation, typically an INSERT or UPDATE command.</param>
-/// <param name="map">A <see cref="TableMap{TElement}"/> instance containing mappings of the fields of
-/// <typeparamref name="TElement"/> to the corresponding database table columns.</param>
-public abstract class SqliteElementImport<TElement>(string sql, TableMap<TElement> map) : ILogixDatabaseImport
+/// <typeparam name="TElement">
+/// The type of element being imported. This type must implement the <see cref="ILogixElement"/> interface.
+/// </typeparam>
+/// <remarks>
+/// This class ensures efficient database operations by using compiled SQLite commands,
+/// dynamic binding of parameters, and transaction management. Subclasses must implement
+/// the abstract <see cref="GetRecords"/> method to define how to extract the records to
+/// be imported from the source data.
+/// </remarks>
+public abstract class SqliteElementImport<TElement>(TableMap<TElement> map) : ILogixDatabaseImport
     where TElement : ILogixElement
 {
     public async Task Process(Snapshot snapshot, ILogixDatabaseSession session, CancellationToken token = default)
@@ -28,27 +35,43 @@ public abstract class SqliteElementImport<TElement>(string sql, TableMap<TElemen
         var transaction = session.GetTransaction<SqliteTransaction>();
 
         // Build a compiled command with configured parameters to optimize insert performance for SQLite.
-        await using var command = new SqliteCommand(sql, connection, transaction);
+        await using var command = new SqliteCommand(map.BuildInsertStatement(), connection, transaction);
 
         // We can configure snapshot id once for the entire process. 
         command.Parameters.Add(new SqliteParameter("@snapshot_id", snapshot.SnapshotId));
 
         // Use the map columns to prepare the parameter config dynamically.
+        // Manually add the content hash parameter since it is not part of the column map and computed from the column values.
         var columns = map.Columns.ToList();
         columns.ForEach(c => command.Parameters.Add($"@{c.Name}", c.Type.ToSqliteType()));
+        command.Parameters.Add("@record_hash", SqliteType.Text);
         command.Prepare();
 
-        // Build a binding of the parameters to the getter function once before iteration to avoid
+        // Precompile an ordered array of binders that map parameters to their getter function once before iteration to avoid
         // costly lookups and to make mapping explicit (by name not array index).
-        var binders = columns.Select(c => (Param: command.Parameters[$"@{c.Name}"], c.Getter)).ToArray();
+        var binders = columns
+            .OrderBy(c => c.Name, StringComparer.Ordinal)
+            .Select(c => (Param: command.Parameters[$"@{c.Name}"], c.Getter))
+            .ToArray();
 
         // Get all source records that we would like to insert for this type.
         var records = GetRecords(snapshot.GetSource());
+        var hashBuilder = new StringBuilder();
 
         foreach (var record in records)
         {
+            hashBuilder.Clear();
+
+            // For each column, bind the value, serialize the parameter and append to the builder.
             foreach (var binder in binders)
+            {
                 binder.Param.Value = binder.Getter(record) ?? DBNull.Value;
+                hashBuilder.Append(SerializeParameter(binder.Param)).Append('\u001E');
+            }
+
+            // Update the record hash using the updated parameter bindings.
+            // The record hash should always be the last parameter in the collection.
+            command.Parameters[^1].Value = hashBuilder.ToString().Hash();
 
             await command.ExecuteNonQueryAsync(token);
         }
@@ -60,4 +83,26 @@ public abstract class SqliteElementImport<TElement>(string sql, TableMap<TElemen
     /// <param name="content">The source content from which records are retrieved.</param>
     /// <returns>A collection of records of type <typeparamref name="TElement"/>.</returns>
     protected abstract IEnumerable<TElement> GetRecords(L5X content);
+
+    /// <summary>
+    /// Serializes an SQLite parameter into a string representation, combining its name
+    /// and formatted value for use in hash generation or logging.
+    /// </summary>
+    /// <param name="parameter">The SQLite parameter to be serialized.</param>
+    /// <returns>A string representation of the parameter, including its name and formatted value.</returns>
+    private static string SerializeParameter(SqliteParameter parameter)
+    {
+        return parameter.ParameterName + '\u001F' + FormatValue(parameter.Value);
+
+        static string FormatValue(object? value)
+        {
+            return value switch
+            {
+                null => "\u2400",
+                string s => s.Replace("\r\n", "\n"),
+                IFormattable f => f.ToString(null, CultureInfo.InvariantCulture),
+                _ => value.ToString() ?? string.Empty
+            };
+        }
+    }
 }

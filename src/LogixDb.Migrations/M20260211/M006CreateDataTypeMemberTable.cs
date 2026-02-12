@@ -17,8 +17,11 @@ public class M006CreateDataTypeMemberTable : AutoReversingMigration
             .WithColumn("dimension").AsInt16().Nullable()
             .WithColumn("radix").AsString(32).Nullable()
             .WithColumn("external_access").AsString(32).Nullable()
-            .WithColumn("description").AsString(256).Nullable()
-            .WithColumn("hash").AsString(32).NotNullable();
+            .WithColumn("description").AsString(int.MaxValue).Nullable()
+            .WithColumn("hidden").AsBoolean().Nullable()
+            .WithColumn("target").AsString(64).Nullable()
+            .WithColumn("bit_number").AsByte().Nullable()
+            .WithColumn("record_hash").AsString(32).NotNullable();
 
         Create.Index()
             .OnTable("data_type_member")

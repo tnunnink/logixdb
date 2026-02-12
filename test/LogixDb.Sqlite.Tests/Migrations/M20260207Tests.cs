@@ -18,26 +18,27 @@ public class M20260207Tests : SqliteMigrationTestBase
             AssertColumnDefinition(connection, "tag", "snapshot_id", "integer");
             AssertColumnDefinition(connection, "tag", "base_name", "text");
             AssertColumnDefinition(connection, "tag", "tag_name", "text");
-            AssertColumnDefinition(connection, "tag", "scope_level", "text");
-            AssertColumnDefinition(connection, "tag", "scope_name", "text");
+            AssertColumnDefinition(connection, "tag", "scope_type", "text");
+            AssertColumnDefinition(connection, "tag", "container_name", "text");
             AssertColumnDefinition(connection, "tag", "tag_depth", "integer");
-            AssertColumnDefinition(connection, "tag", "tag_usage", "text");
             AssertColumnDefinition(connection, "tag", "data_type", "text");
             AssertColumnDefinition(connection, "tag", "value", "text");
             AssertColumnDefinition(connection, "tag", "description", "text");
             AssertColumnDefinition(connection, "tag", "dimensions", "text");
-            AssertColumnDefinition(connection, "tag", "radix", "text");
             AssertColumnDefinition(connection, "tag", "external_access", "text");
             AssertColumnDefinition(connection, "tag", "opcua_access", "text");
+            AssertColumnDefinition(connection, "tag", "radix", "text");
             AssertColumnDefinition(connection, "tag", "constant", "integer");
             AssertColumnDefinition(connection, "tag", "tag_type", "text");
+            AssertColumnDefinition(connection, "tag", "tag_usage", "text");
             AssertColumnDefinition(connection, "tag", "alias_for", "text");
             AssertColumnDefinition(connection, "tag", "component_class", "text");
-            AssertColumnDefinition(connection, "tag", "hash", "text");
+            AssertColumnDefinition(connection, "tag", "value_hash", "text");
+            AssertColumnDefinition(connection, "tag", "record_hash", "text");
 
             AssertPrimaryKey(connection, "tag", "tag_id");
             AssertForeignKey(connection, "tag", "snapshot_id", "snapshot", "snapshot_id");
-            AssertUniqueIndex(connection, "tag", "snapshot_id", "scope_name", "tag_name");
+            AssertUniqueIndex(connection, "tag", "snapshot_id", "container_name", "tag_name");
         }
     }
 }

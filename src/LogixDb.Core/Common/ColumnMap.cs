@@ -46,6 +46,57 @@ public sealed record ColumnMap<TElement> where TElement : ILogixElement
     }
 
     /// <summary>
+    /// Creates a new column map for a boolean-based property of a Logix element with a specified database column name.
+    /// </summary>
+    /// <typeparam name="TElement">The type of Logix element being mapped, which must implement <see cref="ILogixElement"/>.</typeparam>
+    /// <param name="getter">A function that retrieves the boolean value from the Logix element to be mapped to the database column.</param>
+    /// <param name="name">The name of the database column to map the property to.</param>
+    /// <returns>A new instance of <see cref="ColumnMap{TElement}"/> configured for the boolean property and column name.</returns>
+    public static ColumnMap<TElement> For(Func<TElement, bool> getter, string name)
+    {
+        return new ColumnMap<TElement>
+        {
+            Name = name,
+            Type = ColumnType.Boolean,
+            Getter = e => getter(e)
+        };
+    }
+
+    /// <summary>
+    /// Creates a new column map for a nullable boolean-based property of a Logix element with a specified database column name.
+    /// </summary>
+    /// <typeparam name="TElement">The type of Logix element being mapped, which must implement <see cref="ILogixElement"/>.</typeparam>
+    /// <param name="getter">A function that retrieves the nullable boolean value from the Logix element to be mapped to the database column.</param>
+    /// <param name="name">The name of the database column to map the property to.</param>
+    /// <returns>A new instance of <see cref="ColumnMap{TElement}"/> configured for the nullable boolean property and column name.</returns>
+    public static ColumnMap<TElement> For(Func<TElement, bool?> getter, string name)
+    {
+        return new ColumnMap<TElement>
+        {
+            Name = name,
+            Type = ColumnType.Boolean,
+            Getter = e => getter(e)
+        };
+    }
+
+    /// <summary>
+    /// Creates a new column map for a byte-based property of a Logix element with a specified database column name.
+    /// </summary>
+    /// <typeparam name="TElement">The type of Logix element being mapped, which must implement <see cref="ILogixElement"/>.</typeparam>
+    /// <param name="getter">A function that retrieves the byte value from the Logix element to be mapped to the database column.</param>
+    /// <param name="name">The name of the database column to map the property to.</param>
+    /// <returns>A new instance of <see cref="ColumnMap{TElement}"/> configured for the byte property and column name.</returns>
+    public static ColumnMap<TElement> For(Func<TElement, byte> getter, string name)
+    {
+        return new ColumnMap<TElement>
+        {
+            Name = name,
+            Type = ColumnType.Byte,
+            Getter = e => getter(e)
+        };
+    }
+
+    /// <summary>
     /// Creates a new column map for a Logix element property with a 16-bit integer (short) data type mapped to the specified database column name.
     /// </summary>
     /// <typeparam name="TElement">The type of Logix element being mapped, which must implement <see cref="ILogixElement"/>.</typeparam>
@@ -80,35 +131,35 @@ public sealed record ColumnMap<TElement> where TElement : ILogixElement
     }
 
     /// <summary>
-    /// Creates a new column map for a boolean-based property of a Logix element with a specified database column name.
+    /// Creates a new column map for a float-based property of a Logix element with a specified database column name.
     /// </summary>
     /// <typeparam name="TElement">The type of Logix element being mapped, which must implement <see cref="ILogixElement"/>.</typeparam>
-    /// <param name="getter">A function that retrieves the boolean value from the Logix element to be mapped to the database column.</param>
+    /// <param name="getter">A function that retrieves the float value from the Logix element to be mapped to the database column.</param>
     /// <param name="name">The name of the database column to map the property to.</param>
-    /// <returns>A new instance of <see cref="ColumnMap{TElement}"/> configured for the boolean property and column name.</returns>
-    public static ColumnMap<TElement> For(Func<TElement, bool> getter, string name)
+    /// <returns>A new instance of <see cref="ColumnMap{TElement}"/> configured for the float property and column name.</returns>
+    public static ColumnMap<TElement> For(Func<TElement, float> getter, string name)
     {
         return new ColumnMap<TElement>
         {
             Name = name,
-            Type = ColumnType.Boolean,
+            Type = ColumnType.Float,
             Getter = e => getter(e)
         };
     }
 
     /// <summary>
-    /// Creates a new column map for a nullable boolean-based property of a Logix element with a specified database column name.
+    /// Creates a new column map for a DateTime-based property of a Logix element with a specified database column name.
     /// </summary>
     /// <typeparam name="TElement">The type of Logix element being mapped, which must implement <see cref="ILogixElement"/>.</typeparam>
-    /// <param name="getter">A function that retrieves the nullable boolean value from the Logix element to be mapped to the database column.</param>
+    /// <param name="getter">A function that retrieves the DateTime value from the Logix element to be mapped to the database column.</param>
     /// <param name="name">The name of the database column to map the property to.</param>
-    /// <returns>A new instance of <see cref="ColumnMap{TElement}"/> configured for the nullable boolean property and column name.</returns>
-    public static ColumnMap<TElement> For(Func<TElement, bool?> getter, string name)
+    /// <returns>A new instance of <see cref="ColumnMap{TElement}"/> configured for the DateTime property and column name.</returns>
+    public static ColumnMap<TElement> For(Func<TElement, DateTime> getter, string name)
     {
         return new ColumnMap<TElement>
         {
             Name = name,
-            Type = ColumnType.Boolean,
+            Type = ColumnType.DateTime,
             Getter = e => getter(e)
         };
     }
