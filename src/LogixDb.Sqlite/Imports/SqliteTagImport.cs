@@ -11,7 +11,7 @@ namespace LogixDb.Sqlite.Imports;
 /// by using a specific set of preconfigured SQL commands and mappings. It works in
 /// conjunction with a parent transaction to ensure atomic operations are performed safely.
 /// </remarks>
-internal class SqliteTagImport() : SqliteEntityImport<Tag>(new TagMap())
+internal class SqliteTagImport() : SqliteElementImport<Tag>(new TagMap())
 {
     /// <inheritdoc />
     protected override IEnumerable<Tag> GetRecords(L5X content)

@@ -11,8 +11,9 @@ public class M006CreateDataTypeMemberTable : AutoReversingMigration
     {
         Create.Table("data_type_member")
             .WithPrimaryId("member_id")
-            .WithCascadeForeignKey("type_id", "data_type")
-            .WithColumn("name").AsString(128).NotNullable()
+            .WithCascadeForeignKey("snapshot_id", "snapshot")
+            .WithColumn("host_name").AsString(128).NotNullable()
+            .WithColumn("member_name").AsString(128).NotNullable()
             .WithColumn("data_type").AsString(128).Nullable()
             .WithColumn("dimension").AsInt16().Nullable()
             .WithColumn("radix").AsString(32).Nullable()
@@ -25,8 +26,9 @@ public class M006CreateDataTypeMemberTable : AutoReversingMigration
 
         Create.Index()
             .OnTable("data_type_member")
-            .OnColumn("type_id").Ascending()
-            .OnColumn("name").Ascending()
+            .OnColumn("snapshot_id").Ascending()
+            .OnColumn("host_name").Ascending()
+            .OnColumn("member_name").Ascending()
             .WithOptions().Unique();
     }
 }

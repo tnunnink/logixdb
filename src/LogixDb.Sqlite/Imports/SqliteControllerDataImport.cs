@@ -1,23 +1,18 @@
-/*
 using L5Sharp.Core;
 using LogixDb.Core.Maps;
 
 namespace LogixDb.Sqlite.Imports;
 
 /// <summary>
-/// Represents a class for importing controller data into a SQLite database.
+/// A class responsible for importing controller data from an L5X file into an SQLite database.
+/// Implements element import for <see cref="Controller"/> objects by extracting the single
+/// controller instance from the L5X content and mapping it to the database using <see cref="ControllerMap"/>.
 /// </summary>
-/// <remarks>
-/// This class provides functionality to process and import controllers into a SQLite database
-/// by using a specific set of preconfigured SQL commands and mappings. It works in
-/// conjunction with a parent transaction to ensure atomic operations are performed safely.
-/// </remarks>
-internal class SqliteControllerImport() : ILogixDatabaseImport
+internal class SqliteControllerImport() : SqliteElementImport<Controller>(new ControllerMap())
 {
     /// <inheritdoc />
     protected override IEnumerable<Controller> GetRecords(L5X content)
     {
-        return content.Query<Controller>().ToList();
+        return [content.Controller];
     }
 }
-*/

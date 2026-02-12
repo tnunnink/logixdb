@@ -1,4 +1,5 @@
 ﻿using LogixDb.Core.Common;
+using LogixDb.Core.Exceptions;
 
 namespace LogixDb.Core.Abstractions;
 
@@ -10,11 +11,17 @@ namespace LogixDb.Core.Abstractions;
 public interface ILogixDatabase
 {
     /// <summary>
-    /// Ensures that the database is created if it does not already exist.
-    /// This method can be used to initialize the database structure for applications
-    /// that do not require or use migrations.
+    /// Establishes a connection to the database if it exists, or creates a new database if it does not.
+    /// This method ensures that the database is initialized with the necessary structure and configuration,
+    /// enabling further operations to be performed. Database migrations are applied in cases
+    /// where a new database is being created.
     /// </summary>
-    ILogixDatabase Build();
+    /// <remarks>
+    /// If the database does not exist, this method will create and migrate the database to the latest version automatically.
+    /// If the database exists and is up to date, then we set internal connection parameters and return.
+    /// If the database exists but migrations are required, this method will throw the <see cref="MigrationRequiredException"/>.
+    /// </remarks>
+    void ConnectOrCreate();
 
     /// <summary>
     /// Executes database schema migrations to ensure the database structure is up to date.

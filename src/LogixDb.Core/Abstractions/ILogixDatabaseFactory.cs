@@ -17,5 +17,5 @@ public interface ILogixDatabaseFactory
     /// <param name="connection">The SQL connection information containing details about the provider,
     /// data source, catalog, authentication, port, encryption, and trust settings.</param>
     /// <returns>An instance of <see cref="ILogixDatabase"/> representing the connected and initialized database.</returns>
-    ILogixDatabase Create(SqlConnectionInfo connection);
+    ILogixDatabase Resolve(SqlConnectionInfo connection);
 }

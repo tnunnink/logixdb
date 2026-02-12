@@ -56,8 +56,9 @@ public class M20260212Tests : SqliteMigrationTestBase
             AssertTableExists(connection, "aoi_parameter");
 
             AssertColumnDefinition(connection, "aoi_parameter", "parameter_id", "integer");
-            AssertColumnDefinition(connection, "aoi_parameter", "aoi_id", "integer");
-            AssertColumnDefinition(connection, "aoi_parameter", "name", "text");
+            AssertColumnDefinition(connection, "aoi_parameter", "snapshot_id", "integer");
+            AssertColumnDefinition(connection, "aoi_parameter", "host_name", "text");
+            AssertColumnDefinition(connection, "aoi_parameter", "parameter_name", "text");
             AssertColumnDefinition(connection, "aoi_parameter", "data_type", "text");
             AssertColumnDefinition(connection, "aoi_parameter", "value", "text");
             AssertColumnDefinition(connection, "aoi_parameter", "description", "text");
@@ -73,8 +74,8 @@ public class M20260212Tests : SqliteMigrationTestBase
             AssertColumnDefinition(connection, "aoi_parameter", "record_hash", "text");
 
             AssertPrimaryKey(connection, "aoi_parameter", "parameter_id");
-            AssertForeignKey(connection, "aoi_parameter", "aoi_id", "aoi", "aoi_id");
-            AssertUniqueIndex(connection, "aoi_parameter", "aoi_id", "name");
+            AssertForeignKey(connection, "aoi_parameter", "snapshot_id", "snapshot", "snapshot_id");
+            AssertUniqueIndex(connection, "aoi_parameter", "snapshot_id", "host_name", "parameter_name");
         }
     }
 

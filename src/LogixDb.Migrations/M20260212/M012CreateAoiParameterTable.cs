@@ -11,8 +11,9 @@ public class M012CreateAoiParameterTable : AutoReversingMigration
     {
         Create.Table("aoi_parameter")
             .WithPrimaryId("parameter_id")
-            .WithCascadeForeignKey("aoi_id", "aoi")
-            .WithColumn("name").AsString(128).NotNullable()
+            .WithCascadeForeignKey("snapshot_id", "snapshot")
+            .WithColumn("host_name").AsString(128).NotNullable()
+            .WithColumn("parameter_name").AsString(128).NotNullable()
             .WithColumn("data_type").AsString(128).Nullable()
             .WithColumn("value").AsString(128).Nullable()
             .WithColumn("description").AsString(512).Nullable()
@@ -29,8 +30,9 @@ public class M012CreateAoiParameterTable : AutoReversingMigration
 
         Create.Index()
             .OnTable("aoi_parameter")
-            .OnColumn("aoi_id").Ascending()
-            .OnColumn("name").Ascending()
+            .OnColumn("snapshot_id").Ascending()
+            .OnColumn("host_name").Ascending()
+            .OnColumn("parameter_name").Ascending()
             .WithOptions().Unique();
     }
 }

@@ -11,7 +11,7 @@ namespace LogixDb.Sqlite.Imports;
 /// by using a specific set of preconfigured SQL commands and mappings. It works in
 /// conjunction with a parent transaction to ensure atomic operations are performed safely.
 /// </remarks>
-internal class SqliteAoiImport() : SqliteEntityImport<AddOnInstruction>(new AoiMap())
+internal class SqliteAoiImport() : SqliteElementImport<AddOnInstruction>(new AoiMap())
 {
     /// <inheritdoc />
     protected override IEnumerable<AddOnInstruction> GetRecords(L5X content)

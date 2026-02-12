@@ -31,7 +31,6 @@ internal sealed class SqliteDatabaseSession : ILogixDatabaseSession
     public static async Task<SqliteDatabaseSession> OpenAsync(SqliteDatabase database, CancellationToken token)
     {
         var connection = await database.OpenConnectionAsync(token);
-        ConfigureConnectionPragma(connection);
         var transaction = await connection.BeginTransactionAsync(token);
         return new SqliteDatabaseSession(connection, (SqliteTransaction)transaction);
     }
@@ -61,25 +60,5 @@ internal sealed class SqliteDatabaseSession : ILogixDatabaseSession
     {
         await _connection.DisposeAsync();
         await _transaction.DisposeAsync();
-    }
-
-    /// <summary>
-    /// Configures the PRAGMA settings on the specified SQLite connection to optimize performance and behavior.
-    /// This includes settings such as journal mode, synchronous mode, temporary storage location, and cache size.
-    /// </summary>
-    /// <param name="connection">The <see cref="SqliteConnection"/> to configure with the specified PRAGMA options.</param>
-    private static void ConfigureConnectionPragma(SqliteConnection connection)
-    {
-        using var command = connection.CreateCommand();
-
-        command.CommandText =
-            """
-            PRAGMA journal_mode = WAL;
-            PRAGMA synchronous = NORMAL;
-            PRAGMA temp_store = MEMORY;
-            PRAGMA cache_size = -200000;
-            """;
-
-        command.ExecuteNonQuery();
     }
 }

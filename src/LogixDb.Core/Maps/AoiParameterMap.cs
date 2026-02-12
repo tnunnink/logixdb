@@ -17,7 +17,8 @@ public class AoiParameterMap : TableMap<Parameter>
     /// <inheritdoc />
     public override IReadOnlyList<ColumnMap<Parameter>> Columns =>
     [
-        ColumnMap<Parameter>.For(p => p.Name, "name"),
+        ColumnMap<Parameter>.For(p => p.Instruction?.Name, "host_name"),
+        ColumnMap<Parameter>.For(p => p.Name, "parameter_name"),
         ColumnMap<Parameter>.For(p => p.Dimension > 0 ? $"{p.DataType}{p.Dimension.ToIndex()}" : p.DataType, "data_type"),
         ColumnMap<Parameter>.For(p => p.Default?.IsAtomic() is true ? p.Default?.ToString() : null, "value"),
         ColumnMap<Parameter>.For(p => p.Description, "description"),

@@ -80,8 +80,9 @@ public class M20260211Tests : SqliteMigrationTestBase
             AssertTableExists(connection, "data_type_member");
 
             AssertColumnDefinition(connection, "data_type_member", "member_id", "integer");
-            AssertColumnDefinition(connection, "data_type_member", "type_id", "integer");
-            AssertColumnDefinition(connection, "data_type_member", "name", "text");
+            AssertColumnDefinition(connection, "data_type_member", "snapshot_id", "integer");
+            AssertColumnDefinition(connection, "data_type_member", "host_name", "text");
+            AssertColumnDefinition(connection, "data_type_member", "member_name", "text");
             AssertColumnDefinition(connection, "data_type_member", "data_type", "text");
             AssertColumnDefinition(connection, "data_type_member", "dimension", "integer");
             AssertColumnDefinition(connection, "data_type_member", "radix", "text");
@@ -93,8 +94,8 @@ public class M20260211Tests : SqliteMigrationTestBase
             AssertColumnDefinition(connection, "data_type_member", "record_hash", "text");
 
             AssertPrimaryKey(connection, "data_type_member", "member_id");
-            AssertForeignKey(connection, "data_type_member", "type_id", "data_type", "type_id");
-            AssertUniqueIndex(connection, "data_type_member", "type_id", "name");
+            AssertForeignKey(connection, "data_type_member", "snapshot_id", "snapshot", "snapshot_id");
+            AssertUniqueIndex(connection, "data_type_member", "snapshot_id", "host_name", "member_name");
         }
     }
 

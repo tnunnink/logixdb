@@ -11,7 +11,7 @@ namespace LogixDb.Cli.Extensions;
 /// <summary>
 /// 
 /// </summary>
-public static class GeneralExtensions
+public static class Extensions
 {
     /// <summary>
     /// Creates an instance of <see cref="IAnsiConsole"/> using the specified console

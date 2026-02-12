@@ -22,15 +22,18 @@ public static class SqliteRegistration
     public static IServiceCollection AddLogixSqlite(this IServiceCollection services)
     {
         services.AddTransient<ILogixDatabaseImport, SqliteSnapshotImport>();
+        services.AddTransient<ILogixDatabaseImport, SqliteControllerImport>();
+        services.AddTransient<ILogixDatabaseImport, SqliteDataTypeImport>();
+        services.AddTransient<ILogixDatabaseImport, SqliteDataTypeMemberImport>();
+        services.AddTransient<ILogixDatabaseImport, SqliteAoiImport>();
+        services.AddTransient<ILogixDatabaseImport, SqliteAoiParameterImport>();
+        services.AddTransient<ILogixDatabaseImport, SqliteModuleImport>();
+        services.AddTransient<ILogixDatabaseImport, SqliteTaskImport>();
+        services.AddTransient<ILogixDatabaseImport, SqliteProgramImport>();
+        services.AddTransient<ILogixDatabaseImport, SqliteRoutineImport>();
+        services.AddTransient<ILogixDatabaseImport, SqliteRungImport>();
         services.AddTransient<ILogixDatabaseImport, SqliteTagImport>();
-        //todo remaining import implementations.
-
-        services.AddSingleton<SqliteDatabaseFactory>();
-        services.AddKeyedSingleton<ILogixDatabaseFactory>(
-            SqlProvider.Sqlite,
-            (sp, _) => sp.GetRequiredService<SqliteDatabaseFactory>()
-        );
-
+        services.AddTransient<SqliteDatabaseFactory>();
         return services;
     }
 }

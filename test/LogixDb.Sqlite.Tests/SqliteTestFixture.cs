@@ -27,7 +27,7 @@ public abstract class SqliteTestFixture(string dataSource)
         var provider = new ServiceCollection().AddLogixSqlite().BuildServiceProvider();
         var factory = provider.GetRequiredService<SqliteDatabaseFactory>();
         var connection = new SqlConnectionInfo(SqlProvider.Sqlite, DataSource);
-        return factory.Create(connection);
+        return factory.Resolve(connection);
     }
 
     [TearDown]

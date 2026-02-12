@@ -2,6 +2,7 @@
 using FluentMigrator.Runner;
 using LogixDb.Core.Abstractions;
 using LogixDb.Core.Common;
+using LogixDb.Core.Exceptions;
 using LogixDb.Migrations;
 using Microsoft.Data.Sqlite;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,61 +17,30 @@ namespace LogixDb.Sqlite;
 internal class SqliteDatabase(SqlConnectionInfo info, IEnumerable<ILogixDatabaseImport> imports) : ILogixDatabase
 {
     private readonly string _connectionString = BuildConnectionString(info);
-    
-    private const string ListAllSnapshots =
-        """
-        SELECT snapshot_id [SnapshotId],
-               target_id [TargetId],
-               target_type [TargetType],
-               target_name [TargetName],
-               is_partial [IsPartial],
-               schema_revision [SchemaRevision],
-               software_revision [SoftwareRevision],
-               export_date [ExportDate],
-               export_options [ExportOptions],
-               import_date [ImportDate],
-               import_user [ImportUser],
-               import_machine [ImportMachine],
-               source_hash [ImportHash] 
-        FROM snapshot
-        """;
-
-    private const string ListSnapshotsForTarget =
-        """
-        SELECT snapshot_id [SnapshotId],
-              target_id [TargetId],
-              target_type [TargetType],
-              target_name [TargetName],
-              is_partial [IsPartial],
-              schema_revision [SchemaRevision],
-              software_revision [SoftwareRevision],
-              export_date [ExportDate],
-              export_options [ExportOptions],
-              import_date [ImportDate],
-              import_user [ImportUser],
-              import_machine [ImportMachine],
-              source_hash [ImportHash] 
-        FROM snapshot
-        WHERE target_id = (SELECT target_id FROM target where target_key = @target_key)
-        """;
 
     /// <inheritdoc />
-    public ILogixDatabase Build()
+    public void ConnectOrCreate()
     {
+        // Build the migration runner since we need to check for migrations and potentially migrate to create the database.
         using var provider = BuildServiceProvider(_connectionString);
         using var scope = provider.CreateScope();
         var runner = provider.GetRequiredService<IMigrationRunner>();
 
+        // If this connection exists, we don't want to silently migrate it without the caller know it is outdated.
+        // All migrations should be handled manually.
         if (File.Exists(info.DataSource))
         {
-            return runner.HasMigrationsToApplyUp()
-                ? throw new InvalidOperationException(
-                    "The database file exists but has pending migrations. Please run migrations before using the database.")
-                : this;
+            if (runner.HasMigrationsToApplyUp())
+                throw new MigrationRequiredException();
+
+            return;
         }
 
+        // This will create the database for the first time.
         runner.MigrateUp();
-        return this;
+
+        // After migration of the database enable performance enhancing PRAGMA settings.
+        ConfigurePersistentPerformancePragmas();
     }
 
     /// <inheritdoc />
@@ -85,14 +55,26 @@ internal class SqliteDatabase(SqlConnectionInfo info, IEnumerable<ILogixDatabase
     /// <inheritdoc />
     public async Task<IEnumerable<Snapshot>> Snapshots(string? targetKey = null, CancellationToken token = default)
     {
+        const string sql = """
+                           SELECT snapshot_id [SnapshotId],
+                                 target_id [TargetId],
+                                 target_type [TargetType],
+                                 target_name [TargetName],
+                                 is_partial [IsPartial],
+                                 schema_revision [SchemaRevision],
+                                 software_revision [SoftwareRevision],
+                                 export_date [ExportDate],
+                                 export_options [ExportOptions],
+                                 import_date [ImportDate],
+                                 import_user [ImportUser],
+                                 import_machine [ImportMachine],
+                                 source_hash [ImportHash] 
+                           FROM snapshot
+                           WHERE @target_key is null or target_id = (SELECT target_id FROM target where target_key = @target_key)
+                           """;
         await using var connection = await OpenConnectionAsync(token);
-
-        if (string.IsNullOrEmpty(targetKey))
-        {
-            return await connection.QueryAsync<Snapshot>(ListAllSnapshots);
-        }
-
-        return await connection.QueryAsync<Snapshot>(ListSnapshotsForTarget, targetKey);
+        var key = new { target_key = targetKey };
+        return await connection.QueryAsync<Snapshot>(sql, key);
     }
 
     /// <inheritdoc />
@@ -115,19 +97,76 @@ internal class SqliteDatabase(SqlConnectionInfo info, IEnumerable<ILogixDatabase
         }
     }
 
-    public Task<Snapshot> Export(string targetKey, CancellationToken token = default)
+    /// <inheritdoc />
+    public async Task<Snapshot> Export(string targetKey, CancellationToken token = default)
     {
-        throw new NotImplementedException();
+        const string sql = """
+                           SELECT snapshot_id [SnapshotId],
+                                 target_id [TargetId],
+                                 target_type [TargetType],
+                                 target_name [TargetName],
+                                 is_partial [IsPartial],
+                                 schema_revision [SchemaRevision],
+                                 software_revision [SoftwareRevision],
+                                 export_date [ExportDate],
+                                 export_options [ExportOptions],
+                                 import_date [ImportDate],
+                                 import_user [ImportUser],
+                                 import_machine [ImportMachine],
+                                 source_hash [SourceHash], 
+                                 source_data [SourceData] 
+                           FROM snapshot
+                           WHERE target_id = (SELECT target_id FROM target where target_key = @target_key)
+                           ORDER BY import_date DESC
+                           LIMIT 1
+                           """;
+        await using var connection = await OpenConnectionAsync(token);
+        var key = new { target_key = targetKey };
+        var snapshot = await connection.QuerySingleAsync<Snapshot>(sql, key);
+        return snapshot;
     }
 
-    public Task Purge(CancellationToken token = default)
+    /// <inheritdoc />
+    public async Task Purge(CancellationToken token = default)
     {
-        throw new NotImplementedException();
+        const string sql = "DELETE FROM main.snapshot WHERE snapshot_id > 0";
+        await using var connection = await OpenConnectionAsync(token);
+        await using var transaction = await connection.BeginTransactionAsync(token);
+
+        try
+        {
+            await connection.ExecuteAsync(sql, transaction);
+            await transaction.CommitAsync(token);
+        }
+        catch (Exception)
+        {
+            await transaction.RollbackAsync(token);
+            throw;
+        }
     }
 
-    public Task Purge(string targetKey, CancellationToken token = default)
+    /// <inheritdoc />
+    public async Task Purge(string targetKey, CancellationToken token = default)
     {
-        throw new NotImplementedException();
+        const string sql =
+            """
+            DELETE FROM main.snapshot 
+            WHERE target_id = (SELECT target_id FROM target WHERE target_key = @target_key);
+            """;
+
+        await using var connection = await OpenConnectionAsync(token);
+        await using var transaction = await connection.BeginTransactionAsync(token);
+
+        try
+        {
+            await connection.ExecuteAsync(sql, new { target_key = targetKey }, transaction);
+            await transaction.CommitAsync(token);
+        }
+        catch (Exception)
+        {
+            await transaction.RollbackAsync(token);
+            throw;
+        }
     }
 
     /// <summary>
@@ -155,6 +194,7 @@ internal class SqliteDatabase(SqlConnectionInfo info, IEnumerable<ILogixDatabase
             .ConfigureRunner(rb => rb
                 .AddSQLite()
                 .WithGlobalConnectionString(connectionString)
+                .WithVersionTable(new MigrationTableMetaData())
                 .ScanIn(
                     typeof(MigrationTableMetaData).Assembly,
                     typeof(SqliteDatabase).Assembly)
@@ -182,5 +222,34 @@ internal class SqliteDatabase(SqlConnectionInfo info, IEnumerable<ILogixDatabase
         };
 
         return builder.ConnectionString;
+    }
+
+    /// <summary>
+    /// Configures SQLite performance-related PRAGMA settings to enhance database operations.
+    /// This method is responsible for setting various SQLite pragmas, such as journal mode,
+    /// auto vacuum mode, synchronization settings, and memory usage configurations, 
+    /// to optimize the database performance.
+    /// </summary>
+    /// <remarks>
+    /// The method adjusts settings including WAL (Write-Ahead Logging) for journaling,
+    /// incremental vacuum, and memory configurations such as mmap size and cache size.
+    /// These settings are tailored to improve performance while maintaining data integrity.
+    /// </remarks>
+    private void ConfigurePersistentPerformancePragmas()
+    {
+        using var connection = new SqliteConnection(_connectionString);
+        connection.Open();
+        using var command = connection.CreateCommand();
+
+        command.CommandText =
+            """
+            PRAGMA journal_mode = WAL;
+            PRAGMA auto_vacuum = INCREMENTAL;
+            PRAGMA temp_store = MEMORY;
+            PRAGMA busy_timeout = 5000;
+            PRAGMA page_size = 16384;
+            """;
+
+        command.ExecuteNonQuery();
     }
 }

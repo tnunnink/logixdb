@@ -10,10 +10,10 @@ namespace LogixDb.Sqlite.Imports;
 
 /// <summary>
 /// Provides an abstract base class for importing database elements into an SQLite database.
-/// This class maps elements of type <typeparamref name="TEntity"/> to SQLite database tables
+/// This class maps elements of type <typeparamref name="TElement"/> to SQLite database tables
 /// using the provided table mapping and performs optimized bulk insertion of data.
 /// </summary>
-/// <typeparam name="TEntity">
+/// <typeparam name="TElement">
 /// The type of element being imported. This type must implement the <see cref="ILogixElement"/> interface.
 /// </typeparam>
 /// <remarks>
@@ -22,8 +22,8 @@ namespace LogixDb.Sqlite.Imports;
 /// the abstract <see cref="GetRecords"/> method to define how to extract the records to
 /// be imported from the source data.
 /// </remarks>
-public abstract class SqliteEntityImport<TEntity>(TableMap<TEntity> map) : ILogixDatabaseImport
-    where TEntity : class, ILogixEntity
+public abstract class SqliteElementImport<TElement>(TableMap<TElement> map) : ILogixDatabaseImport
+    where TElement : class, ILogixElement
 {
     public async Task Process(Snapshot snapshot, ILogixDatabaseSession session, CancellationToken token = default)
     {
@@ -78,11 +78,11 @@ public abstract class SqliteEntityImport<TEntity>(TableMap<TEntity> map) : ILogi
     }
 
     /// <summary>
-    /// Retrieves a collection of records of type <typeparamref name="TEntity"/> from the specified content.
+    /// Retrieves a collection of records of type <typeparamref name="TElement"/> from the specified content.
     /// </summary>
     /// <param name="content">The source content from which records are retrieved.</param>
-    /// <returns>A collection of records of type <typeparamref name="TEntity"/>.</returns>
-    protected abstract IEnumerable<TEntity> GetRecords(L5X content);
+    /// <returns>A collection of records of type <typeparamref name="TElement"/>.</returns>
+    protected abstract IEnumerable<TElement> GetRecords(L5X content);
 
     /// <summary>
     /// Serializes an SQLite parameter into a string representation, combining its name

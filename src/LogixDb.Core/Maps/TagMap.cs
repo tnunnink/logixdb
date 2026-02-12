@@ -32,7 +32,7 @@ public class TagMap : TableMap<Tag>
         ColumnMap<Tag>.For(t => t.Constant, "constant"),
         ColumnMap<Tag>.For(t => t.TagType?.Name, "tag_type"),
         ColumnMap<Tag>.For(t => t.Usage?.Name, "tag_usage"),
-        ColumnMap<Tag>.For(t => t.AliasFor?.LocalPath, "alias_for"),
+        ColumnMap<Tag>.For(t => t.AliasFor?.LocalPath, "alias"),
         ColumnMap<Tag>.For(t => t.Class?.Name, "component_class"),
         ColumnMap<Tag>.For(t => t.Value.Serialize().ToString().Hash(), "value_hash")
     ];

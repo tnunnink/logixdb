@@ -23,8 +23,13 @@ public abstract class DbCommand(ILogixDatabaseFactory factory) : ICommand
     /// </summary>
     protected const string DefaultDatabaseName = "Logix";
 
-    [CommandParameter(0, Name = "db", Description = "")]
-    public string Db { get; init; } = string.Empty;
+    /// <summary>
+    /// Specifies the source information for the database connection. This typically includes
+    /// the server name, file path, or connection string required to locate and access the
+    /// target database.
+    /// </summary>
+    [CommandParameter(0, Name = "source", Description = "")]
+    public string Source { get; init; } = string.Empty;
 
     [CommandOption("provider", 'p', Description = "")]
     public SqlProvider? Provider { get; init; }
@@ -52,14 +57,14 @@ public abstract class DbCommand(ILogixDatabaseFactory factory) : ICommand
     /// </returns>
     public ValueTask ExecuteAsync(IConsole console)
     {
-        if (string.IsNullOrWhiteSpace(Db))
+        if (string.IsNullOrWhiteSpace(Source))
             throw new CommandException("Database argument 'db' is required.", ExitCodes.UsageError);
 
-        var provider = Provider ?? InferProvider(Db);
-        var datasource = ParseDataSource(Db, provider);
-        var catalog = ParseCatalog(Db, provider) ?? DefaultDatabaseName;
+        var provider = Provider ?? InferProvider(Source);
+        var datasource = ParseDataSource(Source, provider);
+        var catalog = ParseCatalog(Source, provider) ?? DefaultDatabaseName;
         var info = new SqlConnectionInfo(provider, datasource, catalog, Authentication, Port, Encrypt, Trust);
-        var database = factory.Create(info);
+        var database = factory.Resolve(info);
         return ExecuteAsync(console, database);
     }
 
