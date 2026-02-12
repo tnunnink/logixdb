@@ -47,8 +47,8 @@ public abstract class SqliteElementImport<TElement>(TableMap<TElement> map) : IL
         command.Parameters.Add("@record_hash", SqliteType.Text);
         command.Prepare();
 
-        // Precompile an ordered array of binders that map parameters to their getter function once before iteration to avoid
-        // costly lookups and to make mapping explicit (by name not array index).
+        // Precompile an ordered array of binders that map parameters to their getter function.
+        // Do this once before iteration to avoid costly lookups and to make mapping explicit (by name not array index).
         var binders = columns
             .OrderBy(c => c.Name, StringComparer.Ordinal)
             .Select(c => (Param: command.Parameters[$"@{c.Name}"], c.Getter))
@@ -66,11 +66,11 @@ public abstract class SqliteElementImport<TElement>(TableMap<TElement> map) : IL
             foreach (var binder in binders)
             {
                 binder.Param.Value = binder.Getter(record) ?? DBNull.Value;
-                hashBuilder.Append(SerializeParameter(binder.Param)).Append('\u001E');
+                hashBuilder.Append(SerializeParameter(binder.Param));
             }
 
             // Update the record hash using the updated parameter bindings.
-            // The record hash should always be the last parameter in the collection.
+            // The record hash should always be the last parameter on the command.
             command.Parameters[^1].Value = hashBuilder.ToString().Hash();
 
             await command.ExecuteNonQueryAsync(token);
@@ -92,7 +92,7 @@ public abstract class SqliteElementImport<TElement>(TableMap<TElement> map) : IL
     /// <returns>A string representation of the parameter, including its name and formatted value.</returns>
     private static string SerializeParameter(SqliteParameter parameter)
     {
-        return parameter.ParameterName + '\u001F' + FormatValue(parameter.Value);
+        return '\u001E' + parameter.ParameterName + '\u001F' + FormatValue(parameter.Value) + '\u001E';
 
         static string FormatValue(object? value)
         {

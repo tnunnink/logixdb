@@ -4,7 +4,7 @@ using JetBrains.Annotations;
 namespace LogixDb.Migrations.M20260211;
 
 [UsedImplicitly]
-[Migration(202602111430, "Creates controller table with required keys")]
+[Migration(202602111430, "Creates controller table with corresponding indexes and keys")]
 public class M004CreateControllerTable : AutoReversingMigration
 {
     public override void Up()
@@ -15,7 +15,7 @@ public class M004CreateControllerTable : AutoReversingMigration
             .WithColumn("name").AsString(128).NotNullable()
             .WithColumn("processor").AsString(128).Nullable()
             .WithColumn("revision").AsString(32).Nullable()
-            .WithColumn("description").AsString(256).Nullable()
+            .WithColumn("description").AsString(512).Nullable()
             .WithColumn("project_creation_date").AsDateTime().Nullable()
             .WithColumn("last_modified_date").AsDateTime().Nullable()
             .WithColumn("comm_path").AsString(128).Nullable()

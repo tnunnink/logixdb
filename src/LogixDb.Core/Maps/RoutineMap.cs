@@ -1,0 +1,26 @@
+using L5Sharp.Core;
+using LogixDb.Core.Abstractions;
+using LogixDb.Core.Common;
+
+namespace LogixDb.Core.Maps;
+
+/// <summary>
+/// Represents a mapping configuration for the "routine" table within the database.
+/// This class defines the schema of the table, including the table name and the columns
+/// that map to the properties of the <see cref="Routine"/> class.
+/// </summary>
+public class RoutineMap : TableMap<Routine>
+{
+    /// <inheritdoc />
+    protected override string TableName => "routine";
+
+    /// <inheritdoc />
+    public override IReadOnlyList<ColumnMap<Routine>> Columns =>
+    [
+        ColumnMap<Routine>.For(r => r.Name, "name"),
+        ColumnMap<Routine>.For(r => r.Scope.Level.Name, "scope_type"),
+        ColumnMap<Routine>.For(r => r.Scope.Container, "container_name"),
+        ColumnMap<Routine>.For(r => r.Type.Name, "routine_type"),
+        ColumnMap<Routine>.For(r => r.Description, "description")
+    ];
+}

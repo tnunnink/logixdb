@@ -4,7 +4,7 @@ using JetBrains.Annotations;
 namespace LogixDb.Migrations.M20260211;
 
 [UsedImplicitly]
-[Migration(202602111600, "")]
+[Migration(202602111600, "Creates task table with corresponding indexes and keys")]
 public class M007CreateTaskTable : AutoReversingMigration
 {
     public override void Up()
@@ -14,7 +14,7 @@ public class M007CreateTaskTable : AutoReversingMigration
             .WithCascadeForeignKey("snapshot_id", "snapshot")
             .WithColumn("name").AsString(128).NotNullable()
             .WithColumn("task_type").AsString(32).Nullable()
-            .WithColumn("description").AsString(256).Nullable()
+            .WithColumn("description").AsString(512).Nullable()
             .WithColumn("priority").AsByte().Nullable()
             .WithColumn("rate").AsFloat().Nullable()
             .WithColumn("watchdog").AsFloat().Nullable()

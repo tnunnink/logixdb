@@ -4,7 +4,7 @@ using JetBrains.Annotations;
 namespace LogixDb.Migrations.M20260211;
 
 [UsedImplicitly]
-[Migration(202602111530, "")]
+[Migration(202602111530, "Creates data_type_member table with corresponding indexes and keys")]
 public class M006CreateDataTypeMemberTable : AutoReversingMigration
 {
     public override void Up()
@@ -17,7 +17,7 @@ public class M006CreateDataTypeMemberTable : AutoReversingMigration
             .WithColumn("dimension").AsInt16().Nullable()
             .WithColumn("radix").AsString(32).Nullable()
             .WithColumn("external_access").AsString(32).Nullable()
-            .WithColumn("description").AsString(int.MaxValue).Nullable()
+            .WithColumn("description").AsString(512).Nullable()
             .WithColumn("hidden").AsBoolean().Nullable()
             .WithColumn("target").AsString(64).Nullable()
             .WithColumn("bit_number").AsByte().Nullable()

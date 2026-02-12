@@ -31,7 +31,7 @@ public class M20260207Tests : SqliteMigrationTestBase
             AssertColumnDefinition(connection, "tag", "constant", "integer");
             AssertColumnDefinition(connection, "tag", "tag_type", "text");
             AssertColumnDefinition(connection, "tag", "tag_usage", "text");
-            AssertColumnDefinition(connection, "tag", "alias_for", "text");
+            AssertColumnDefinition(connection, "tag", "alias", "text");
             AssertColumnDefinition(connection, "tag", "component_class", "text");
             AssertColumnDefinition(connection, "tag", "value_hash", "text");
             AssertColumnDefinition(connection, "tag", "record_hash", "text");

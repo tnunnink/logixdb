@@ -41,7 +41,7 @@ public abstract class SqliteMigrationTestBase
                 .WithVersionTable(new MigrationTableMetaData())
                 .ScanIn(
                     typeof(MigrationTableMetaData).Assembly,
-                    typeof(SqliteDatabaseFactory).Assembly
+                    typeof(SqliteRegistration).Assembly
                 ).For.Migrations())
             .BuildServiceProvider(validateScopes: false);
 
@@ -277,5 +277,52 @@ public abstract class SqliteMigrationTestBase
         }
 
         return columns.OrderBy(x => x.SeqNo).Select(x => x.Name).ToArray();
+    }
+    
+    /// <summary>
+    /// Asserts there exists a (non-unique) index on the specified columns (in the specified order).
+    /// </summary>
+    protected static void AssertIndex(IDbConnection connection, string tableName, params string[] columns)
+    {
+        if (columns is null || columns.Length == 0)
+            throw new ArgumentException("At least one column must be provided.", nameof(columns));
+
+        var table = tableName.Replace("'", "''");
+        var wanted = columns.Select(c => c.Trim()).ToArray();
+
+        using var listCmd = connection.CreateCommand();
+        listCmd.CommandText = $"PRAGMA index_list('{table}');";
+
+        var allIndexes = new List<string>();
+
+        using (var reader = listCmd.ExecuteReader())
+        {
+            while (reader.Read())
+            {
+                var indexName = reader.GetString(reader.GetOrdinal("name"));
+                allIndexes.Add(indexName);
+            }
+        }
+
+        foreach (var indexName in allIndexes)
+        {
+            var indexCols = GetIndexColumns(connection, indexName);
+            if (indexCols.Length != wanted.Length) continue;
+
+            var match = true;
+            for (var i = 0; i < wanted.Length; i++)
+            {
+                if (string.Equals(wanted[i], indexCols[i], StringComparison.OrdinalIgnoreCase)) continue;
+                match = false;
+                break;
+            }
+
+            if (match)
+                return;
+        }
+
+        throw new AssertionException(
+            $"Expected index on '{tableName}' for ({string.Join(", ", columns)}), " +
+            $"but none was found. Found indexes: {string.Join(", ", allIndexes)}");
     }
 }

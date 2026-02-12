@@ -19,7 +19,7 @@ public class M003CreateTagTable : AutoReversingMigration
             .WithColumn("container_name").AsString(128).NotNullable()
             .WithColumn("data_type").AsString(128).Nullable()
             .WithColumn("value").AsString(256).Nullable()
-            .WithColumn("description").AsString(256).Nullable()
+            .WithColumn("description").AsString(512).Nullable()
             .WithColumn("dimensions").AsString(32).Nullable()
             .WithColumn("external_access").AsString(32).Nullable()
             .WithColumn("opcua_access").AsString(32).Nullable()
@@ -27,7 +27,7 @@ public class M003CreateTagTable : AutoReversingMigration
             .WithColumn("constant").AsBoolean().Nullable()
             .WithColumn("tag_type").AsString(32).Nullable()
             .WithColumn("tag_usage").AsString(32).Nullable()
-            .WithColumn("alias_for").AsString(128).Nullable()
+            .WithColumn("alias").AsString(128).Nullable()
             .WithColumn("component_class").AsString(32).Nullable()
             .WithColumn("value_hash").AsString(32).NotNullable()
             .WithColumn("record_hash").AsString(32).NotNullable();

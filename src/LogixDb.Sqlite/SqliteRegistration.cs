@@ -11,7 +11,7 @@ namespace LogixDb.Sqlite;
 /// the necessary dependencies required for database interaction and import
 /// operations specific to SQLite.
 /// </summary>
-public static class ServiceRegistration
+public static class SqliteRegistration
 {
     /// <summary>
     /// Registers services required for LogixDb to work with SQLite databases, including

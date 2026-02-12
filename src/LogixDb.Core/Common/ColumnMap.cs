@@ -97,6 +97,23 @@ public sealed record ColumnMap<TElement> where TElement : ILogixElement
     }
 
     /// <summary>
+    /// Creates a new column map for a nullable byte-based property of a Logix element with a specified database column name.
+    /// </summary>
+    /// <typeparam name="TElement">The type of Logix element being mapped, which must implement <see cref="ILogixElement"/>.</typeparam>
+    /// <param name="getter">A function that retrieves the nullable byte value from the Logix element to be mapped to the database column.</param>
+    /// <param name="name">The name of the database column to map the property to.</param>
+    /// <returns>A new instance of <see cref="ColumnMap{TElement}"/> configured for the nullable byte property and column name.</returns>
+    public static ColumnMap<TElement> For(Func<TElement, byte?> getter, string name)
+    {
+        return new ColumnMap<TElement>
+        {
+            Name = name,
+            Type = ColumnType.Byte,
+            Getter = e => getter(e)
+        };
+    }
+
+    /// <summary>
     /// Creates a new column map for a Logix element property with a 16-bit integer (short) data type mapped to the specified database column name.
     /// </summary>
     /// <typeparam name="TElement">The type of Logix element being mapped, which must implement <see cref="ILogixElement"/>.</typeparam>

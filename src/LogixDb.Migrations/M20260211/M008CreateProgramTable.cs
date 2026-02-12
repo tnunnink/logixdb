@@ -4,7 +4,7 @@ using JetBrains.Annotations;
 namespace LogixDb.Migrations.M20260211;
 
 [UsedImplicitly]
-[Migration(202602111630, "")]
+[Migration(202602111630, "Creates program table with corresponding indexes and keys")]
 public class M008CreateProgramTable : AutoReversingMigration
 {
     public override void Up()
@@ -14,7 +14,7 @@ public class M008CreateProgramTable : AutoReversingMigration
             .WithCascadeForeignKey("snapshot_id", "snapshot")
             .WithColumn("name").AsString(128).NotNullable()
             .WithColumn("program_type").AsString(32).Nullable()
-            .WithColumn("description").AsString(256).Nullable()
+            .WithColumn("description").AsString(512).Nullable()
             .WithColumn("main_routine").AsString(64).Nullable()
             .WithColumn("fault_routine").AsString(64).Nullable()
             .WithColumn("is_disabled").AsBoolean().Nullable()
