@@ -63,7 +63,7 @@ public abstract class DbCommand(ILogixDatabaseFactory factory) : ICommand
         var provider = Provider ?? InferProvider(Source);
         var datasource = ParseDataSource(Source, provider);
         var catalog = ParseCatalog(Source, provider) ?? DefaultDatabaseName;
-        var info = new SqlConnectionInfo(provider, datasource, catalog, Authentication, Port, Encrypt, Trust);
+        var info = new SqlConnectionInfo(provider, datasource, catalog);
         var database = factory.Resolve(info);
         return ExecuteAsync(console, database);
     }

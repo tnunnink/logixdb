@@ -19,28 +19,20 @@ internal class SqliteDatabase(SqlConnectionInfo info, IEnumerable<ILogixDatabase
     private readonly string _connectionString = BuildConnectionString(info);
 
     /// <inheritdoc />
-    public void ConnectOrCreate()
+    public async Task Build(bool recreate = false, CancellationToken token = default)
     {
-        // Build the migration runner since we need to check for migrations and potentially migrate to create the database.
-        using var provider = BuildServiceProvider(_connectionString);
+        // For Sqlite we can just check if the file exists.
+        if (File.Exists(info.DataSource)) return;
+
+        await using var provider = BuildServiceProvider(_connectionString);
         using var scope = provider.CreateScope();
         var runner = provider.GetRequiredService<IMigrationRunner>();
 
-        // If this connection exists, we don't want to silently migrate it without the caller know it is outdated.
-        // All migrations should be handled manually.
-        if (File.Exists(info.DataSource))
-        {
-            if (runner.HasMigrationsToApplyUp())
-                throw new MigrationRequiredException();
-
-            return;
-        }
-
-        // This will create the database for the first time.
-        runner.MigrateUp();
+        // For Sqlite the migration call will also create the database file.
+        await Task.Run(() => runner.MigrateUp(), token);
 
         // After migration of the database enable performance enhancing PRAGMA settings.
-        ConfigurePersistentPerformancePragmas();
+        await ConfigurePersistentPerformancePragmas(token);
     }
 
     /// <inheritdoc />
@@ -55,6 +47,7 @@ internal class SqliteDatabase(SqlConnectionInfo info, IEnumerable<ILogixDatabase
     /// <inheritdoc />
     public async Task<IEnumerable<Snapshot>> Snapshots(string? targetKey = null, CancellationToken token = default)
     {
+        EnsureMigrated();
         const string sql = """
                            SELECT snapshot_id [SnapshotId],
                                  target_id [TargetId],
@@ -80,6 +73,8 @@ internal class SqliteDatabase(SqlConnectionInfo info, IEnumerable<ILogixDatabase
     /// <inheritdoc />
     public async Task<Snapshot> Import(Snapshot snapshot, string? targetKey = null, CancellationToken token = default)
     {
+        EnsureMigrated();
+
         await using var session = await SqliteDatabaseSession.OpenAsync(this, token);
 
         try
@@ -100,6 +95,7 @@ internal class SqliteDatabase(SqlConnectionInfo info, IEnumerable<ILogixDatabase
     /// <inheritdoc />
     public async Task<Snapshot> Export(string targetKey, CancellationToken token = default)
     {
+        EnsureMigrated();
         const string sql = """
                            SELECT snapshot_id [SnapshotId],
                                  target_id [TargetId],
@@ -122,13 +118,13 @@ internal class SqliteDatabase(SqlConnectionInfo info, IEnumerable<ILogixDatabase
                            """;
         await using var connection = await OpenConnectionAsync(token);
         var key = new { target_key = targetKey };
-        var snapshot = await connection.QuerySingleAsync<Snapshot>(sql, key);
-        return snapshot;
+        return await connection.QuerySingleAsync<Snapshot>(sql, key);
     }
 
     /// <inheritdoc />
     public async Task Purge(CancellationToken token = default)
     {
+        EnsureMigrated();
         const string sql = "DELETE FROM main.snapshot WHERE snapshot_id > 0";
         await using var connection = await OpenConnectionAsync(token);
         await using var transaction = await connection.BeginTransactionAsync(token);
@@ -148,12 +144,11 @@ internal class SqliteDatabase(SqlConnectionInfo info, IEnumerable<ILogixDatabase
     /// <inheritdoc />
     public async Task Purge(string targetKey, CancellationToken token = default)
     {
-        const string sql =
-            """
-            DELETE FROM main.snapshot 
-            WHERE target_id = (SELECT target_id FROM target WHERE target_key = @target_key);
-            """;
-
+        EnsureMigrated();
+        const string sql = """
+                           DELETE FROM main.snapshot 
+                           WHERE target_id = (SELECT target_id FROM target WHERE target_key = @target_key);
+                           """;
         await using var connection = await OpenConnectionAsync(token);
         await using var transaction = await connection.BeginTransactionAsync(token);
 
@@ -179,6 +174,23 @@ internal class SqliteDatabase(SqlConnectionInfo info, IEnumerable<ILogixDatabase
         var connection = new SqliteConnection(_connectionString);
         await connection.OpenAsync(token);
         return connection;
+    }
+
+    /// <summary>
+    /// Ensures that all pending migrations have been applied to the database.
+    /// </summary>
+    /// <exception cref="MigrationRequiredException">
+    /// Thrown when there are unapplied migrations that need to be applied to bring
+    /// the database to the required state.
+    /// </exception>
+    private void EnsureMigrated()
+    {
+        using var provider = BuildServiceProvider(_connectionString);
+        using var scope = provider.CreateScope();
+        var runner = provider.GetRequiredService<IMigrationRunner>();
+
+        if (runner.HasMigrationsToApplyUp())
+            throw new MigrationRequiredException();
     }
 
     /// <summary>
@@ -235,11 +247,11 @@ internal class SqliteDatabase(SqlConnectionInfo info, IEnumerable<ILogixDatabase
     /// incremental vacuum, and memory configurations such as mmap size and cache size.
     /// These settings are tailored to improve performance while maintaining data integrity.
     /// </remarks>
-    private void ConfigurePersistentPerformancePragmas()
+    private async Task ConfigurePersistentPerformancePragmas(CancellationToken token)
     {
-        using var connection = new SqliteConnection(_connectionString);
-        connection.Open();
-        using var command = connection.CreateCommand();
+        await using var connection = new SqliteConnection(_connectionString);
+        await connection.OpenAsync(token);
+        await using var command = connection.CreateCommand();
 
         command.CommandText =
             """
@@ -250,6 +262,6 @@ internal class SqliteDatabase(SqlConnectionInfo info, IEnumerable<ILogixDatabase
             PRAGMA page_size = 16384;
             """;
 
-        command.ExecuteNonQuery();
+        await command.ExecuteNonQueryAsync(token);
     }
 }

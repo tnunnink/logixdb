@@ -1,7 +1,7 @@
 using CliFx.Attributes;
 using CliFx.Infrastructure;
 using JetBrains.Annotations;
-using LogixDb.Cli.Extensions;
+using LogixDb.Cli.Common;
 using LogixDb.Core.Abstractions;
 using Spectre.Console;
 
@@ -13,9 +13,8 @@ namespace LogixDb.Cli.Commands.Database;
 /// to ensure compatibility with updated application requirements.
 /// </summary>
 [PublicAPI]
-[Command("database migrate",
-    Description = "Executes database schema migrations to ensure the database structure is up to date")]
-public class DatabaseMigrateCommand(ILogixDatabaseFactory factory) : DbCommand(factory)
+[Command("migrate", Description = "Executes database migrations to ensure the database structure is up to date")]
+public class MigrateCommand(ILogixDatabaseFactory factory) : DbCommand(factory)
 {
     /// <inheritdoc />
     protected override ValueTask ExecuteAsync(IConsole console, ILogixDatabase database)

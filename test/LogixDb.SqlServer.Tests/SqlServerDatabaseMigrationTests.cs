@@ -1,0 +1,26 @@
+using LogixDb.Core.Common;
+
+namespace LogixDb.SqlServer.Tests;
+
+[TestFixture]
+public class SqlServerMigrationTest
+{
+    [Test]
+    [Explicit("Manually run against local test server to check migrations and develop SQL queries against")]
+    public async Task Build_WithLocalContainerServer_ShouldCreateAndMigrateDatabase()
+    {
+        var connectionInfo = new SqlConnectionInfo(
+            Provider: SqlProvider.SqlServer,
+            DataSource: "localhost,1433",
+            Catalog: "logixdb",
+            Authentication: SqlAuthentication.SqlServer,
+            User: "sa",
+            Password: "LogixDb!Test123",
+            Trust: true
+        );
+
+        var database = new SqlServerDatabase(connectionInfo, []);
+
+        await database.Build(true);
+    }
+}

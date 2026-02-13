@@ -9,7 +9,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Core.Tests/SnapshotTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Core.Tests/SnapshotTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.SqlServer/SqlServerDatabase.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.SqlServer/SqlServerDatabaseFactory.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.SqlServer/SqlServerDbSession.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.SqlServer/SqlServerRegistrations.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/LogixDb.SqlServer.Tests/SqlServerDatabaseMigrationTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/LogixDb.SqlServer.Tests/SqlServerMigrationTestBase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/Database/DatabaseBuildCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/Database/BuildCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/Database/DatabaseMigrateCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/Database/MigrateCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/DbCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/DbCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/Snapshot/SnapshotExportCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/Snapshots/SnapshotExportCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/Snapshot/SnapshotImportCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/Snapshots/SnapshotImportCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/Snapshot/SnapshotListCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/Snapshots/SnapshotListCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/Snapshot/SnapshotPurgeCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/Snapshots/SnapshotPurgeCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/Snapshot/SnapshotReplaceCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/Snapshots/SnapshotReplaceCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Common/Extensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Common/Extensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Core/Abstractions/ILogixDatabase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Core/Abstractions/ILogixDatabase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Core/Common/SqlAuthentication.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Core/Common/SqlAuthentication.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Core/Common/SqlConnectionInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Core/Common/SqlConnectionInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.SqlServer/LogixDb.SqlServer.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.SqlServer/LogixDb.SqlServer.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.SqlServer/SqlServerExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.SqlServer/SqlServerExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Sqlite/LogixDb.Sqlite.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Sqlite/LogixDb.Sqlite.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Sqlite/SqliteDatabase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Sqlite/SqliteDatabase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.SqlServer.Tests/LogixDb.SqlServer.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.SqlServer.Tests/LogixDb.SqlServer.Tests.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/SqliteDatabaseTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/SqliteDatabaseTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,7 +45,7 @@
     <option name="firstShow" value="false" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="139" />
+    <option name="cachedIndexableFilesCount" value="2" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
@@ -66,7 +91,11 @@
     <setting file="file://$PROJECT_DIR$/LogixDb.Migrations/M20260211/M010CreateRungTable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Migrations/M20260212/M011CreateAoiTable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Migrations/M20260212/M013CreateModuleTable.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LogixDb.SqlServer/SqlServerDatabase.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LogixDb.SqlServer/SqlServerDatabaseFactory.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LogixDb.SqlServer/SqlServerDbSession.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.SqlServer/SqlServerExtensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LogixDb.SqlServer/SqlServerRegistrations.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Sqlite/Imports/SqliteDataTypeImport.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Sqlite/Imports/SqliteDataTypeMemberImport.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Sqlite/Imports/SqliteSnapshotImport.cs" root0="FORCE_HIGHLIGHTING" />
@@ -74,10 +103,15 @@
     <setting file="file://$PROJECT_DIR$/LogixDb.Sqlite/SqliteDatabaseSession.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Sqlite/SqliteExtensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../test/LogixDb.Core.Tests/SnapshotTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../test/LogixDb.SqlServer.Tests/SqlServerMigrationTestBase.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/Migrations/M20260211Tests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/Migrations/M20260212TEsts.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/SqliteMigrationTest.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
+  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
+}]]></component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
@@ -121,6 +155,9 @@
   "keyToStringList": {
     "DatabaseDriversLRU": [
       "sqlite"
+    ],
+    "com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect": [
+      "TSQL"
     ]
   }
 }]]></component>
@@ -167,7 +204,7 @@
       <workItem from="1770636653430" duration="1418000" />
       <workItem from="1770638186305" duration="3881000" />
       <workItem from="1770648816599" duration="48627000" />
-      <workItem from="1770806804536" duration="79178000" />
+      <workItem from="1770806804536" duration="91121000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor `Snapshot` implementation, add `SqlConnectionInfo` and `SqlAuthentication`, update extensions, and target .NET 10.">
       <option name="closed" value="true" />
@@ -241,7 +278,23 @@
       <option name="project" value="LOCAL" />
       <updated>1770936036586</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Update SnapshotTests to use LocalTest source instead of hardcoded file path.">
+      <option name="closed" value="true" />
+      <created>1770936266340</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1770936266340</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Remove outdated installation instructions from README.">
+      <option name="closed" value="true" />
+      <created>1770936696195</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1770936696195</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -260,7 +313,9 @@
     <MESSAGE value="Remove outdated SQLite import classes, update README with detailed documentation, and refine .csproj for NuGet packaging." />
     <MESSAGE value="Add GitHub Actions for CI and release workflows with .NET build, test, and package steps" />
     <MESSAGE value="Add sample L5X XML file for testing Logix project imports. Updated TestSource.cs to point to embedded resource. Made local example explicit for now." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add sample L5X XML file for testing Logix project imports. Updated TestSource.cs to point to embedded resource. Made local example explicit for now." />
+    <MESSAGE value="Update SnapshotTests to use LocalTest source instead of hardcoded file path." />
+    <MESSAGE value="Remove outdated installation instructions from README." />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove outdated installation instructions from README." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -277,19 +332,6 @@
           <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
           <option name="timeStamp" value="3" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/SqliteTestFixture.cs</url>
-          <line>26</line>
-          <properties documentPath="C:\Users\tnunn\Projects\logixdb\test\LogixDb.Sqlite.Tests\SqliteTestFixture.cs" containingFunctionPresentation="Method 'BuildDatabase'">
-            <startOffsets>
-              <option value="821" />
-            </startOffsets>
-            <endOffsets>
-              <option value="900" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

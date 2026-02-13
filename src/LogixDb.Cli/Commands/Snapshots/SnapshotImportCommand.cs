@@ -4,11 +4,11 @@ using CliFx.Infrastructure;
 using JetBrains.Annotations;
 using L5Sharp.Core;
 using LogixDb.Cli.Common;
-using LogixDb.Cli.Extensions;
 using LogixDb.Core.Abstractions;
 using Spectre.Console;
+using Snapshot = LogixDb.Core.Common.Snapshot;
 
-namespace LogixDb.Cli.Commands.Snapshot;
+namespace LogixDb.Cli.Commands.Snapshots;
 
 /// <summary>
 /// Represents a command to import an L5X file as a new snapshot into the database.
@@ -32,17 +32,17 @@ public class SnapshotImportCommand(ILogixDatabaseFactory factory) : DbCommand(fa
         if (!File.Exists(FilePath))
             throw new CommandException($"File not found: {FilePath}", ExitCodes.UsageError);
 
-        Core.Common.Snapshot? snapshot = null;
+        Snapshot? snapshot = null!;
 
         await AnsiConsole.Status()
             .StartAsync("Importing snapshot...", async ctx =>
             {
                 ctx.Status("Loading L5X file...");
                 var content = await L5X.LoadAsync(FilePath);
-                var snapshotToImport = Core.Common.Snapshot.Create(content);
+                snapshot = Snapshot.Create(content);
 
                 ctx.Status("Importing snapshot to database...");
-                snapshot = await database.Import(snapshotToImport, TargetKey);
+                snapshot = await database.Import(snapshot, TargetKey);
             });
 
         if (snapshot is not null)

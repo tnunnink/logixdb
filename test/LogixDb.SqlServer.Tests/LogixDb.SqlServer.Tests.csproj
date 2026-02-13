@@ -14,10 +14,18 @@
         <PackageReference Include="NUnit" Version="4.2.2"/>
         <PackageReference Include="NUnit.Analyzers" Version="4.4.0"/>
         <PackageReference Include="NUnit3TestAdapter" Version="4.6.0"/>
+        <PackageReference Include="FluentMigrator.Runner" Version="8.0.1" />
+        <PackageReference Include="FluentMigrator.Runner.SqlServer" Version="8.0.1" />
     </ItemGroup>
 
     <ItemGroup>
         <Using Include="NUnit.Framework"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\src\LogixDb.Migrations\LogixDb.Migrations.csproj" />
+      <ProjectReference Include="..\..\src\LogixDb.SqlServer\LogixDb.SqlServer.csproj" />
+      <ProjectReference Include="..\LogixDb.Testing\LogixDb.Testing.csproj" />
     </ItemGroup>
 
 </Project>

@@ -4,11 +4,10 @@ using CliFx.Infrastructure;
 using JetBrains.Annotations;
 using L5Sharp.Core;
 using LogixDb.Cli.Common;
-using LogixDb.Cli.Extensions;
 using LogixDb.Core.Abstractions;
 using Spectre.Console;
 
-namespace LogixDb.Cli.Commands.Snapshot;
+namespace LogixDb.Cli.Commands.Snapshots;
 
 /// <summary>
 /// Represents a command to replace an existing snapshot by purging the old one and importing a new one.

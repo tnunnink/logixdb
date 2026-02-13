@@ -11,21 +11,16 @@ namespace LogixDb.Core.Abstractions;
 public interface ILogixDatabase
 {
     /// <summary>
-    /// Establishes a connection to the database if it exists, or creates a new database if it does not.
-    /// This method ensures that the database is initialized with the necessary structure and configuration,
-    /// enabling further operations to be performed. Database migrations are applied in cases
-    /// where a new database is being created.
+    /// Creates and migrates the database if it does not exist. If the database already exists,
+    /// this method does nothing regardless of whether there are pending migrations.
+    /// Use <see cref="Migrate"/> to apply pending migrations to an existing database.
     /// </summary>
-    /// <remarks>
-    /// If the database does not exist, this method will create and migrate the database to the latest version automatically.
-    /// If the database exists and is up to date, then we set internal connection parameters and return.
-    /// If the database exists but migrations are required, this method will throw the <see cref="MigrationRequiredException"/>.
-    /// </remarks>
-    void ConnectOrCreate();
+    Task Build(bool recreate = false, CancellationToken token = default);
 
     /// <summary>
-    /// Executes database schema migrations to ensure the database structure is up to date.
-    /// This method should be called during application startup or deployment to apply any pending migrations.
+    /// Applies any pending migrations to an existing database. If no migrations are pending,
+    /// this method completes without making any changes. Typically used to ensure that the database
+    /// schema is up to date and matches the current state defined by the migration scripts.
     /// </summary>
     void Migrate();
 

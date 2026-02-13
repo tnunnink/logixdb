@@ -1,11 +1,11 @@
 using CliFx.Attributes;
 using CliFx.Infrastructure;
 using JetBrains.Annotations;
-using LogixDb.Cli.Extensions;
+using LogixDb.Cli.Common;
 using LogixDb.Core.Abstractions;
 using Spectre.Console;
 
-namespace LogixDb.Cli.Commands.Snapshot;
+namespace LogixDb.Cli.Commands.Snapshots;
 
 /// <summary>
 /// Represents a command to list all snapshots in the database, optionally filtered by target key.

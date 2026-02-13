@@ -3,11 +3,10 @@ using CliFx.Exceptions;
 using CliFx.Infrastructure;
 using JetBrains.Annotations;
 using LogixDb.Cli.Common;
-using LogixDb.Cli.Extensions;
 using LogixDb.Core.Abstractions;
 using Spectre.Console;
 
-namespace LogixDb.Cli.Commands.Snapshot;
+namespace LogixDb.Cli.Commands.Snapshots;
 
 /// <summary>
 /// Represents a command to purge snapshots from the database.

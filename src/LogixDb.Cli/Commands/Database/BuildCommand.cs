@@ -1,7 +1,7 @@
 using CliFx.Attributes;
 using CliFx.Infrastructure;
 using JetBrains.Annotations;
-using LogixDb.Cli.Extensions;
+using LogixDb.Cli.Common;
 using LogixDb.Core.Abstractions;
 using Spectre.Console;
 
@@ -12,13 +12,13 @@ namespace LogixDb.Cli.Commands.Database;
 /// This command initializes the database structure without using migrations.
 /// </summary>
 [PublicAPI]
-[Command("database build", Description = "Creates the database if it does not exist (without migrations)")]
-public class DatabaseBuildCommand(ILogixDatabaseFactory factory) : DbCommand(factory)
+[Command("build", Description = "Creates the database if it does not exist (without migrations)")]
+public class BuildCommand(ILogixDatabaseFactory factory) : DbCommand(factory)
 {
     /// <inheritdoc />
     protected override ValueTask ExecuteAsync(IConsole console, ILogixDatabase database)
     {
-        console.Ansi().Status().Start("Building database...", _ => { database.ConnectOrCreate(); });
+        console.Ansi().Status().Start("Building database...", _ => { database.Build(); });
         console.Ansi().MarkupLine("[green]✓[/] Database built successfully");
         return ValueTask.CompletedTask;
     }

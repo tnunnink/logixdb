@@ -1,4 +1,4 @@
-# logixdb
+# LogixDb
 
 A CLI tool for transforming Rockwell Automation L5X content into a SQL database for analysis, versioning, and change tracking.
 

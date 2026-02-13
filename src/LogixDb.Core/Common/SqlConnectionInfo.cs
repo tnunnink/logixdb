@@ -8,7 +8,9 @@ public sealed record SqlConnectionInfo(
     SqlProvider Provider,
     string DataSource,
     string Catalog = "logix",
-    string Authentication = "integrated",
+    SqlAuthentication Authentication = SqlAuthentication.Integrated,
+    string? User = null,
+    string? Password = null,
     int Port = 1433,
     bool Encrypt = false,
     bool Trust = false

@@ -1,12 +1,7 @@
-﻿using System.IO.Compression;
-using System.Security.Cryptography;
-using System.Text;
-using System.Xml.Linq;
-using CliFx.Infrastructure;
-using LogixDb.Cli.Common;
+﻿using CliFx.Infrastructure;
 using Spectre.Console;
 
-namespace LogixDb.Cli.Extensions;
+namespace LogixDb.Cli.Common;
 
 /// <summary>
 /// 

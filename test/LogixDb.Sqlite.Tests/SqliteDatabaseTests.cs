@@ -9,11 +9,11 @@ namespace LogixDb.Sqlite.Tests;
 public class SqliteDatabaseTests() : SqliteTestFixture("logix_test.db")
 {
     [Test]
-    public void CreateOrConnect_WhenCalledOnValidDatabase_FileShouldExist()
+    public async Task CreateOrConnect_WhenCalledOnValidDatabase_FileShouldExist()
     {
         var database = ResolveDatabase();
 
-        database.ConnectOrCreate();
+        await database.Build();
 
         FileAssert.Exists(DataSource);
     }
@@ -23,7 +23,7 @@ public class SqliteDatabaseTests() : SqliteTestFixture("logix_test.db")
     {
         var snapshot = Snapshot.Create(TestSource.LocalTest());
         var database = ResolveDatabase();
-        database.ConnectOrCreate();
+        await database.Build();
 
         var result = await database.Import(snapshot);
 
@@ -36,7 +36,7 @@ public class SqliteDatabaseTests() : SqliteTestFixture("logix_test.db")
     {
         var snapshot = Snapshot.Create(TestSource.LocalExample());
         var database = ResolveDatabase();
-        database.ConnectOrCreate();
+        await database.Build();
 
         var stopwatch = Stopwatch.StartNew();
         var result = await database.Import(snapshot);
