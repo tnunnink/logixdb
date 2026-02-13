@@ -30,10 +30,10 @@ public class SnapshotReplaceCommand(ILogixDatabaseFactory factory) : DbCommand(f
     protected override async ValueTask ExecuteAsync(IConsole console, ILogixDatabase database)
     {
         if (string.IsNullOrWhiteSpace(FilePath))
-            throw new CommandException("File path is required.", ExitCodes.UsageError);
+            throw new CommandException("File path is required.", ErrorCodes.UsageError);
 
         if (!File.Exists(FilePath))
-            throw new CommandException($"File not found: {FilePath}", ExitCodes.UsageError);
+            throw new CommandException($"File not found: {FilePath}", ErrorCodes.UsageError);
 
         // Load the snapshot to determine target key
         var content = await L5X.LoadAsync(FilePath);
@@ -60,10 +60,10 @@ public class SnapshotReplaceCommand(ILogixDatabaseFactory factory) : DbCommand(f
             .StartAsync("Replacing snapshot...", async ctx =>
             {
                 ctx.Status("Purging existing snapshots...");
-                await database.Purge(effectiveTargetKey);
+                await database.DeleteSnapshot(effectiveTargetKey);
 
                 ctx.Status("Importing new snapshot...");
-                importedSnapshot = await database.Import(snapshot, TargetKey);
+                importedSnapshot = await database.AddSnapshot(snapshot);
             });
 
         if (importedSnapshot is not null)

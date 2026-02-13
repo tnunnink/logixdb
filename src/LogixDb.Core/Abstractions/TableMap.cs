@@ -1,3 +1,6 @@
+using System.Data;
+using System.Globalization;
+using System.Text;
 using LogixDb.Core.Common;
 
 namespace LogixDb.Core.Abstractions;
@@ -13,7 +16,7 @@ public abstract class TableMap<T> where T : class
     /// <summary>
     /// Gets the name of the database table that will store the mapped Logix elements.
     /// </summary>
-    protected abstract string TableName { get; }
+    public abstract string TableName { get; }
 
     /// <summary>
     /// Gets the collection of column mappings that define how properties of the Logix element
@@ -41,5 +44,79 @@ public abstract class TableMap<T> where T : class
                 INSERT INTO {TableName} (snapshot_id, {columns}, record_hash)
                 VALUES (@snapshot_id, {parameters}, @record_hash);
                 """;
+    }
+
+    /// <summary>
+    /// Converts a collection of objects of type T into a DataTable using the column mappings
+    /// defined in the implementing TableMap. The resulting DataTable includes a snapshot identifier,
+    /// columns mapped from the object properties, and a computed record hash for each row.
+    /// </summary>
+    /// <param name="records">The collection of objects of type T to be converted into a DataTable.</param>
+    /// <param name="snapshotId">An optional snapshot identifier to be added to each row. Defaults to 0 if not specified.</param>
+    /// <returns>
+    /// A DataTable object with the column structure defined by the TableMap, populated with data
+    /// from the input records, along with a "snapshot_id" column and a computed "record_hash" column.
+    /// </returns>
+    /// <exception cref="ArgumentNullException">
+    /// Thrown when the <paramref name="records"/> parameter is null.
+    /// </exception>
+    /// <exception cref="Exception">
+    /// May be thrown during the data processing or column mapping if unexpected errors occur.
+    /// </exception>
+    public DataTable ToDataTable(IEnumerable<T> records, int snapshotId = 0)
+    {
+        var table = new DataTable(TableName);
+
+        table.Columns.Add(new DataColumn("snapshot_id", typeof(int)));
+        table.Columns.AddRange(Columns.Select(c => new DataColumn(c.Name, c.Type.ToType())).ToArray());
+        table.Columns.Add(new DataColumn("record_hash", typeof(string)));
+
+        // Precompile an ordered array of column name and getter pairs for iteration. We need to iterate in deterministic
+        // order to preserve the integrity of the computed hash. 
+        var orderedColumns = Columns
+            .OrderBy(c => c.Name, StringComparer.Ordinal)
+            .ToDictionary(c => c.Name, c => c.Getter);
+
+        var hashBuilder = new StringBuilder();
+        table.BeginLoadData();
+
+        foreach (var record in records)
+        {
+            hashBuilder.Clear();
+
+            // Start a new row and set the snapshot is which by default is expected to the first column.
+            var row = table.NewRow();
+            row[0] = snapshotId;
+
+            // Iterate the ordered columns, get the corresponding index, set the row field to the value of the getter,
+            // and compute the hash for the record. Doing this all in one pass makes this as fast as possible.
+            foreach (var (name, getter) in orderedColumns)
+            {
+                var value = getter(record);
+                row[name] = value;
+                hashBuilder.Append(SerializeField(name, value));
+            }
+
+            // record_hash is the last column of the table.
+            row[table.Columns.Count - 1] = hashBuilder.ToString();
+        }
+
+        return table;
+
+        static string SerializeField(string column, object? value)
+        {
+            return '\u001E' + column + '\u001F' + FormatValue(value) + '\u001E';
+
+            static string FormatValue(object? value)
+            {
+                return value switch
+                {
+                    null => "\u2400",
+                    string s => s.Replace("\r\n", "\n"),
+                    IFormattable f => f.ToString(null, CultureInfo.InvariantCulture),
+                    _ => value.ToString() ?? string.Empty
+                };
+            }
+        }
     }
 }

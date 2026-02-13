@@ -11,11 +11,20 @@ namespace LogixDb.Core.Abstractions;
 public interface ILogixDatabase
 {
     /// <summary>
-    /// Creates and migrates the database if it does not exist. If the database already exists,
-    /// this method does nothing regardless of whether there are pending migrations.
-    /// Use <see cref="Migrate"/> to apply pending migrations to an existing database.
+    /// Initializes or rebuilds the database. This method ensures that the database structure
+    /// is created or reset as necessary, depending on the specified parameters.
     /// </summary>
-    Task Build(bool recreate = false, CancellationToken token = default);
+    /// <param name="rebuild">
+    /// A boolean flag indicating whether the database should be rebuilt. If set to true, the database
+    /// will be reset to its initial state prior to rebuilding.
+    /// </param>
+    /// <param name="token">
+    /// A cancellation token that can be used to cancel the operation before completion.
+    /// </param>
+    /// <returns>
+    /// A task that represents the asynchronous operation of building or rebuilding the database.
+    /// </returns>
+    Task Build(bool rebuild = false, CancellationToken token = default);
 
     /// <summary>
     /// Applies any pending migrations to an existing database. If no migrations are pending,
@@ -30,18 +39,7 @@ public interface ILogixDatabase
     /// <param name="targetKey">Optional target key in the format "targettype://targetname" to filter snapshots. If null, returns all snapshots.</param>
     /// <param name="token">Cancellation token to cancel the asynchronous operation.</param>
     /// <returns>A collection of snapshots matching the specified criteria, or all snapshots if no target key is provided.</returns>
-    Task<IEnumerable<Snapshot>> Snapshots(string? targetKey = null, CancellationToken token = default);
-
-    /// <summary>
-    /// Imports a snapshot into the database, creating a new snapshot record with associated metadata.
-    /// If a target key is not provided, the snapshot's default key will be used.
-    /// </summary>
-    /// <param name="snapshot">The snapshot instance to import containing L5X data and metadata.</param>
-    /// <param name="targetKey">Optional target key override for storing the snapshot.
-    /// If null, uses the snapshot's default key from GetDefaultKey().</param>
-    /// <param name="token">Cancellation token to cancel the asynchronous operation.</param>
-    /// <returns>The imported snapshot with the assigned SnapshotId from the database.</returns>
-    Task<Snapshot> Import(Snapshot snapshot, string? targetKey = null, CancellationToken token = default);
+    Task<IEnumerable<Snapshot>> ListSnapshots(string? targetKey = null, CancellationToken token = default);
 
     /// <summary>
     /// Exports the most recent snapshot for the specified target key from the database.
@@ -50,7 +48,16 @@ public interface ILogixDatabase
     /// <param name="targetKey">The target key in the format "targettype://targetname" identifying which snapshot to export.</param>
     /// <param name="token">Cancellation token to cancel the asynchronous operation.</param>
     /// <returns>The most recent snapshot matching the specified target key.</returns>
-    Task<Snapshot> Export(string targetKey, CancellationToken token = default);
+    Task<Snapshot> GetSnapshot(string targetKey, CancellationToken token = default);
+
+    /// <summary>
+    /// Imports a snapshot into the database, creating a new snapshot record with associated metadata.
+    /// If a target key is not provided, the snapshot's default key will be used.
+    /// </summary>
+    /// <param name="snapshot">The snapshot instance to import containing L5X data and metadata.</param>
+    /// <param name="token">Cancellation token to cancel the asynchronous operation.</param>
+    /// <returns>The imported snapshot with the assigned SnapshotId from the database.</returns>
+    Task<Snapshot> AddSnapshot(Snapshot snapshot, CancellationToken token = default);
 
     /// <summary>
     /// Purges all snapshots from the database, removing all snapshot records and associated data.
@@ -58,7 +65,7 @@ public interface ILogixDatabase
     /// </summary>
     /// <param name="token">Cancellation token to cancel the asynchronous operation.</param>
     /// <returns>A task representing the asynchronous purge operation.</returns>
-    Task Purge(CancellationToken token = default);
+    Task PurgeSnapshots(CancellationToken token = default);
 
     /// <summary>
     /// Purges all snapshots associated with a specific target key from the database.
@@ -67,5 +74,13 @@ public interface ILogixDatabase
     /// <param name="targetKey">The target key in the format "targettype://targetname" identifying which snapshots to purge.</param>
     /// <param name="token">Cancellation token to cancel the asynchronous operation.</param>
     /// <returns>A task representing the asynchronous purge operation.</returns>
-    Task Purge(string targetKey, CancellationToken token = default);
+    Task DeleteSnapshot(string targetKey, CancellationToken token = default);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="snapshotId"></param>
+    /// <param name="token"></param>
+    /// <returns></returns>
+    //Task DeleteSnapshot(int snapshotId, CancellationToken token = default);
 }

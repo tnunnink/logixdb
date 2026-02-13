@@ -25,7 +25,7 @@ public class SqliteDatabaseTests() : SqliteTestFixture("logix_test.db")
         var database = ResolveDatabase();
         await database.Build();
 
-        var result = await database.Import(snapshot);
+        var result = await database.AddSnapshot(snapshot);
 
         Assert.That(result.SnapshotId, Is.GreaterThan(0));
     }
@@ -39,7 +39,7 @@ public class SqliteDatabaseTests() : SqliteTestFixture("logix_test.db")
         await database.Build();
 
         var stopwatch = Stopwatch.StartNew();
-        var result = await database.Import(snapshot);
+        var result = await database.AddSnapshot(snapshot);
         stopwatch.Stop();
 
         Console.WriteLine(stopwatch.ElapsedMilliseconds);

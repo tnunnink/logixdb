@@ -22,7 +22,7 @@ public class SnapshotListCommand(ILogixDatabaseFactory factory) : DbCommand(fact
     {
         var snapshots = await console.Ansi()
             .Status()
-            .StartAsync("Retrieving snapshots...", async _ => await database.Snapshots(TargetKey));
+            .StartAsync("Retrieving snapshots...", async _ => await database.ListSnapshots(TargetKey));
 
         var snapshotList = snapshots.ToList();
 

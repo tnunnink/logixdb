@@ -12,7 +12,7 @@ namespace LogixDb.Core.Maps;
 public class RungMap : TableMap<Rung>
 {
     /// <inheritdoc />
-    protected override string TableName => "rung";
+    public override string TableName => "rung";
 
     /// <inheritdoc />
     public override IReadOnlyList<ColumnMap<Rung>> Columns =>

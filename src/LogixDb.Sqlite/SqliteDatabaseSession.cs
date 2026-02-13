@@ -22,15 +22,15 @@ internal sealed class SqliteDatabaseSession : ILogixDatabaseSession
     }
 
     /// <summary>
-    /// Asynchronously opens a new instance of <see cref="SqliteDatabaseSession"/> for interacting with the specified SQLite database.
-    /// This method initializes a connection and begins a transaction, encapsulating both in a session object.
+    /// Asynchronously initializes a new SQLite database session with an open connection
+    /// and begins a transaction. This session can be used to interact with the SQLite database.
     /// </summary>
-    /// <param name="database">The <see cref="SqliteDatabase"/> instance to open the session for.</param>
-    /// <param name="token">A <see cref="CancellationToken"/> to observe while waiting for the process to complete.</param>
-    /// <returns>A task that represents the asynchronous operation. The task result contains the initialized <see cref="SqliteDatabaseSession"/>.</returns>
-    public static async Task<SqliteDatabaseSession> OpenAsync(SqliteDatabase database, CancellationToken token)
+    /// <param name="open">A task that provides an open <see cref="SqliteConnection"/> instance.</param>
+    /// <param name="token">A <see cref="CancellationToken"/> to observe while waiting for the operation to complete.</param>
+    /// <returns>A task that represents the asynchronous operation. The task result contains an instance of <see cref="SqliteDatabaseSession"/> initialized with the provided connection and transaction.</returns>
+    public static async Task<SqliteDatabaseSession> StartAsync(Task<SqliteConnection> open, CancellationToken token)
     {
-        var connection = await database.OpenConnectionAsync(token);
+        var connection = await open;
         var transaction = await connection.BeginTransactionAsync(token);
         return new SqliteDatabaseSession(connection, (SqliteTransaction)transaction);
     }

@@ -11,7 +11,7 @@
         <PackageOutputPath>.nupkg</PackageOutputPath>
         <ToolCommandName>logixdb</ToolCommandName>
         <PackageId>LogixDb</PackageId>
-        <Version>0.1.0</Version>
+        <Version>0.2.0</Version>
         <Authors>Timothy Nunnink</Authors>
         <Description>A CLI tool for transforming Rockwell Automation L5X content into a SQL database for analysis and versioning</Description>
         <PackageProjectUrl>https://github.com/yourusername/logixdb</PackageProjectUrl>

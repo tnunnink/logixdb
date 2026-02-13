@@ -25,12 +25,15 @@ namespace LogixDb.Sqlite.Imports;
 public abstract class SqliteElementImport<TElement>(TableMap<TElement> map) : ILogixDatabaseImport
     where TElement : class, ILogixElement
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="snapshot"></param>
+    /// <param name="session"></param>
+    /// <param name="token"></param>
     public async Task Process(Snapshot snapshot, ILogixDatabaseSession session, CancellationToken token = default)
     {
-        // Throw to roll back the parent transaction.
         token.ThrowIfCancellationRequested();
-
-        // Retrieve the session connection and transaction
         var connection = session.GetConnection<SqliteConnection>();
         var transaction = session.GetTransaction<SqliteTransaction>();
 

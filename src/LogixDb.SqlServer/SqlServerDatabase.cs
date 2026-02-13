@@ -17,10 +17,10 @@ namespace LogixDb.SqlServer;
 public class SqlServerDatabase(SqlConnectionInfo info, IEnumerable<ILogixDatabaseImport> imports) : ILogixDatabase
 {
     /// <inheritdoc />
-    public async Task Build(bool recreate = false, CancellationToken token = default)
+    public async Task Build(bool rebuild = false, CancellationToken token = default)
     {
         // Drop the database if recreate is requested
-        if (recreate) await DropDatabase(token);
+        if (rebuild) await DropDatabase(token);
 
         // Exit early if the database exists.
         if (await DatabaseExists(token)) return;
@@ -46,7 +46,7 @@ public class SqlServerDatabase(SqlConnectionInfo info, IEnumerable<ILogixDatabas
         runner.MigrateUp();
     }
 
-    public async Task<IEnumerable<Snapshot>> Snapshots(string? targetKey = null, CancellationToken token = default)
+    public async Task<IEnumerable<Snapshot>> ListSnapshots(string? targetKey = null, CancellationToken token = default)
     {
         EnsureMigrated();
         const string sql = """
@@ -71,25 +71,39 @@ public class SqlServerDatabase(SqlConnectionInfo info, IEnumerable<ILogixDatabas
         return await connection.QueryAsync<Snapshot>(sql, key);
     }
 
-    public Task<Snapshot> Import(Snapshot snapshot, string? targetKey = null, CancellationToken token = default)
+    public async Task<Snapshot> AddSnapshot(Snapshot snapshot, CancellationToken token = default)
+    {
+        EnsureMigrated();
+        await using var session = await SqlServerDbSession.StartAsync(OpenConnectionAsync(token), token);
+
+        try
+        {
+            foreach (var import in imports)
+                await import.Process(snapshot, session, token);
+
+            await session.GetTransaction<SqlTransaction>().CommitAsync(token);
+            return snapshot;
+        }
+        catch (Exception)
+        {
+            await session.GetTransaction<SqlTransaction>().RollbackAsync(token);
+            throw;
+        }
+    }
+
+    public Task<Snapshot> GetSnapshot(string targetKey, CancellationToken token = default)
     {
         EnsureMigrated();
         throw new NotImplementedException();
     }
 
-    public Task<Snapshot> Export(string targetKey, CancellationToken token = default)
+    public Task PurgeSnapshots(CancellationToken token = default)
     {
         EnsureMigrated();
         throw new NotImplementedException();
     }
 
-    public Task Purge(CancellationToken token = default)
-    {
-        EnsureMigrated();
-        throw new NotImplementedException();
-    }
-
-    public Task Purge(string targetKey, CancellationToken token = default)
+    public Task DeleteSnapshot(string targetKey, CancellationToken token = default)
     {
         EnsureMigrated();
         throw new NotImplementedException();

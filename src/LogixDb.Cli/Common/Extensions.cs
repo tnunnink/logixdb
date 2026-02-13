@@ -1,10 +1,16 @@
-﻿using CliFx.Infrastructure;
+﻿using CliFx;
+using CliFx.Infrastructure;
+using LogixDb.Cli.Services;
+using LogixDb.Core.Abstractions;
+using LogixDb.Sqlite;
+using Microsoft.Extensions.DependencyInjection;
 using Spectre.Console;
 
 namespace LogixDb.Cli.Common;
 
 /// <summary>
-/// 
+/// Provides extension methods for enhancing the functionality of existing types
+/// within the LogixDb.Cli.Common namespace.
 /// </summary>
 public static class Extensions
 {
@@ -24,6 +30,31 @@ public static class Extensions
             Ansi = AnsiSupport.Detect,
             ColorSystem = ColorSystemSupport.Detect,
             Out = new AnsiConsoleOutput(console.Output)
+        });
+    }
+
+    /// <summary>
+    /// Adds LogixDb services and configurations to the provided CliApplicationBuilder instance.
+    /// </summary>
+    /// <param name="builder">
+    /// The CliApplicationBuilder instance to which the LogixDb services will be added.
+    /// </param>
+    /// <returns>
+    /// The updated CliApplicationBuilder instance configured with LogixDb services.
+    /// </returns>
+    public static CliApplicationBuilder AddLogixDb(this CliApplicationBuilder builder)
+    {
+        return builder.UseTypeActivator(commands =>
+        {
+            var services = new ServiceCollection();
+            services.AddTransient<ILogixDatabaseFactory, DatabaseFactory>();
+            services.AddLogixSqlite();
+            //services.AddLogixSqlServer();
+
+            foreach (var commandType in commands)
+                services.AddTransient(commandType);
+
+            return services.BuildServiceProvider();
         });
     }
 }

@@ -1,6 +1,7 @@
 using LogixDb.Core.Abstractions;
 using LogixDb.Core.Common;
 using LogixDb.Sqlite;
+using LogixDb.SqlServer;
 
 namespace LogixDb.Cli.Services;
 
@@ -10,18 +11,18 @@ namespace LogixDb.Cli.Services;
 /// resolve the appropriate database factory based on the connection provider.
 /// Implements the <see cref="ILogixDatabaseFactory"/> interface.
 /// </summary>
-public class DatabaseProvider(IServiceProvider provider) : ILogixDatabaseFactory
+public class DatabaseFactory(IServiceProvider provider) : ILogixDatabaseFactory
 {
     /// <inheritdoc />
-    public ILogixDatabase Resolve(SqlConnectionInfo connection)
+    public ILogixDatabase Create(SqlConnectionInfo connection)
     {
-        var factory = connection.Provider switch
+        ILogixDatabaseFactory factory = connection.Provider switch
         {
             SqlProvider.Sqlite => new SqliteDatabaseFactory(provider),
-            SqlProvider.SqlServer => throw new NotImplementedException(),
+            SqlProvider.SqlServer => new SqlServerDatabaseFactory(provider),
             _ => throw new ArgumentOutOfRangeException(nameof(connection), connection.Provider, "")
         };
 
-        return factory.Resolve(connection);
+        return factory.Create(connection);
     }
 }

@@ -16,15 +16,19 @@ namespace LogixDb.Sqlite;
 /// </summary>
 internal class SqliteDatabase(SqlConnectionInfo info, IEnumerable<ILogixDatabaseImport> imports) : ILogixDatabase
 {
-    private readonly string _connectionString = BuildConnectionString(info);
+    private readonly SqlConnectionInfo _info = info ?? throw new ArgumentNullException(nameof(info));
 
     /// <inheritdoc />
-    public async Task Build(bool recreate = false, CancellationToken token = default)
+    public async Task Build(bool rebuild = false, CancellationToken token = default)
     {
-        // For Sqlite we can just check if the file exists.
-        if (File.Exists(info.DataSource)) return;
+        if (rebuild && File.Exists(_info.DataSource))
+            File.Delete(_info.DataSource);
 
-        await using var provider = BuildServiceProvider(_connectionString);
+        if (File.Exists(_info.DataSource))
+            return;
+
+        var connectionString = _info.ToConnectionString();
+        await using var provider = BuildMigrationProvider(connectionString);
         using var scope = provider.CreateScope();
         var runner = provider.GetRequiredService<IMigrationRunner>();
 
@@ -38,14 +42,15 @@ internal class SqliteDatabase(SqlConnectionInfo info, IEnumerable<ILogixDatabase
     /// <inheritdoc />
     public void Migrate()
     {
-        using var provider = BuildServiceProvider(_connectionString);
+        var connectionString = _info.ToConnectionString();
+        using var provider = BuildMigrationProvider(connectionString);
         using var scope = provider.CreateScope();
         var runner = provider.GetRequiredService<IMigrationRunner>();
         runner.MigrateUp();
     }
 
     /// <inheritdoc />
-    public async Task<IEnumerable<Snapshot>> Snapshots(string? targetKey = null, CancellationToken token = default)
+    public async Task<IEnumerable<Snapshot>> ListSnapshots(string? targetKey = null, CancellationToken token = default)
     {
         EnsureMigrated();
         const string sql = """
@@ -71,11 +76,10 @@ internal class SqliteDatabase(SqlConnectionInfo info, IEnumerable<ILogixDatabase
     }
 
     /// <inheritdoc />
-    public async Task<Snapshot> Import(Snapshot snapshot, string? targetKey = null, CancellationToken token = default)
+    public async Task<Snapshot> AddSnapshot(Snapshot snapshot, CancellationToken token = default)
     {
         EnsureMigrated();
-
-        await using var session = await SqliteDatabaseSession.OpenAsync(this, token);
+        await using var session = await SqliteDatabaseSession.StartAsync(OpenConnectionAsync(token), token);
 
         try
         {
@@ -93,7 +97,7 @@ internal class SqliteDatabase(SqlConnectionInfo info, IEnumerable<ILogixDatabase
     }
 
     /// <inheritdoc />
-    public async Task<Snapshot> Export(string targetKey, CancellationToken token = default)
+    public async Task<Snapshot> GetSnapshot(string targetKey, CancellationToken token = default)
     {
         EnsureMigrated();
         const string sql = """
@@ -122,7 +126,7 @@ internal class SqliteDatabase(SqlConnectionInfo info, IEnumerable<ILogixDatabase
     }
 
     /// <inheritdoc />
-    public async Task Purge(CancellationToken token = default)
+    public async Task PurgeSnapshots(CancellationToken token = default)
     {
         EnsureMigrated();
         const string sql = "DELETE FROM main.snapshot WHERE snapshot_id > 0";
@@ -142,7 +146,7 @@ internal class SqliteDatabase(SqlConnectionInfo info, IEnumerable<ILogixDatabase
     }
 
     /// <inheritdoc />
-    public async Task Purge(string targetKey, CancellationToken token = default)
+    public async Task DeleteSnapshot(string targetKey, CancellationToken token = default)
     {
         EnsureMigrated();
         const string sql = """
@@ -169,9 +173,10 @@ internal class SqliteDatabase(SqlConnectionInfo info, IEnumerable<ILogixDatabase
     /// </summary>
     /// <param name="token">A cancellation token that can be used to cancel the asynchronous operation.</param>
     /// <returns>A task that represents the asynchronous operation. The task result contains an open database connection.</returns>
-    public async Task<SqliteConnection> OpenConnectionAsync(CancellationToken token)
+    private async Task<SqliteConnection> OpenConnectionAsync(CancellationToken token)
     {
-        var connection = new SqliteConnection(_connectionString);
+        var connectionString = _info.ToConnectionString();
+        var connection = new SqliteConnection(connectionString);
         await connection.OpenAsync(token);
         return connection;
     }
@@ -185,7 +190,8 @@ internal class SqliteDatabase(SqlConnectionInfo info, IEnumerable<ILogixDatabase
     /// </exception>
     private void EnsureMigrated()
     {
-        using var provider = BuildServiceProvider(_connectionString);
+        var connectionString = _info.ToConnectionString();
+        using var provider = BuildMigrationProvider(connectionString);
         using var scope = provider.CreateScope();
         var runner = provider.GetRequiredService<IMigrationRunner>();
 
@@ -198,7 +204,7 @@ internal class SqliteDatabase(SqlConnectionInfo info, IEnumerable<ILogixDatabase
     /// </summary>
     /// <param name="connectionString">The connection string to use for database migrations.</param>
     /// <returns>A configured <see cref="ServiceProvider"/> instance with FluentMigrator services registered.</returns>
-    private static ServiceProvider BuildServiceProvider(string connectionString)
+    private static ServiceProvider BuildMigrationProvider(string connectionString)
     {
         var services = new ServiceCollection();
 
@@ -217,26 +223,6 @@ internal class SqliteDatabase(SqlConnectionInfo info, IEnumerable<ILogixDatabase
     }
 
     /// <summary>
-    /// Constructs a SQLite connection string based on the provided connection information.
-    /// </summary>
-    /// <param name="info">An instance of <see cref="SqlConnectionInfo"/> containing the necessary details to construct the connection string.</param>
-    /// <returns>A string representing the SQLite connection string.</returns>
-    /// <exception cref="ArgumentNullException">Thrown when <paramref name="info"/> is null.</exception>
-    private static string BuildConnectionString(SqlConnectionInfo info)
-    {
-        ArgumentNullException.ThrowIfNull(info);
-
-        var builder = new SqliteConnectionStringBuilder
-        {
-            DataSource = info.DataSource,
-            ForeignKeys = true,
-            Pooling = false
-        };
-
-        return builder.ConnectionString;
-    }
-
-    /// <summary>
     /// Configures SQLite performance-related PRAGMA settings to enhance database operations.
     /// This method is responsible for setting various SQLite pragmas, such as journal mode,
     /// auto vacuum mode, synchronization settings, and memory usage configurations, 
@@ -249,7 +235,8 @@ internal class SqliteDatabase(SqlConnectionInfo info, IEnumerable<ILogixDatabase
     /// </remarks>
     private async Task ConfigurePersistentPerformancePragmas(CancellationToken token)
     {
-        await using var connection = new SqliteConnection(_connectionString);
+        var connectionString = _info.ToConnectionString();
+        await using var connection = new SqliteConnection(connectionString);
         await connection.OpenAsync(token);
         await using var command = connection.CreateCommand();
 

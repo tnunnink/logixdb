@@ -9,14 +9,14 @@ namespace LogixDb.Core.Maps;
 /// This class defines how specific properties of LocalTag elements are mapped to corresponding table columns.
 /// </summary>
 /// <remarks>
-/// This is just my sneaky way of combining the local tags and parameters for an AOI into a single table in the database.
-/// They are essentially all the same columns, except that local tag doesn't have required and visible properties.
+/// This is my way of combining the local tags and parameters for an AOI into a single table in the database.
+/// They are essentially all the same columns, except that the local tag doesn't have required and visible properties.
 /// I'd prefer not to make separate tables and not to tread these as "tag" instances but as member definitions.
 /// </remarks>
 public class AoiLocalTagMap : TableMap<LocalTag>
 {
     /// <inheritdoc />
-    protected override string TableName => "aoi_parameter";
+    public override string TableName => "aoi_parameter";
 
     /// <inheritdoc />
     public override IReadOnlyList<ColumnMap<LocalTag>> Columns =>

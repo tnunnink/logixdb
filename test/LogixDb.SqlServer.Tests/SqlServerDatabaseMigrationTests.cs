@@ -13,7 +13,6 @@ public class SqlServerMigrationTest
             Provider: SqlProvider.SqlServer,
             DataSource: "localhost,1433",
             Catalog: "logixdb",
-            Authentication: SqlAuthentication.SqlServer,
             User: "sa",
             Password: "LogixDb!Test123",
             Trust: true

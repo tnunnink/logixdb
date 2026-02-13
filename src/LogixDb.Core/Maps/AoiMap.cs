@@ -12,7 +12,7 @@ namespace LogixDb.Core.Maps;
 public class AoiMap : TableMap<AddOnInstruction>
 {
     /// <inheritdoc />
-    protected override string TableName => "aoi";
+    public override string TableName => "aoi";
 
     /// <inheritdoc />
     public override IReadOnlyList<ColumnMap<AddOnInstruction>> Columns =>

@@ -26,32 +26,22 @@ internal static class SqlServerExtensions
 
         var builder = new SqlConnectionStringBuilder
         {
-            DataSource = info.DataSource,
+            DataSource = $"{info.DataSource},{info.Port}",
             InitialCatalog = database ?? info.Catalog,
-            Pooling = false,
             Encrypt = info.Encrypt,
             TrustServerCertificate = info.Trust
         };
 
-        switch (info.Authentication)
+        if (info.User is not null)
         {
-            case SqlAuthentication.SqlServer:
-                // SQL Server authentication
-                builder.UserID = info.User;
-                builder.Password = info.Password;
-                builder.IntegratedSecurity = false;
-                break;
-            case SqlAuthentication.Integrated:
-                // Windows Integrated Security
-                builder.IntegratedSecurity = true;
-                break;
-            case SqlAuthentication.ActiveDirectory:
-                // Azure Active Directory Integrated
-                builder.Authentication = SqlAuthenticationMethod.ActiveDirectoryIntegrated;
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(info), info.Authentication,
-                    $"Unsupported authentication method: {info.Authentication}");
+            // SQL Server authentication
+            builder.UserID = info.User;
+            builder.Password = info.Password;
+            builder.IntegratedSecurity = false;
+        }
+        else
+        {
+            builder.IntegratedSecurity = true;
         }
 
         return builder.ToString();

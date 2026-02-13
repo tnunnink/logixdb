@@ -1,5 +1,4 @@
-﻿using System.Data;
-using FluentMigrator;
+﻿using FluentMigrator;
 using JetBrains.Annotations;
 
 namespace LogixDb.Migrations.M20260206;
@@ -23,8 +22,8 @@ public class M002CreateSnapshotTable : AutoReversingMigration
             .WithColumn("import_date").AsDateTime().NotNullable().WithDefault(SystemMethods.CurrentUTCDateTime)
             .WithColumn("import_user").AsString(64).NotNullable().WithDefaultValue(Environment.UserName)
             .WithColumn("import_machine").AsString(64).NotNullable().WithDefaultValue(Environment.MachineName)
-            .WithColumn("source_hash").AsString(64).NotNullable()
-            .WithColumn("source_data").AsBinary(int.MaxValue).NotNullable();
+            .WithColumn("source_hash").AsString(64).Nullable()
+            .WithColumn("source_data").AsBinary(int.MaxValue).Nullable();
 
         Create.Index()
             .OnTable("snapshot")

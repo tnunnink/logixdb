@@ -11,7 +11,7 @@ namespace LogixDb.Sqlite;
 public class SqliteDatabaseFactory(IServiceProvider provider) : ILogixDatabaseFactory
 {
     /// <inheritdoc />
-    public ILogixDatabase Resolve(SqlConnectionInfo connection)
+    public ILogixDatabase Create(SqlConnectionInfo connection)
     {
         var imports = provider.GetServices<ILogixDatabaseImport>();
         return new SqliteDatabase(connection, imports);

@@ -9,6 +9,28 @@ namespace LogixDb.Sqlite;
 internal static class SqliteExtensions
 {
     /// <summary>
+    /// Generates a SQLite connection string based on the provided <see cref="SqlConnectionInfo"/>.
+    /// </summary>
+    /// <param name="info">The SQL connection information containing details like data source and authentication.</param>
+    /// <returns>A SQLite connection string constructed from the specified <paramref name="info"/>.</returns>
+    /// <exception cref="ArgumentNullException">
+    /// Thrown when the provided <paramref name="info"/> is null.
+    /// </exception>
+    public static string ToConnectionString(this SqlConnectionInfo info)
+    {
+        ArgumentNullException.ThrowIfNull(info);
+
+        var builder = new SqliteConnectionStringBuilder()
+        {
+            DataSource = info.DataSource,
+            ForeignKeys = true,
+            Pooling = false,
+        };
+
+        return builder.ToString();
+    }
+
+    /// <summary>
     /// Converts a <see cref="ColumnType"/> to its equivalent <see cref="SqliteType"/>.
     /// </summary>
     /// <param name="columnType">The column type to be converted.</param>

@@ -12,7 +12,7 @@ namespace LogixDb.Core.Maps;
 public class ProgramMap : TableMap<Program>
 {
     /// <inheritdoc />
-    protected override string TableName => "program";
+    public override string TableName => "program";
 
     /// <inheritdoc />
     public override IReadOnlyList<ColumnMap<Program>> Columns =>

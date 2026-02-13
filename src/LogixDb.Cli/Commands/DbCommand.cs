@@ -23,27 +23,28 @@ public abstract class DbCommand(ILogixDatabaseFactory factory) : ICommand
     /// </summary>
     protected const string DefaultDatabaseName = "Logix";
 
-    /// <summary>
-    /// Specifies the source information for the database connection. This typically includes
-    /// the server name, file path, or connection string required to locate and access the
-    /// target database.
-    /// </summary>
-    [CommandParameter(0, Name = "source", Description = "")]
-    public string Source { get; init; } = string.Empty;
+    protected const string DefaultSchemaName = "lgx";
 
-    [CommandOption("provider", 'p', Description = "")]
+    [CommandOption("connection", 'c', Description = "The database connection string or file path. For SQLite, specify a file path. For SQL Server, use format 'server/database'.")]
+    public string? Connection { get; init; }
+
+    [CommandOption("provider", 'p', Description = "The SQL provider type (Sqlite or SqlServer). If not specified, the provider is inferred from the connection string.")]
     public SqlProvider? Provider { get; init; }
 
-    [CommandOption("auth", Description = "")]
-    public string Authentication { get; init; } = "Integrated";
+    [CommandOption("user", Description = "The username for database authentication (SQL Server only).")]
+    public string? User { get; init; }
 
-    [CommandOption("port", Description = "")]
+    [CommandOption("password", Description = "The password for database authentication (SQL Server only).")]
+    public string? Password { get; init; }
+
+    [CommandOption("port", Description = "The database server port number (SQL Server only). Default is 1433.")]
     public int Port { get; init; } = 1433;
 
-    [CommandOption("encrypt", Description = "")]
+    [CommandOption("encrypt", Description = "Whether to encrypt the database connection (SQL Server only).")]
     public bool Encrypt { get; init; }
 
-    [CommandOption("trust", Description = "")]
+    [CommandOption("trust",
+        Description = "Whether to trust the server certificate without validation (SQL Server only).")]
     public bool Trust { get; init; }
 
     /// <summary>
@@ -57,14 +58,14 @@ public abstract class DbCommand(ILogixDatabaseFactory factory) : ICommand
     /// </returns>
     public ValueTask ExecuteAsync(IConsole console)
     {
-        if (string.IsNullOrWhiteSpace(Source))
-            throw new CommandException("Database argument 'db' is required.", ExitCodes.UsageError);
+        if (string.IsNullOrWhiteSpace(Connection))
+            throw new CommandException("Database argument 'connection' is required.", ErrorCodes.UsageError);
 
-        var provider = Provider ?? InferProvider(Source);
-        var datasource = ParseDataSource(Source, provider);
-        var catalog = ParseCatalog(Source, provider) ?? DefaultDatabaseName;
-        var info = new SqlConnectionInfo(provider, datasource, catalog);
-        var database = factory.Resolve(info);
+        var provider = Provider ?? InferProvider(Connection);
+        var datasource = ParseDataSource(Connection, provider);
+        var catalog = ParseCatalog(Connection, provider) ?? DefaultDatabaseName;
+        var info = new SqlConnectionInfo(provider, datasource, catalog, User, Password, Port, Encrypt, Trust);
+        var database = factory.Create(info);
         return ExecuteAsync(console, database);
     }
 

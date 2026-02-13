@@ -13,11 +13,11 @@ namespace LogixDb.Cli.Commands.Snapshots;
 /// Can purge all snapshots or snapshots for a specific target.
 /// </summary>
 [PublicAPI]
-[Command("snapshot purge", Description = "Purges snapshots from the database")]
-public class SnapshotPurgeCommand(ILogixDatabaseFactory factory) : DbCommand(factory)
+[Command("snapshot delete", Description = "")]
+public class SnapshotDeleteCommand(ILogixDatabaseFactory factory) : DbCommand(factory)
 {
     [CommandOption("target", 't', Description = "Target key to purge (format: targettype://targetname)")]
-    public string? TargetKey { get; init; }
+    public string? Target { get; init; }
 
     [CommandOption("all", Description = "Purge all snapshots from the database")]
     public bool All { get; init; }
@@ -30,15 +30,15 @@ public class SnapshotPurgeCommand(ILogixDatabaseFactory factory) : DbCommand(fac
     {
         switch (All)
         {
-            case false when string.IsNullOrWhiteSpace(TargetKey):
-                throw new CommandException("Either --target or --all must be specified.", ExitCodes.UsageError);
-            case true when !string.IsNullOrWhiteSpace(TargetKey):
-                throw new CommandException("Cannot specify both --target and --all.", ExitCodes.UsageError);
+            case false when string.IsNullOrWhiteSpace(Target):
+                throw new CommandException("Either --target or --all must be specified.", ErrorCodes.UsageError);
+            case true when !string.IsNullOrWhiteSpace(Target):
+                throw new CommandException("Cannot specify both --target and --all.", ErrorCodes.UsageError);
         }
 
         var message = All
             ? "This will permanently delete [red]ALL[/] snapshots from the database."
-            : $"This will permanently delete all snapshots for target [blue]{TargetKey}[/].";
+            : $"This will permanently delete all snapshots for target [blue]{Target}[/].";
 
         if (!Force)
         {
@@ -54,9 +54,9 @@ public class SnapshotPurgeCommand(ILogixDatabaseFactory factory) : DbCommand(fac
             .StartAsync("Purging snapshots...", async _ =>
             {
                 if (All)
-                    await database.Purge();
+                    await database.PurgeSnapshots();
                 else
-                    await database.Purge(TargetKey!);
+                    await database.DeleteSnapshot(Target!);
             });
 
         console.Ansi().MarkupLine("[green]✓[/] Snapshots purged successfully");

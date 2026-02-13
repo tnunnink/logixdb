@@ -12,8 +12,8 @@ namespace LogixDb.Cli.Commands.Snapshots;
 /// Represents a command to export the most recent snapshot for a target from the database.
 /// </summary>
 [PublicAPI]
-[Command("snapshot export", Description = "Exports the most recent snapshot for a target to an L5X file")]
-public class SnapshotExportCommand(ILogixDatabaseFactory factory) : DbCommand(factory)
+[Command("snapshot get", Description = "Exports the most recent snapshot for a target to an L5X file")]
+public class SnapshotGetCommand(ILogixDatabaseFactory factory) : DbCommand(factory)
 {
     [CommandParameter(1, Name = "target", Description = "Target key (format: targettype://targetname)")]
     public string TargetKey { get; init; } = string.Empty;
@@ -25,13 +25,13 @@ public class SnapshotExportCommand(ILogixDatabaseFactory factory) : DbCommand(fa
     protected override async ValueTask ExecuteAsync(IConsole console, ILogixDatabase database)
     {
         if (string.IsNullOrWhiteSpace(TargetKey))
-            throw new CommandException("Target key is required.", ExitCodes.UsageError);
+            throw new CommandException("Target key is required.", ErrorCodes.UsageError);
 
         var snapshot = await AnsiConsole.Status()
             .StartAsync("Exporting snapshot...", async ctx =>
             {
                 ctx.Status("Retrieving snapshot from database...");
-                return await database.Export(TargetKey);
+                return await database.GetSnapshot(TargetKey);
             });
 
         var outputPath = OutputPath ?? $"{snapshot.TargetName}.L5X";

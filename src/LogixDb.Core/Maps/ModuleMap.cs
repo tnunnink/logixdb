@@ -12,7 +12,7 @@ namespace LogixDb.Core.Maps;
 public class ModuleMap : TableMap<Module>
 {
     /// <inheritdoc />
-    protected override string TableName => "module";
+    public override string TableName => "module";
 
     /// <inheritdoc />
     public override IReadOnlyList<ColumnMap<Module>> Columns =>
