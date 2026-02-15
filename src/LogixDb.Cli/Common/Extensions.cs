@@ -33,7 +33,7 @@ public static class Extensions
         });
     }
 
-    /// <summary>
+    /*/// <summary>
     /// Adds LogixDb services and configurations to the provided CliApplicationBuilder instance.
     /// </summary>
     /// <param name="builder">
@@ -47,7 +47,7 @@ public static class Extensions
         return builder.UseTypeActivator(commands =>
         {
             var services = new ServiceCollection();
-            services.AddTransient<ILogixDatabaseFactory, DatabaseFactory>();
+            services.AddTransient<ILogixDbFactory, DbProvider>();
             services.AddLogixSqlite();
             //services.AddLogixSqlServer();
 
@@ -56,5 +56,5 @@ public static class Extensions
 
             return services.BuildServiceProvider();
         });
-    }
+    }*/
 }

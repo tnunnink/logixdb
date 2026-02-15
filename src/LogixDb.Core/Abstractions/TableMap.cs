@@ -63,7 +63,7 @@ public abstract class TableMap<T> where T : class
     /// <exception cref="Exception">
     /// May be thrown during the data processing or column mapping if unexpected errors occur.
     /// </exception>
-    public DataTable ToDataTable(IEnumerable<T> records, int snapshotId = 0)
+    public DataTable GenerateTable(IEnumerable<T> records, int snapshotId = 0)
     {
         var table = new DataTable(TableName);
 

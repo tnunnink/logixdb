@@ -6,7 +6,7 @@ namespace LogixDb.SqlServer;
 /// <summary>
 /// Provides a collection of utility methods designed to extend the functionality of SQL Server connectivity.
 /// </summary>
-internal static class SqlServerExtensions
+public static class SqlServerExtensions
 {
     /// <summary>
     /// Converts the given <see cref="SqlConnectionInfo"/> into a connection string for SQL Server.

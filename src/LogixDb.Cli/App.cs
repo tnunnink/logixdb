@@ -1,6 +1,5 @@
 ﻿using CliFx;
 using CliFx.Infrastructure;
-using LogixDb.Cli.Common;
 
 namespace LogixDb.Cli;
 
@@ -15,7 +14,7 @@ public static class App
             .SetExecutableName("logixdb")
             .UseConsole(new SystemConsole())
             .AddCommandsFromThisAssembly()
-            .AddLogixDb()
+            //.AddLogixDb()
             .Build()
             .RunAsync();
     }

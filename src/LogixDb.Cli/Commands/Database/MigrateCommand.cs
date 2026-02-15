@@ -13,14 +13,13 @@ namespace LogixDb.Cli.Commands.Database;
 /// to ensure compatibility with updated application requirements.
 /// </summary>
 [PublicAPI]
-[Command("migrate", Description = "Executes database migrations to ensure the database structure is up to date")]
-public class MigrateCommand(ILogixDatabaseFactory factory) : DbCommand(factory)
+[Command("migrate", Description = "Executes database migrations to ensure the latest schema (creates if non-existent.")]
+public class MigrateCommand : DbCommand
 {
     /// <inheritdoc />
-    protected override ValueTask ExecuteAsync(IConsole console, ILogixDatabase database)
+    protected override async ValueTask ExecuteAsync(IConsole console, ILogixDb database)
     {
-        console.Ansi().Status().Start("Migrating database...", _ => { database.Migrate(); });
+        await console.Ansi().Status().StartAsync("Migrating database...", _ => database.Migrate());
         console.Ansi().MarkupLine("[green]✓[/] Database migration completed successfully");
-        return ValueTask.CompletedTask;
     }
 }

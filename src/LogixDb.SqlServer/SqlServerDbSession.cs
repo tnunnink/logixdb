@@ -6,10 +6,10 @@ namespace LogixDb.SqlServer;
 
 /// <summary>
 /// Represents a SQL Server database session that provides access to an open connection and transaction
-/// for interacting with a SQL Server database. This class implements the <see cref="ILogixDatabaseSession"/> interface
+/// for interacting with a SQL Server database. This class implements the <see cref="ILogixDbSession"/> interface
 /// and ensures correct management of the underlying connection and transaction lifecycle.
 /// </summary>
-public sealed class SqlServerDbSession : ILogixDatabaseSession
+public sealed class SqlServerDbSession : ILogixDbSession
 {
     private readonly SqlConnection _connection;
     private readonly SqlTransaction _transaction;

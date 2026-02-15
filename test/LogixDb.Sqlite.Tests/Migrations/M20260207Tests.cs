@@ -1,44 +1,42 @@
 ﻿namespace LogixDb.Sqlite.Tests.Migrations;
 
 [TestFixture]
-public class M20260207Tests : SqliteMigrationTestBase
+public class M20260207Tests : SqliteTestFixture
 {
     [Test]
-    public void MigrateUp_ToM003_CreatesTagTableWithExpectedColumns()
+    public async Task MigrateUp_ToM003_CreatesTagTableWithExpectedColumns()
     {
-        MigrateUp(toVersion: 202602070830);
-
-        using var connection = OpenConnection();
+        await Database.Migrate(202602070830);
 
         using (Assert.EnterMultipleScope())
         {
-            AssertTableExists(connection, "tag");
+            await AssertTableExists("tag");
 
-            AssertColumnDefinition(connection, "tag", "tag_id", "integer");
-            AssertColumnDefinition(connection, "tag", "snapshot_id", "integer");
-            AssertColumnDefinition(connection, "tag", "base_name", "text");
-            AssertColumnDefinition(connection, "tag", "tag_name", "text");
-            AssertColumnDefinition(connection, "tag", "scope_type", "text");
-            AssertColumnDefinition(connection, "tag", "container_name", "text");
-            AssertColumnDefinition(connection, "tag", "tag_depth", "integer");
-            AssertColumnDefinition(connection, "tag", "data_type", "text");
-            AssertColumnDefinition(connection, "tag", "value", "text");
-            AssertColumnDefinition(connection, "tag", "description", "text");
-            AssertColumnDefinition(connection, "tag", "dimensions", "text");
-            AssertColumnDefinition(connection, "tag", "external_access", "text");
-            AssertColumnDefinition(connection, "tag", "opcua_access", "text");
-            AssertColumnDefinition(connection, "tag", "radix", "text");
-            AssertColumnDefinition(connection, "tag", "constant", "integer");
-            AssertColumnDefinition(connection, "tag", "tag_type", "text");
-            AssertColumnDefinition(connection, "tag", "tag_usage", "text");
-            AssertColumnDefinition(connection, "tag", "alias", "text");
-            AssertColumnDefinition(connection, "tag", "component_class", "text");
-            AssertColumnDefinition(connection, "tag", "value_hash", "text");
-            AssertColumnDefinition(connection, "tag", "record_hash", "text");
+            await AssertColumnDefinition("tag", "tag_id", "integer");
+            await AssertColumnDefinition("tag", "snapshot_id", "integer");
+            await AssertColumnDefinition("tag", "base_name", "text");
+            await AssertColumnDefinition("tag", "tag_name", "text");
+            await AssertColumnDefinition("tag", "scope_type", "text");
+            await AssertColumnDefinition("tag", "container_name", "text");
+            await AssertColumnDefinition("tag", "tag_depth", "integer");
+            await AssertColumnDefinition("tag", "data_type", "text");
+            await AssertColumnDefinition("tag", "value", "text");
+            await AssertColumnDefinition("tag", "description", "text");
+            await AssertColumnDefinition("tag", "dimensions", "text");
+            await AssertColumnDefinition("tag", "external_access", "text");
+            await AssertColumnDefinition("tag", "opcua_access", "text");
+            await AssertColumnDefinition("tag", "radix", "text");
+            await AssertColumnDefinition("tag", "constant", "integer");
+            await AssertColumnDefinition("tag", "tag_type", "text");
+            await AssertColumnDefinition("tag", "tag_usage", "text");
+            await AssertColumnDefinition("tag", "alias", "text");
+            await AssertColumnDefinition("tag", "component_class", "text");
+            await AssertColumnDefinition("tag", "value_hash", "text");
+            await AssertColumnDefinition("tag", "record_hash", "text");
 
-            AssertPrimaryKey(connection, "tag", "tag_id");
-            AssertForeignKey(connection, "tag", "snapshot_id", "snapshot", "snapshot_id");
-            AssertUniqueIndex(connection, "tag", "snapshot_id", "container_name", "tag_name");
+            await AssertPrimaryKey("tag", "tag_id");
+            await AssertForeignKey("tag", "snapshot_id", "snapshot", "snapshot_id");
+            await AssertUniqueIndex("tag", "snapshot_id", "container_name", "tag_name");
         }
     }
 }

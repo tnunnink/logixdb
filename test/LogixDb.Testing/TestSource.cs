@@ -10,6 +10,8 @@ namespace LogixDb.Testing;
 /// </summary>
 public static class TestSource
 {
+    private const string LocalExampleFile = @"C:\Users\tnunn\Documents\L5X\Example.L5X";
+
     /// <summary>
     /// Creates a new L5X instance with custom configuration applied.
     /// Initializes a base L5X with default test settings and allows the caller to customize it.
@@ -79,7 +81,7 @@ public static class TestSource
     /// <returns>An L5X instance loaded with content from the predefined example file.</returns>
     public static L5X LocalExample()
     {
-        return L5X.Load(@"C:\Users\tnunn\Documents\L5X\Example.L5X");
+        return File.Exists(LocalExampleFile) ? L5X.Load(LocalExampleFile) : LocalTest();
     }
 
     /// <summary>

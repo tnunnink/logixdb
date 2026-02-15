@@ -10,29 +10,29 @@ namespace LogixDb.Sqlite;
 /// through strongly typed methods, ensuring type safety and consistency
 /// when working with the underlying SQLite infrastructure.
 /// </summary>
-internal sealed class SqliteDatabaseSession : ILogixDatabaseSession
+internal sealed class SqliteDbSession : ILogixDbSession
 {
     private readonly SqliteConnection _connection;
     private readonly SqliteTransaction _transaction;
 
-    private SqliteDatabaseSession(SqliteConnection connection, SqliteTransaction transaction)
+    private SqliteDbSession(SqliteConnection connection, SqliteTransaction transaction)
     {
         _connection = connection;
         _transaction = transaction;
     }
 
     /// <summary>
-    /// Asynchronously initializes a new SQLite database session with an open connection
-    /// and begins a transaction. This session can be used to interact with the SQLite database.
+    /// Asynchronously starts a new database session for interacting with a SQLite database.
+    /// Establishes a connection and begins a transaction using the provided database instance.
     /// </summary>
-    /// <param name="open">A task that provides an open <see cref="SqliteConnection"/> instance.</param>
+    /// <param name="database">An object implementing <see cref="ILogixDb"/> used to establish the database connection.</param>
     /// <param name="token">A <see cref="CancellationToken"/> to observe while waiting for the operation to complete.</param>
-    /// <returns>A task that represents the asynchronous operation. The task result contains an instance of <see cref="SqliteDatabaseSession"/> initialized with the provided connection and transaction.</returns>
-    public static async Task<SqliteDatabaseSession> StartAsync(Task<SqliteConnection> open, CancellationToken token)
+    /// <returns>A task that represents the asynchronous operation. The task result contains an instance of <see cref="SqliteDbSession"/> initialized with a connection and transaction.</returns>
+    public static async Task<SqliteDbSession> StartAsync(ILogixDb database, CancellationToken token)
     {
-        var connection = await open;
-        var transaction = await connection.BeginTransactionAsync(token);
-        return new SqliteDatabaseSession(connection, (SqliteTransaction)transaction);
+        var connection = (SqliteConnection)await database.Connect(token);
+        var transaction = (SqliteTransaction)await connection.BeginTransactionAsync(token);
+        return new SqliteDbSession(connection, transaction);
     }
 
     /// <inheritdoc />

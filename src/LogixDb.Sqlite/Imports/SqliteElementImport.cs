@@ -22,7 +22,7 @@ namespace LogixDb.Sqlite.Imports;
 /// the abstract <see cref="GetRecords"/> method to define how to extract the records to
 /// be imported from the source data.
 /// </remarks>
-public abstract class SqliteElementImport<TElement>(TableMap<TElement> map) : ILogixDatabaseImport
+public abstract class SqliteElementImport<TElement>(TableMap<TElement> map) : ILogixDbImport
     where TElement : class, ILogixElement
 {
     /// <summary>
@@ -31,7 +31,7 @@ public abstract class SqliteElementImport<TElement>(TableMap<TElement> map) : IL
     /// <param name="snapshot"></param>
     /// <param name="session"></param>
     /// <param name="token"></param>
-    public async Task Process(Snapshot snapshot, ILogixDatabaseSession session, CancellationToken token = default)
+    public async Task Process(Snapshot snapshot, ILogixDbSession session, CancellationToken token = default)
     {
         token.ThrowIfCancellationRequested();
         var connection = session.GetConnection<SqliteConnection>();

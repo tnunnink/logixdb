@@ -3,19 +3,20 @@ using Dapper;
 using LogixDb.Core.Abstractions;
 using LogixDb.Core.Common;
 
-namespace LogixDb.Sqlite.Imports;
+namespace LogixDb.SqlServer.Imports;
 
 /// <summary>
 /// A class responsible for processing and importing snapshot data into an SQLite database.
 /// Implements the <see cref="ILogixDbImport"/> interface to define the import behavior.
 /// </summary>
-internal class SqliteSnapshotImport : ILogixDbImport
+internal class SqlServerSnapshotImport : ILogixDbImport
 {
     private const string EnsureTargetExists =
         """
-        INSERT INTO target (target_key)
-        VALUES (@target_key)
-        ON CONFLICT(target_key) DO NOTHING;
+        IF NOT EXISTS (SELECT 1 FROM target WHERE target_key = @target_key)
+        BEGIN
+            INSERT INTO target (target_key) VALUES (@target_key)
+        END
         """;
 
     private const string GetTargetId =
@@ -27,9 +28,9 @@ internal class SqliteSnapshotImport : ILogixDbImport
 
     private const string InsertSnapshot =
         """
-        INSERT INTO snapshot (target_id, target_type, target_name, is_partial, schema_revision, software_revision, export_date, export_options, source_hash, source_data) 
-        VALUES (@target_id, @target_type, @target_name, @is_partial, @schema_revision, @software_revision, @export_date, @export_options, @source_hash, @source_data)
-        RETURNING snapshot_id;
+        INSERT INTO snapshot (target_id, target_type, target_name, is_partial, schema_revision, software_revision, export_date, export_options, source_hash, source_data)
+        OUTPUT INSERTED.snapshot_id
+        VALUES (@target_id, @target_type, @target_name, @is_partial, @schema_revision, @software_revision, @export_date, @export_options, @source_hash, @source_data);
         """;
     
     public async Task Process(Snapshot snapshot, ILogixDbSession session, CancellationToken token = default)

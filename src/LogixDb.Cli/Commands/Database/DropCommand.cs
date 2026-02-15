@@ -1,6 +1,5 @@
 namespace LogixDb.Cli.Commands.Database;
 
-public class DeleteCommand
+public class DropCommand
 {
-    
 }

@@ -16,6 +16,7 @@
         <PackageReference Include="NUnit3TestAdapter" Version="4.6.0"/>
         <PackageReference Include="FluentMigrator.Runner" Version="8.0.1" />
         <PackageReference Include="FluentMigrator.Runner.SqlServer" Version="8.0.1" />
+        <PackageReference Include="Testcontainers.MsSql" Version="4.10.0" />
     </ItemGroup>
 
     <ItemGroup>

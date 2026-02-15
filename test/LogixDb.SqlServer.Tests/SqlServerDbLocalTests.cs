@@ -18,8 +18,8 @@ public class SqlServerMigrationTest
             Trust: true
         );
 
-        var database = new SqlServerDatabase(connectionInfo, []);
+        var database = new SqlServerDb(connectionInfo);
 
-        await database.Build(true);
+        await database.Migrate();
     }
 }

@@ -1,6 +1,5 @@
 ﻿using CliFx;
 using CliFx.Infrastructure;
-using LogixDb.Cli.Common;
 
 namespace LogixDb.Cli.Tests;
 
@@ -25,7 +24,6 @@ public static class TestApp
             .SetExecutableName("logix")
             .UseConsole(console)
             .AddCommand<TCommand>()
-            .AddLogixDb()
             .Build();
     }
 }

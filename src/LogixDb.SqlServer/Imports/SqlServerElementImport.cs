@@ -13,7 +13,7 @@ namespace LogixDb.SqlServer.Imports;
 /// <typeparam name="TElement">
 /// The type of element to be imported, which must implement the <see cref="ILogixElement"/> interface.
 /// </typeparam>
-internal abstract class SqlServerElementImport<TElement>(TableMap<TElement> map) : ILogixDatabaseImport
+internal abstract class SqlServerElementImport<TElement>(TableMap<TElement> map) : ILogixDbImport
     where TElement : class, ILogixElement
 {
     /// <summary>
@@ -24,7 +24,7 @@ internal abstract class SqlServerElementImport<TElement>(TableMap<TElement> map)
     /// <param name="token">The cancellation token used to observe cancellation requests during the import process.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
     /// <exception cref="NotImplementedException">Thrown if a required method or implementation is missing.</exception>
-    public async Task Process(Snapshot snapshot, ILogixDatabaseSession session, CancellationToken token = default)
+    public async Task Process(Snapshot snapshot, ILogixDbSession session, CancellationToken token = default)
     {
         token.ThrowIfCancellationRequested();
         var connection = session.GetConnection<SqlConnection>();
@@ -33,7 +33,7 @@ internal abstract class SqlServerElementImport<TElement>(TableMap<TElement> map)
         using var bulkCopy = new SqlBulkCopy(connection, SqlBulkCopyOptions.KeepIdentity, transaction);
         bulkCopy.DestinationTableName = $"dbo.{map.TableName}";
         var records = GetRecords(snapshot.GetSource());
-        var table = map.ToDataTable(records, snapshot.SnapshotId);
+        var table = map.GenerateTable(records, snapshot.SnapshotId);
         await bulkCopy.WriteToServerAsync(table, token);
     }
 

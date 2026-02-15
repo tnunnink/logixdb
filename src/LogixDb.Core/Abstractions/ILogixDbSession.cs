@@ -7,7 +7,7 @@ namespace LogixDb.Core.Abstractions;
 /// This interface allows callers to retrieve strongly typed connection and transaction instances
 /// for interacting with the underlying database within a session context.
 /// </summary>
-public interface ILogixDatabaseSession : IAsyncDisposable
+public interface ILogixDbSession : IAsyncDisposable
 {
     /// <summary>
     /// Retrieves the database connection associated with this session.

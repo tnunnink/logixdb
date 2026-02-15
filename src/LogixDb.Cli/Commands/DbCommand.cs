@@ -4,6 +4,7 @@ using CliFx.Exceptions;
 using CliFx.Infrastructure;
 using JetBrains.Annotations;
 using LogixDb.Cli.Common;
+using LogixDb.Cli.Services;
 using LogixDb.Core.Abstractions;
 using LogixDb.Core.Common;
 
@@ -15,7 +16,7 @@ namespace LogixDb.Cli.Commands;
 /// connection information and executing commands asynchronously.
 /// </summary>
 [PublicAPI]
-public abstract class DbCommand(ILogixDatabaseFactory factory) : ICommand
+public abstract class DbCommand : ICommand
 {
     /// <summary>
     /// Represents the default name of the database to be used in cases where
@@ -25,10 +26,14 @@ public abstract class DbCommand(ILogixDatabaseFactory factory) : ICommand
 
     protected const string DefaultSchemaName = "lgx";
 
-    [CommandOption("connection", 'c', Description = "The database connection string or file path. For SQLite, specify a file path. For SQL Server, use format 'server/database'.")]
+    [CommandOption("connection", 'c',
+        Description =
+            "The database connection string or file path. For SQLite, specify a file path. For SQL Server, use format 'server/database'.")]
     public string? Connection { get; init; }
 
-    [CommandOption("provider", 'p', Description = "The SQL provider type (Sqlite or SqlServer). If not specified, the provider is inferred from the connection string.")]
+    [CommandOption("provider", 'p',
+        Description =
+            "The SQL provider type (Sqlite or SqlServer). If not specified, the provider is inferred from the connection string.")]
     public SqlProvider? Provider { get; init; }
 
     [CommandOption("user", Description = "The username for database authentication (SQL Server only).")]
@@ -64,8 +69,8 @@ public abstract class DbCommand(ILogixDatabaseFactory factory) : ICommand
         var provider = Provider ?? InferProvider(Connection);
         var datasource = ParseDataSource(Connection, provider);
         var catalog = ParseCatalog(Connection, provider) ?? DefaultDatabaseName;
-        var info = new SqlConnectionInfo(provider, datasource, catalog, User, Password, Port, Encrypt, Trust);
-        var database = factory.Create(info);
+        var connection = new SqlConnectionInfo(provider, datasource, catalog, User, Password, Port, Encrypt, Trust);
+        var database = DbProvider.GetDatabase(connection);
         return ExecuteAsync(console, database);
     }
 
@@ -76,7 +81,7 @@ public abstract class DbCommand(ILogixDatabaseFactory factory) : ICommand
     /// <param name="console">The console interface for interacting with the user and displaying output.</param>
     /// <param name="database">The connected Logix database instance to operate on.</param>
     /// <returns>A <see cref="ValueTask"/> representing the asynchronous operation.</returns>
-    protected abstract ValueTask ExecuteAsync(IConsole console, ILogixDatabase database);
+    protected abstract ValueTask ExecuteAsync(IConsole console, ILogixDb database);
 
     /// <summary>
     /// Infers the SQL provider type from the database path.

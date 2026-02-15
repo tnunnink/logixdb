@@ -12,13 +12,13 @@ namespace LogixDb.Cli.Commands.Snapshots;
 /// </summary>
 [PublicAPI]
 [Command("snapshot list", Description = "Lists all snapshots, optionally filtered by target key")]
-public class SnapshotListCommand(ILogixDatabaseFactory factory) : DbCommand(factory)
+public class SnapshotListCommand : DbCommand
 {
     [CommandOption("target", 't', Description = "Optional target key filter (format: targettype://targetname)")]
     public string? TargetKey { get; init; }
 
     /// <inheritdoc />
-    protected override async ValueTask ExecuteAsync(IConsole console, ILogixDatabase database)
+    protected override async ValueTask ExecuteAsync(IConsole console, ILogixDb database)
     {
         var snapshots = await console.Ansi()
             .Status()

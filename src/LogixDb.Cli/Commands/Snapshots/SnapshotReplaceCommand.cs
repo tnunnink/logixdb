@@ -5,6 +5,7 @@ using JetBrains.Annotations;
 using L5Sharp.Core;
 using LogixDb.Cli.Common;
 using LogixDb.Core.Abstractions;
+using LogixDb.Core.Common;
 using Spectre.Console;
 
 namespace LogixDb.Cli.Commands.Snapshots;
@@ -15,7 +16,7 @@ namespace LogixDb.Cli.Commands.Snapshots;
 /// </summary>
 [PublicAPI]
 [Command("snapshot replace", Description = "Replaces an existing snapshot by purging and importing a new L5X file")]
-public class SnapshotReplaceCommand(ILogixDatabaseFactory factory) : DbCommand(factory)
+public class SnapshotReplaceCommand : DbCommand
 {
     [CommandParameter(1, Name = "file", Description = "Path to the L5X file to import")]
     public string FilePath { get; init; } = string.Empty;
@@ -27,7 +28,7 @@ public class SnapshotReplaceCommand(ILogixDatabaseFactory factory) : DbCommand(f
     public bool Force { get; init; }
 
     /// <inheritdoc />
-    protected override async ValueTask ExecuteAsync(IConsole console, ILogixDatabase database)
+    protected override async ValueTask ExecuteAsync(IConsole console, ILogixDb database)
     {
         if (string.IsNullOrWhiteSpace(FilePath))
             throw new CommandException("File path is required.", ErrorCodes.UsageError);
@@ -37,7 +38,7 @@ public class SnapshotReplaceCommand(ILogixDatabaseFactory factory) : DbCommand(f
 
         // Load the snapshot to determine target key
         var content = await L5X.LoadAsync(FilePath);
-        var snapshot = Core.Common.Snapshot.Create(content);
+        var snapshot = Snapshot.Create(content);
         var effectiveTargetKey = TargetKey ?? snapshot.TargetKey;
 
         // Confirm operation
@@ -54,16 +55,16 @@ public class SnapshotReplaceCommand(ILogixDatabaseFactory factory) : DbCommand(f
             }
         }
 
-        Core.Common.Snapshot? importedSnapshot = null;
+        Snapshot? importedSnapshot = null;
 
         await console.Ansi().Status()
             .StartAsync("Replacing snapshot...", async ctx =>
             {
                 ctx.Status("Purging existing snapshots...");
-                await database.DeleteSnapshot(effectiveTargetKey);
+                await database.DeleteSnapshots(effectiveTargetKey);
 
                 ctx.Status("Importing new snapshot...");
-                importedSnapshot = await database.AddSnapshot(snapshot);
+                await database.AddSnapshot(snapshot);
             });
 
         if (importedSnapshot is not null)

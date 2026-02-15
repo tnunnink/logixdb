@@ -8,7 +8,7 @@ namespace LogixDb.Core.Abstractions;
 /// individual data components (such as tags, snapshots, or other entities) within
 /// the context of a database session.
 /// </summary>
-public interface ILogixDatabaseImport
+public interface ILogixDbImport
 {
     /// <summary>
     /// Processes and imports data from the provided snapshot into the database
@@ -18,5 +18,5 @@ public interface ILogixDatabaseImport
     /// <param name="session">The database session providing access to the connection and transaction for executing the import operations.</param>
     /// <param name="token">A cancellation token that can be used to cancel the import operation.</param>
     /// <returns>A task representing the asynchronous import operation.</returns>
-    Task Process(Snapshot snapshot, ILogixDatabaseSession session, CancellationToken token = default);
+    Task Process(Snapshot snapshot, ILogixDbSession session, CancellationToken token = default);
 }

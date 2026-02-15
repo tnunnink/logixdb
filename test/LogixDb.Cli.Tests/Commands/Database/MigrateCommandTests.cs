@@ -4,15 +4,15 @@ using LogixDb.Cli.Commands.Database;
 namespace LogixDb.Cli.Tests.Commands.Database;
 
 [TestFixture]
-public class BuildCommandTests
+public class MigrateCommandTests
 {
     [Test]
-    public async Task Build_ValidSqliteConnectionPath_ShouldCreateDatabaseFile()
+    public async Task Migrate_ValidSqliteConnectionPath_ShouldCreateDatabaseFile()
     {
         var tempPath = Path.Combine(Path.GetTempPath(), $"test_{Guid.NewGuid()}.db");
-        var app = TestApp.Create<BuildCommand>(out _);
+        var app = TestApp.Create<MigrateCommand>(out _);
 
-        var exitCode = await app.RunAsync(["build", "-c", tempPath]);
+        var exitCode = await app.RunAsync(["migrate", "-c", tempPath]);
 
         using (Assert.EnterMultipleScope())
         {

@@ -1,6 +1,6 @@
 namespace LogixDb.SqlServer;
 
-public class SqlServerRegistrations
+public class SqlServerQuery
 {
     
 }
