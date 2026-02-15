@@ -61,7 +61,7 @@ public class SnapshotReplaceCommand : DbCommand
             .StartAsync("Replacing snapshot...", async ctx =>
             {
                 ctx.Status("Purging existing snapshots...");
-                await database.DeleteSnapshots(effectiveTargetKey);
+                await database.DeleteSnapshotsFor(effectiveTargetKey);
 
                 ctx.Status("Importing new snapshot...");
                 await database.AddSnapshot(snapshot);

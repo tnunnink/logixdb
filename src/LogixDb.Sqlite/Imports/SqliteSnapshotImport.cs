@@ -31,12 +31,10 @@ internal class SqliteSnapshotImport : ILogixDbImport
         VALUES (@target_id, @target_type, @target_name, @is_partial, @schema_revision, @software_revision, @export_date, @export_options, @source_hash, @source_data)
         RETURNING snapshot_id;
         """;
-    
+
     public async Task Process(Snapshot snapshot, ILogixDbSession session, CancellationToken token = default)
     {
         token.ThrowIfCancellationRequested();
-
-        // Retrieve the session connection and transaction
         var connection = session.GetConnection<IDbConnection>();
         var transaction = session.GetTransaction<IDbTransaction>();
 

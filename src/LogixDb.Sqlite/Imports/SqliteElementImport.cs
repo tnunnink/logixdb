@@ -26,11 +26,12 @@ public abstract class SqliteElementImport<TElement>(TableMap<TElement> map) : IL
     where TElement : class, ILogixElement
 {
     /// <summary>
-    /// 
+    /// Processes a snapshot and inserts data into the associated SQLite database session.
     /// </summary>
-    /// <param name="snapshot"></param>
-    /// <param name="session"></param>
-    /// <param name="token"></param>
+    /// <param name="snapshot">The snapshot containing the source data to be processed.</param>
+    /// <param name="session">The active database session used for SQLite operations.</param>
+    /// <param name="token">An optional cancellation token to observe during the operation.</param>
+    /// <returns>A task that represents the asynchronous processing operation.</returns>
     public async Task Process(Snapshot snapshot, ILogixDbSession session, CancellationToken token = default)
     {
         token.ThrowIfCancellationRequested();
@@ -95,7 +96,7 @@ public abstract class SqliteElementImport<TElement>(TableMap<TElement> map) : IL
     /// <returns>A string representation of the parameter, including its name and formatted value.</returns>
     private static string SerializeParameter(SqliteParameter parameter)
     {
-        return '\u001E' + parameter.ParameterName + '\u001F' + FormatValue(parameter.Value) + '\u001E';
+        return '\u001E' + parameter.ParameterName + '\u001F' + FormatValue(parameter.Value);
 
         static string FormatValue(object? value)
         {

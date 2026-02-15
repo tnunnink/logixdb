@@ -78,19 +78,8 @@ public sealed class SqliteDb(SqlConnectionInfo connection) : ILogixDb
     public async Task Purge(CancellationToken token = default)
     {
         await EnsureMigrated();
-        await using var connection = await OpenConnectionAsync(token);
-        await using var transaction = await connection.BeginTransactionAsync(token);
-
-        try
-        {
-            await connection.ExecuteAsync("DELETE FROM target WHERE target_id > 0", transaction);
-            await transaction.CommitAsync(token);
-        }
-        catch (Exception)
-        {
-            await transaction.RollbackAsync(token);
-            throw;
-        }
+        const string sql = "DELETE FROM target WHERE target_id > 0";
+        await ExecuteSqlAsync(sql, null, token);
     }
 
     /// <inheritdoc />
@@ -109,9 +98,29 @@ public sealed class SqliteDb(SqlConnectionInfo connection) : ILogixDb
     }
 
     /// <inheritdoc />
-    public async Task AddSnapshot(Snapshot snapshot, CancellationToken token = default)
+    public async Task<Snapshot> GetSnapshotLatest(string targetKey, CancellationToken token = default)
     {
         await EnsureMigrated();
+        await using var connection = await OpenConnectionAsync(token);
+        var key = new { target_key = targetKey };
+        return await connection.QuerySingleAsync<Snapshot>(SqliteQuery.GetLatestSnapshot, key);
+    }
+
+    /// <inheritdoc />
+    public async Task<Snapshot> GetSnapshotById(int snapshotId, CancellationToken token = default)
+    {
+        await EnsureMigrated();
+        await using var connection = await OpenConnectionAsync(token);
+        var key = new { snapshot_id = snapshotId };
+        return await connection.QuerySingleAsync<Snapshot>(SqliteQuery.GetSnapshotById, key);
+    }
+
+    /// <inheritdoc />
+    public async Task AddSnapshot(Snapshot snapshot, SnapshotAction action = SnapshotAction.Append,
+        CancellationToken token = default)
+    {
+        await EnsureMigrated();
+        await HandleSnapshotAction(snapshot.TargetKey, action, token);
         await using var session = await SqliteDbSession.StartAsync(this, token);
 
         try
@@ -128,41 +137,43 @@ public sealed class SqliteDb(SqlConnectionInfo connection) : ILogixDb
         }
     }
 
-    public Task UpsertSnapshot(Snapshot snapshot, CancellationToken token = default)
+    /// <inheritdoc />
+    public async Task DeleteSnapshotsFor(string targetKey, CancellationToken token = default)
     {
-        throw new NotImplementedException();
+        await EnsureMigrated();
+        const string sql = "DELETE FROM target where target_key = @target_key ";
+        var param = new { target_key = targetKey };
+        await ExecuteSqlAsync(sql, param, token);
     }
 
     /// <inheritdoc />
-    public async Task<Snapshot> GetSnapshotById(int snapshotId, CancellationToken token = default)
+    public async Task DeleteSnapshotsBefore(DateTime importDate, string? targetKey = null,
+        CancellationToken token = default)
     {
         await EnsureMigrated();
-        await using var connection = await OpenConnectionAsync(token);
-        var key = new { snapshot_id = snapshotId };
-        return await connection.QuerySingleAsync<Snapshot>(SqliteQuery.GetSnapshotById, key);
+        const string sql =
+            """
+            DELETE FROM snapshot 
+                   WHERE @target_key is null or target_id = (SELECT target_id FROM target where target_key = @target_key)
+                   AND import_date < @import_date
+            """;
+        var param = new { target_key = targetKey, import_date = importDate };
+        await ExecuteSqlAsync(sql, param, token);
     }
 
     /// <inheritdoc />
-    public async Task DeleteSnapshots(string targetKey, CancellationToken token = default)
+    public async Task DeleteSnapshotLatest(string targetKey, CancellationToken token = default)
     {
         await EnsureMigrated();
-        const string sql = """
-                           DELETE FROM snapshot 
-                           WHERE target_id = (SELECT target_id FROM target WHERE target_key = @target_key);
-                           """;
-        await using var connection = await OpenConnectionAsync(token);
-        await using var transaction = await connection.BeginTransactionAsync(token);
-
-        try
-        {
-            await connection.ExecuteAsync(sql, new { target_key = targetKey }, transaction);
-            await transaction.CommitAsync(token);
-        }
-        catch (Exception)
-        {
-            await transaction.RollbackAsync(token);
-            throw;
-        }
+        const string sql =
+            """
+            DELETE FROM snapshot 
+                   WHERE @target_key is null or target_id = (SELECT target_id FROM target where target_key = @target_key)
+                   ORDER BY import_date DESC
+                   LIMIT 1
+            """;
+        var param = new { target_key = targetKey };
+        await ExecuteSqlAsync(sql, param, token);
     }
 
     /// <inheritdoc />
@@ -170,12 +181,49 @@ public sealed class SqliteDb(SqlConnectionInfo connection) : ILogixDb
     {
         await EnsureMigrated();
         const string sql = "DELETE FROM snapshot WHERE snapshot_id = @snapshot_id;";
+        var param = new { snapshot_id = snapshotId };
+        await ExecuteSqlAsync(sql, param, token);
+    }
+
+    /// <summary>
+    /// Handles snapshot actions based on the specified action type for a given target key.
+    /// </summary>
+    /// <param name="targetKey">The key identifying the target for the snapshot action.</param>
+    /// <param name="action">The type of action to perform on the snapshot (Append, ReplaceLatest, or ReplaceAll).</param>
+    /// <param name="token">A cancellation token that can be used to signal the operation should be canceled.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the specified action is not recognized.</exception>
+    private async Task HandleSnapshotAction(string targetKey, SnapshotAction action, CancellationToken token)
+    {
+        switch (action)
+        {
+            case SnapshotAction.ReplaceLatest:
+                await DeleteSnapshotLatest(targetKey, token);
+                break;
+            case SnapshotAction.ReplaceAll:
+                await DeleteSnapshotsFor(targetKey, token);
+                break;
+            case SnapshotAction.Append:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(action), action, null);
+        }
+    }
+
+    /// <summary>
+    /// Executes an SQL statement asynchronously within a transactional context.
+    /// </summary>
+    /// <param name="sql">The SQL query to execute.</param>
+    /// <param name="param">The parameters to bind to the SQL query.</param>
+    /// <param name="token">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+    /// <returns>A task representing the asynchronous operation.</returns>
+    private async Task ExecuteSqlAsync(string sql, object? param, CancellationToken token)
+    {
         await using var connection = await OpenConnectionAsync(token);
         await using var transaction = await connection.BeginTransactionAsync(token);
 
         try
         {
-            await connection.ExecuteAsync(sql, new { snapshot_id = snapshotId }, transaction);
+            await connection.ExecuteAsync(sql, param, transaction);
             await transaction.CommitAsync(token);
         }
         catch (Exception)

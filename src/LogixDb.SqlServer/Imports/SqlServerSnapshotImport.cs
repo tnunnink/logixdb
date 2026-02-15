@@ -6,7 +6,7 @@ using LogixDb.Core.Common;
 namespace LogixDb.SqlServer.Imports;
 
 /// <summary>
-/// A class responsible for processing and importing snapshot data into an SQLite database.
+/// A class responsible for processing and importing snapshot data into an SqlServer database.
 /// Implements the <see cref="ILogixDbImport"/> interface to define the import behavior.
 /// </summary>
 internal class SqlServerSnapshotImport : ILogixDbImport

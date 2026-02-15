@@ -9,9 +9,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../test/LogixDb.SqlServer.Tests/SqlServerTestContainer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.SqlServer.Tests/SqlServerTestFixture.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.SqlServer.Tests/SqlServerTestFixture.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Core/Common/SnapshotAction.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.SqlServer/Imports/SqliteAoiImport.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.SqlServer/Imports/SqliteAoiParameterImport.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.SqlServer/Imports/SqliteControllerImport.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.SqlServer/Imports/SqliteDataTypeImport.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.SqlServer/Imports/SqliteDataTypeMemberImport.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.SqlServer/Imports/SqliteModuleImport.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.SqlServer/Imports/SqliteProgramImport.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.SqlServer/Imports/SqliteRoutineImport.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.SqlServer/Imports/SqliteRungImport.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.SqlServer/Imports/SqliteTaskImport.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/Snapshots/SqliteDbDeleteSnapshotTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/Snapshots/SnapshotReplaceCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/Snapshots/SnapshotReplaceCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Core/Abstractions/ILogixDb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Core/Abstractions/ILogixDb.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.SqlServer/Imports/SqlServerTagImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.SqlServer/Imports/SqlServerTagImport.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.SqlServer/SqlServerDb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.SqlServer/SqlServerDb.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Sqlite/Imports/SqliteElementImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Sqlite/Imports/SqliteElementImport.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Sqlite/Imports/SqliteSnapshotImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Sqlite/Imports/SqliteSnapshotImport.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Sqlite/SqliteDb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Sqlite/SqliteDb.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Sqlite/SqliteExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Sqlite/SqliteExtensions.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,9 +98,9 @@
     <setting file="file://$PROJECT_DIR$/../test/LogixDb.Core.Tests/SnapshotTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../test/LogixDb.SqlServer.Tests/Migrations/M20260206Tests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../test/LogixDb.SqlServer.Tests/SqlServerTestFixture.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../test/LogixDb.SqlServer.Tests/SqlServerTestSetup.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/Migrations/M20260211Tests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/Migrations/M20260212TEsts.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/Snapshots/SqliteDbDeleteSnapshotTests.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
   <component name="KubernetesApiProvider"><![CDATA[{
@@ -94,6 +111,9 @@
     <urls />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="AISelfReview" />
+  </component>
   <component name="ProjectColorInfo"><![CDATA[{
   "customColor": "c28515ff",
   "associatedIndex": 1
@@ -182,7 +202,7 @@
       <workItem from="1770636653430" duration="1418000" />
       <workItem from="1770638186305" duration="3881000" />
       <workItem from="1770648816599" duration="48627000" />
-      <workItem from="1770806804536" duration="143458000" />
+      <workItem from="1770806804536" duration="146340000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor `Snapshot` implementation, add `SqlConnectionInfo` and `SqlAuthentication`, update extensions, and target .NET 10.">
       <option name="closed" value="true" />
@@ -344,7 +364,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771175635413</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Extract SQL Server container lifecycle management to `SqlServerTestContainer` class and refactor `SqlServerTestFixture` for static test utilities.">
+      <option name="closed" value="true" />
+      <created>1771186958029</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1771186958029</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -374,7 +402,8 @@
     <MESSAGE value="Refactor: Standardize column mappings and table schemas, remove deprecated fields, and update references for consistency across migrations and mapping files. Updated and fixed tests" />
     <MESSAGE value="Remove redundant `dimensions` column assertion from `M20260207Tests`." />
     <MESSAGE value="Update `M20260207Tests` to assert `constant` column type as `bit` instead of `int`." />
-    <option name="LAST_COMMIT_MESSAGE" value="Update `M20260207Tests` to assert `constant` column type as `bit` instead of `int`." />
+    <MESSAGE value="Extract SQL Server container lifecycle management to `SqlServerTestContainer` class and refactor `SqlServerTestFixture` for static test utilities." />
+    <option name="LAST_COMMIT_MESSAGE" value="Extract SQL Server container lifecycle management to `SqlServerTestContainer` class and refactor `SqlServerTestFixture` for static test utilities." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -391,19 +420,6 @@
           <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
           <option name="timeStamp" value="3" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/LogixDb.SqlServer/SqlServerDb.cs</url>
-          <line>247</line>
-          <properties documentPath="C:\Users\tnunn\Projects\logixdb\src\LogixDb.SqlServer\SqlServerDb.cs" containingFunctionPresentation="Method 'DropDatabase'">
-            <startOffsets>
-              <option value="9871" />
-            </startOffsets>
-            <endOffsets>
-              <option value="9939" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="44" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/LogixDb.SqlServer/SqlServerDb.cs</url>
           <line>59</line>

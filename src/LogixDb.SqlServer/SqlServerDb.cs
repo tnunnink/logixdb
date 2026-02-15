@@ -26,8 +26,8 @@ public sealed class SqlServerDb(SqlConnectionInfo connection) : ILogixDb
     private readonly SqlConnectionInfo _connection = connection ?? throw new ArgumentNullException(nameof(connection));
 
     /// <summary>
-    /// Represents the collection of imports used in the Sqlite database implementation.
-    /// These imports are responsible for mapping data elements between SQLite and
+    /// Represents the collection of imports used in the SqlServer database implementation.
+    /// These imports are responsible for mapping data elements between SqlServer and
     /// the application domain, enabling seamless data operations.
     /// </summary>
     private readonly List<ILogixDbImport> _imports =
@@ -123,6 +123,12 @@ public sealed class SqlServerDb(SqlConnectionInfo connection) : ILogixDb
     }
 
     /// <inheritdoc />
+    public Task<Snapshot> GetSnapshotLatest(string targetKey, CancellationToken token = default)
+    {
+        throw new NotImplementedException();
+    }
+
+    /// <inheritdoc />
     public async Task AddSnapshot(Snapshot snapshot, CancellationToken token = default)
     {
         EnsureMigrated();
@@ -175,8 +181,13 @@ public sealed class SqlServerDb(SqlConnectionInfo connection) : ILogixDb
         return await connection.QuerySingleAsync<Snapshot>(sql, key);
     }
 
+    public Task AddSnapshot(Snapshot snapshot, SnapshotAction action = SnapshotAction.Append, CancellationToken token = default)
+    {
+        throw new NotImplementedException();
+    }
+
     /// <inheritdoc />
-    public async Task DeleteSnapshots(string targetKey, CancellationToken token = default)
+    public async Task DeleteSnapshotsFor(string targetKey, CancellationToken token = default)
     {
         EnsureMigrated();
         const string sql = """
@@ -196,6 +207,16 @@ public sealed class SqlServerDb(SqlConnectionInfo connection) : ILogixDb
             await transaction.RollbackAsync(token);
             throw;
         }
+    }
+
+    public Task DeleteSnapshotsBefore(DateTime importDate, string? targetKey = null, CancellationToken token = default)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task DeleteSnapshotLatest(string targetKey, CancellationToken token = default)
+    {
+        throw new NotImplementedException();
     }
 
     /// <inheritdoc />

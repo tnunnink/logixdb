@@ -20,7 +20,7 @@ public static class SqliteExtensions
     {
         ArgumentNullException.ThrowIfNull(info);
 
-        var builder = new SqliteConnectionStringBuilder()
+        var builder = new SqliteConnectionStringBuilder
         {
             DataSource = info.DataSource,
             ForeignKeys = true,
