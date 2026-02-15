@@ -23,7 +23,7 @@ public class M20260207Tests : SqlServerTestFixture
             await AssertColumnDefinition("tag", "data_type", "nvarchar");
             await AssertColumnDefinition("tag", "description", "nvarchar");
             await AssertColumnDefinition("tag", "external_access", "nvarchar");
-            await AssertColumnDefinition("tag", "constant", "int");
+            await AssertColumnDefinition("tag", "constant", "bit");
             await AssertColumnDefinition("tag", "value_hash", "nvarchar");
             await AssertColumnDefinition("tag", "record_hash", "nvarchar");
 
