@@ -1,8 +1,6 @@
 using System.Data;
 using Dapper;
 using LogixDb.Core.Abstractions;
-using LogixDb.Core.Common;
-using Testcontainers.MsSql;
 
 namespace LogixDb.SqlServer.Tests;
 
@@ -16,22 +14,6 @@ namespace LogixDb.SqlServer.Tests;
 public abstract class SqlServerTestFixture
 {
     /// <summary>
-    /// Represents a test container instance for managing a Microsoft SQL Server database lifecycle
-    /// within the SqlServerTestFixture. This container facilitates integration testing by providing
-    /// an isolated and disposable SQL Server environment.
-    /// </summary>
-    /// <remarks>
-    /// The container is implemented using the Testcontainers library and provides mechanisms
-    /// to start, stop, and dispose of the SQL Server instance. It is configured with the
-    /// proper SQL Server image and settings for use with the fixture.
-    /// </remarks>
-    /// <value>
-    /// An instance of <see cref="MsSqlContainer"/> used to manage the lifecycle of the SQL Server
-    /// container for testing purposes.
-    /// </value>
-    private MsSqlContainer _container;
-
-    /// <summary>
     /// Represents an instance of the database used for testing within the SqlServerTestFixture.
     /// Provides functionality to manage the database lifecycle, including setup, teardown,
     /// and integration with the test container for SQL Server.
@@ -43,7 +25,7 @@ public abstract class SqlServerTestFixture
     /// <value>
     /// An instance of <see cref="ILogixDb"/> used to interact with the database.
     /// </value>
-    protected ILogixDb Database { get; private set; }
+    protected static ILogixDb Database => SqlServerTestContainer.Database;
 
     /// <summary>
     /// Cleans up after each test by dropping the database instance used during the test.
@@ -58,52 +40,13 @@ public abstract class SqlServerTestFixture
     }
 
     /// <summary>
-    /// Performs a one-time setup for initializing the SQL Server test environment. This includes
-    /// creating and starting a SQL Server container using Testcontainers, configuring the
-    /// connection details, and initializing a database instance to be used in integration tests.
-    /// </summary>
-    /// <returns>A task representing the asynchronous operation.</returns>
-    [OneTimeSetUp]
-    protected async Task OneTimeSetup()
-    {
-        _container = new MsSqlBuilder("mcr.microsoft.com/mssql/server:2022-latest")
-            .WithPassword("LogixDb!Test123")
-            .Build();
-
-        await _container.StartAsync();
-
-        var connection = new SqlConnectionInfo(
-            SqlProvider.SqlServer,
-            _container.Hostname,
-            Port: _container.GetMappedPublicPort(),
-            User: "sa",
-            Password: "LogixDb!Test123"
-        );
-
-        Database = new SqlServerDb(connection);
-    }
-
-    /// <summary>
-    /// Performs a one-time teardown for cleaning up the SQL Server test environment. This includes
-    /// disposing of the database instance and stopping and disposing of the SQL Server container.
-    /// This method ensures that all resources used in the integration tests are properly released.
-    /// </summary>
-    /// <returns>A task representing the asynchronous operation.</returns>
-    [OneTimeTearDown]
-    protected async Task OneTimeTearDown()
-    {
-        await _container.StopAsync();
-        await _container.DisposeAsync();
-    }
-
-    /// <summary>
     /// Verifies the existence of a specific table in the database by querying the
     /// INFORMATION_SCHEMA.TABLES view. If the table does not exist, an exception is thrown.
     /// </summary>
     /// <param name="tableName">The name of the table to check for existence in the database.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
     /// <exception cref="AssertionException">Thrown if the specified table does not exist in the database.</exception>
-    protected async Task AssertTableExists(string tableName)
+    protected static async Task AssertTableExists(string tableName)
     {
         using var connection = await Database.Connect();
 
@@ -128,7 +71,7 @@ public abstract class SqlServerTestFixture
     /// <param name="columnName">The name of the column to verify.</param>
     /// <param name="columnType">The expected data type of the column.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
-    protected async Task AssertColumnDefinition(string tableName, string columnName, string columnType)
+    protected static async Task AssertColumnDefinition(string tableName, string columnName, string columnType)
     {
         using var connection = await Database.Connect();
 
@@ -156,7 +99,7 @@ public abstract class SqlServerTestFixture
     /// <param name="tableName">The name of the table to check for the primary key.</param>
     /// <param name="columnName">The name of the column expected to be the primary key.</param>
     /// <returns>A task representing the asynchronous validation operation.</returns>
-    protected async Task AssertPrimaryKey(string tableName, string columnName)
+    protected static async Task AssertPrimaryKey(string tableName, string columnName)
     {
         using var connection = await Database.Connect();
 
@@ -189,7 +132,7 @@ public abstract class SqlServerTestFixture
     /// <param name="toTable">The name of the table containing the referenced primary key column.</param>
     /// <param name="toColumn">The name of the column in the target table that is referenced by the foreign key.</param>
     /// <returns>A task representing the asynchronous operation, which throws an <see cref="AssertionException"/> if the foreign key does not exist.</returns>
-    protected async Task AssertForeignKey(string fromTable, string fromColumn, string toTable, string toColumn)
+    protected static async Task AssertForeignKey(string fromTable, string fromColumn, string toTable, string toColumn)
     {
         using var connection = await Database.Connect();
 
@@ -223,7 +166,7 @@ public abstract class SqlServerTestFixture
     /// <param name="columns">A collection of column names that should define the index.</param>
     /// <returns>A task that represents the completion of the assertion operation.</returns>
     /// <exception cref="AssertionException">Thrown if no index matches the specified columns on the table.</exception>
-    protected async Task AssertIndex(string tableName, params string[] columns)
+    protected static async Task AssertIndex(string tableName, params string[] columns)
     {
         using var connection = await Database.Connect();
 
@@ -258,7 +201,7 @@ public abstract class SqlServerTestFixture
     /// <param name="columns">A collection of column names that should define the UNIQUE index.</param>
     /// <returns>A task that represents the completion of the assertion operation.</returns>
     /// <exception cref="AssertionException">Thrown if no UNIQUE index matches the specified columns on the table.</exception>
-    protected async Task AssertUniqueIndex(string tableName, params string[] columns)
+    protected static async Task AssertUniqueIndex(string tableName, params string[] columns)
     {
         using var connection = await Database.Connect();
 
