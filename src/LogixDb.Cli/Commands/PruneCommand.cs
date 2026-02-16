@@ -43,9 +43,10 @@ public class PruneCommand : DbCommand
     protected override async ValueTask ExecuteAsync(IConsole console, ILogixDb database)
     {
         ValidateOptions();
-        if (SnapshotId > 0) await DeleteById(console, database);
-        if (Latest) await DeleteByLatest(console, database);
-        if (!string.IsNullOrWhiteSpace(Before)) await DeleteByDate(console, database);
+        var cancellation = console.RegisterCancellationHandler();
+        if (SnapshotId > 0) await DeleteById(console, database, cancellation);
+        if (Latest) await DeleteByLatest(console, database, cancellation);
+        if (!string.IsNullOrWhiteSpace(Before)) await DeleteByDate(console, database, cancellation);
     }
 
     /// <summary>
@@ -53,13 +54,14 @@ public class PruneCommand : DbCommand
     /// </summary>
     /// <param name="console">The console instance used to output status messages.</param>
     /// <param name="database">The database instance used to interact with stored snapshots.</param>
+    /// <param name="token">The cancellation token used to cancel the asynchronous operation.</param>
     /// <returns>A task that represents the asynchronous operation.</returns>
     /// <exception cref="CommandException">Thrown when an error occurs during the deletion of the snapshot.</exception>
-    private async ValueTask DeleteById(IConsole console, ILogixDb database)
+    private async ValueTask DeleteById(IConsole console, ILogixDb database, CancellationToken token)
     {
         try
         {
-            await database.DeleteSnapshot(SnapshotId);
+            await database.DeleteSnapshot(SnapshotId, token);
             await console.Output.WriteLineAsync($"Deleted snapshot {SnapshotId}");
         }
         catch (Exception e)
@@ -77,17 +79,18 @@ public class PruneCommand : DbCommand
     /// </summary>
     /// <param name="console">The console to write output and error messages.</param>
     /// <param name="database">The database instance to execute the delete operation.</param>
+    /// /// <param name="token">The cancellation token used to cancel the asynchronous operation.</param>
     /// <exception cref="CommandException">
     /// Thrown if the target is not specified or if an error occurs during the delete operation.
     /// </exception>
-    private async ValueTask DeleteByLatest(IConsole console, ILogixDb database)
+    private async ValueTask DeleteByLatest(IConsole console, ILogixDb database, CancellationToken token)
     {
         try
         {
             if (string.IsNullOrWhiteSpace(Target))
                 throw new CommandException("--latest requires --target to be specified", ErrorCodes.UsageError);
 
-            await database.DeleteSnapshotLatest(Target);
+            await database.DeleteSnapshotLatest(Target, token);
             await console.Output.WriteLineAsync($"Deleted latest snapshot for {Target}");
         }
         catch (Exception e)
@@ -105,17 +108,18 @@ public class PruneCommand : DbCommand
     /// </summary>
     /// <param name="console">The console interface used for output messages.</param>
     /// <param name="database">The database interface that provides functionality for managing snapshots.</param>
+    /// /// <param name="token">The cancellation token used to cancel the asynchronous operation.</param>
     /// <exception cref="CommandException">
     /// Thrown when an invalid date format is provided or when a deletion operation fails due to an internal error.
     /// </exception>
-    private async ValueTask DeleteByDate(IConsole console, ILogixDb database)
+    private async ValueTask DeleteByDate(IConsole console, ILogixDb database, CancellationToken token)
     {
         try
         {
             if (!DateTime.TryParse(Before, out var beforeDate))
                 throw new CommandException($"Invalid date format: {Before}", ErrorCodes.UsageError);
 
-            await database.DeleteSnapshotsBefore(beforeDate, Target);
+            await database.DeleteSnapshotsBefore(beforeDate, Target, token);
             await console.Output.WriteLineAsync(
                 $"Deleted snapshots before {beforeDate:yyyy-MM-dd}" + (Target != null ? $" for {Target}" : "")
             );

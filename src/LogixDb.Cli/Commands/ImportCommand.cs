@@ -36,6 +36,8 @@ public class ImportCommand : DbCommand
         if (!File.Exists(SourcePath))
             throw new CommandException($"File not found: {SourcePath}", ErrorCodes.FileNotFound);
 
+        var cancellation = console.RegisterCancellationHandler();
+        
         try
         {
             var result = await console.Ansi()
@@ -43,10 +45,10 @@ public class ImportCommand : DbCommand
                 .StartAsync("Importing source...", async ctx =>
                 {
                     ctx.Status("Loading L5X file...");
-                    var content = await L5X.LoadAsync(SourcePath);
+                    var content = await L5X.LoadAsync(SourcePath, cancellation);
                     var snapshot = Snapshot.Create(content, TargetKey);
                     ctx.Status("Importing source to database...");
-                    await database.AddSnapshot(snapshot, Action);
+                    await database.AddSnapshot(snapshot, Action, cancellation);
                     return snapshot;
                 });
 

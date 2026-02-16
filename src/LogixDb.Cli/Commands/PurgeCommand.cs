@@ -27,12 +27,14 @@ public class PurgeCommand : DbCommand
             console.Ansi().MarkupLine("[yellow]Operation cancelled[/]");
             return;
         }
-        
+
+        var cancellation = console.RegisterCancellationHandler();
+
         try
         {
             await console.Ansi()
                 .Status()
-                .StartAsync("Purging database...", _ => database.Purge());
+                .StartAsync("Purging database...", _ => database.Purge(cancellation));
 
             console.Ansi().MarkupLine("[green]✓[/] Database purged successfully");
         }
@@ -44,7 +46,5 @@ public class PurgeCommand : DbCommand
                 false, e
             );
         }
-
-        
     }
 }

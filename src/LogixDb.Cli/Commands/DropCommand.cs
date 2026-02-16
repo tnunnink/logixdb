@@ -31,12 +31,14 @@ public class DropCommand : DbCommand
             console.Ansi().MarkupLine("[yellow]Operation cancelled[/]");
             return;
         }
+        
+        var cancellation = console.RegisterCancellationHandler();
 
         try
         {
             await console.Ansi()
                 .Status()
-                .StartAsync("Dropping database...", _ => database.Drop());
+                .StartAsync("Dropping database...", _ => database.Drop(cancellation));
 
             console.Ansi().MarkupLine("[green]✓[/] Database dropped successfully");
         }

@@ -28,11 +28,13 @@ public class MigrateCommand : DbCommand
     /// <inheritdoc />
     protected override async ValueTask ExecuteAsync(IConsole console, ILogixDb database)
     {
+        var cancellation = console.RegisterCancellationHandler();
+        
         try
         {
             await console.Ansi()
                 .Status()
-                .StartAsync("Migrating database...", _ => database.Migrate());
+                .StartAsync("Migrating database...", _ => database.Migrate(cancellation));
 
             console.Ansi().MarkupLine("[green]✓[/] Database migration completed successfully");
         }
