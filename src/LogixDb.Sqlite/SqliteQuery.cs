@@ -14,7 +14,8 @@ public static class SqliteQuery
     public const string ListSnapshots =
         """
         SELECT snapshot_id [SnapshotId],
-              target_id [TargetId],
+              t.target_id [TargetId],
+              t.target_key [TargetKey],
               target_type [TargetType],
               target_name [TargetName],
               is_partial [IsPartial],
@@ -26,8 +27,9 @@ public static class SqliteQuery
               import_user [ImportUser],
               import_machine [ImportMachine],
               source_hash [ImportHash] 
-        FROM snapshot
-        WHERE @target_key is null or target_id = (SELECT target_id FROM target where target_key = @target_key)
+        FROM snapshot s
+        JOIN target t on t.target_id = s.target_id
+        WHERE @target_key is null or t.target_key = @target_key
         """;
 
     /// <summary>
@@ -37,7 +39,8 @@ public static class SqliteQuery
     public const string GetSnapshotById =
         """
         SELECT snapshot_id [SnapshotId],
-              target_id [TargetId],
+              t.target_id [TargetId],
+              t.target_key [TargetKey],
               target_type [TargetType],
               target_name [TargetName],
               is_partial [IsPartial],
@@ -50,8 +53,9 @@ public static class SqliteQuery
               import_machine [ImportMachine],
               source_hash [SourceHash], 
               source_data [SourceData] 
-        FROM snapshot
-        WHERE snapshot_id @snapshot_id
+        FROM snapshot s
+        JOIN target t on t.target_id = s.target_id
+        WHERE snapshot_id = @snapshot_id
         """;
 
     /// <summary>
@@ -61,7 +65,8 @@ public static class SqliteQuery
     public const string GetLatestSnapshot =
         """
         SELECT snapshot_id [SnapshotId],
-              target_id [TargetId],
+              t.target_id [TargetId],
+              t.target_key [TargetKey],
               target_type [TargetType],
               target_name [TargetName],
               is_partial [IsPartial],
@@ -74,8 +79,9 @@ public static class SqliteQuery
               import_machine [ImportMachine],
               source_hash [SourceHash], 
               source_data [SourceData] 
-        FROM snapshot
-        WHERE target_id = (SELECT target_id FROM target where target_key = @target_key)
+        FROM snapshot s
+        JOIN target t on t.target_id = s.target_id
+        WHERE t.target_key = @target_key
         ORDER BY import_date DESC
         LIMIT 1
         """;

@@ -16,7 +16,7 @@ public abstract class SqliteTestFixture
     /// The file path for the temporary SQLite database used during the test execution.
     /// This path is dynamically generated to ensure uniqueness for each test run.
     /// </summary>
-    private static readonly string TempDb = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
+    protected static readonly string TempDb = Path.Combine(Path.GetTempPath(), $"Logix_{Guid.NewGuid():N}.db");
 
     /// <summary>
     /// Provides a test fixture for setting up and managing SQLite-based test environments.
@@ -52,6 +52,39 @@ public abstract class SqliteTestFixture
         {
             // Best-effort cleanup
         }
+    }
+
+    /// <summary>
+    /// Asserts that a record exists in a specified table with a specific value for a given column.
+    /// An exception is thrown if no matching record is found.
+    /// </summary>
+    /// <param name="tableName">The name of the table to query.</param>
+    /// <param name="columnName">The name of the column to inspect for the expected value.</param>
+    /// <param name="expected">The value to match in the specified column.</param>
+    /// <returns>A task that represents the asynchronous assertion operation.</returns>
+    protected async Task AssertRecordExists(string tableName, string columnName, object expected)
+    {
+        using var connection = await Database.Connect();
+
+        var result = await connection.QuerySingleAsync<int>(
+            $"SELECT 1 FROM {tableName} WHERE {columnName} = @expected",
+            new { expected }
+        );
+
+        Assert.That(result, Is.EqualTo(1), $"No record with '{columnName}={expected}' exists in table '{tableName}'");
+    }
+
+    /// <summary>
+    /// Asserts that the specified table contains the expected number of records.
+    /// </summary>
+    /// <param name="tableName">The name of the table to verify the record count for.</param>
+    /// <param name="count">The expected number of records in the table.</param>
+    /// <exception cref="AssertionException">Thrown when the actual record count does not match the specified count.</exception>
+    protected async Task AssertRecordCount(string tableName, int count)
+    {
+        using var connection = await Database.Connect();
+        var result = await connection.ExecuteScalarAsync<int>($"SELECT COUNT(*) FROM {tableName}");
+        Assert.That(result, Is.EqualTo(count), $"Invalid record count for table '{tableName}'");
     }
 
     /// <summary>

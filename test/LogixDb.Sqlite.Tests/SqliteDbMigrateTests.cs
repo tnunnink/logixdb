@@ -4,7 +4,7 @@ using NUnit.Framework.Legacy;
 namespace LogixDb.Sqlite.Tests;
 
 [TestFixture]
-public class SqliteMigrate
+public class SqliteDbMigrateTests
 {
     /// <summary>
     /// This test is mostly just to refresh a local db instance to inspect and write queries against.
@@ -16,6 +16,7 @@ public class SqliteMigrate
     {
         var connection = new SqlConnectionInfo(SqlProvider.Sqlite, "../../../logix.db");
         var database = new SqliteDb(connection);
+        await database.Drop();
         await database.Migrate();
         FileAssert.Exists("../../../logix.db");
     }

@@ -52,7 +52,7 @@ public sealed class SqlServerDb(SqlConnectionInfo connection) : ILogixDb
         await EnsureCreated(token);
         var provider = BuildMigrationProvider(_connection.ToConnectionString());
         var runner = provider.GetRequiredService<IMigrationRunner>();
-        await Task.Run(() => runner.MigrateUp(), token);
+        runner.MigrateUp();
     }
 
     /// <inheritdoc />
@@ -61,7 +61,7 @@ public sealed class SqlServerDb(SqlConnectionInfo connection) : ILogixDb
         await EnsureCreated(token);
         var provider = BuildMigrationProvider(_connection.ToConnectionString());
         var runner = provider.GetRequiredService<IMigrationRunner>();
-        await Task.Run(() => runner.MigrateUp(version), token);
+        runner.MigrateUp();
     }
 
     /// <inheritdoc />
@@ -181,7 +181,8 @@ public sealed class SqlServerDb(SqlConnectionInfo connection) : ILogixDb
         return await connection.QuerySingleAsync<Snapshot>(sql, key);
     }
 
-    public Task AddSnapshot(Snapshot snapshot, SnapshotAction action = SnapshotAction.Append, CancellationToken token = default)
+    public Task AddSnapshot(Snapshot snapshot, SnapshotAction action = SnapshotAction.Append,
+        CancellationToken token = default)
     {
         throw new NotImplementedException();
     }
@@ -318,7 +319,7 @@ public sealed class SqlServerDb(SqlConnectionInfo connection) : ILogixDb
 
         if (runner.HasMigrationsToApplyUp())
         {
-            throw new MigrationRequiredException();
+            throw new MigrationRequiredException(_connection.DataSource);
         }
     }
 

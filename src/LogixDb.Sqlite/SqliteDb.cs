@@ -52,7 +52,7 @@ public sealed class SqliteDb(SqlConnectionInfo connection) : ILogixDb
     {
         await using var provider = BuildMigrationProvider(_connection.ToConnectionString());
         var runner = provider.GetRequiredService<IMigrationRunner>();
-        await Task.Run(() => runner.MigrateUp(), token);
+        runner.MigrateUp();
         await ConfigurePersistentPerformancePragmas(token);
     }
 
@@ -61,7 +61,7 @@ public sealed class SqliteDb(SqlConnectionInfo connection) : ILogixDb
     {
         await using var provider = BuildMigrationProvider(_connection.ToConnectionString());
         var runner = provider.GetRequiredService<IMigrationRunner>();
-        await Task.Run(() => runner.MigrateUp(version), token);
+        runner.MigrateUp();
         await ConfigurePersistentPerformancePragmas(token);
     }
 
@@ -77,7 +77,7 @@ public sealed class SqliteDb(SqlConnectionInfo connection) : ILogixDb
     /// <inheritdoc />
     public async Task Purge(CancellationToken token = default)
     {
-        await EnsureMigrated();
+        await EnsureCreatedAndMigrated();
         const string sql = "DELETE FROM target WHERE target_id > 0";
         await ExecuteSqlAsync(sql, null, token);
     }
@@ -91,7 +91,7 @@ public sealed class SqliteDb(SqlConnectionInfo connection) : ILogixDb
     /// <inheritdoc />
     public async Task<IEnumerable<Snapshot>> ListSnapshots(string? targetKey = null, CancellationToken token = default)
     {
-        await EnsureMigrated();
+        await EnsureCreatedAndMigrated();
         await using var connection = await OpenConnectionAsync(token);
         var key = new { target_key = targetKey };
         return await connection.QueryAsync<Snapshot>(SqliteQuery.ListSnapshots, key);
@@ -100,7 +100,7 @@ public sealed class SqliteDb(SqlConnectionInfo connection) : ILogixDb
     /// <inheritdoc />
     public async Task<Snapshot> GetSnapshotLatest(string targetKey, CancellationToken token = default)
     {
-        await EnsureMigrated();
+        await EnsureCreatedAndMigrated();
         await using var connection = await OpenConnectionAsync(token);
         var key = new { target_key = targetKey };
         return await connection.QuerySingleAsync<Snapshot>(SqliteQuery.GetLatestSnapshot, key);
@@ -109,7 +109,7 @@ public sealed class SqliteDb(SqlConnectionInfo connection) : ILogixDb
     /// <inheritdoc />
     public async Task<Snapshot> GetSnapshotById(int snapshotId, CancellationToken token = default)
     {
-        await EnsureMigrated();
+        await EnsureCreatedAndMigrated();
         await using var connection = await OpenConnectionAsync(token);
         var key = new { snapshot_id = snapshotId };
         return await connection.QuerySingleAsync<Snapshot>(SqliteQuery.GetSnapshotById, key);
@@ -119,7 +119,7 @@ public sealed class SqliteDb(SqlConnectionInfo connection) : ILogixDb
     public async Task AddSnapshot(Snapshot snapshot, SnapshotAction action = SnapshotAction.Append,
         CancellationToken token = default)
     {
-        await EnsureMigrated();
+        await EnsureCreatedAndMigrated();
         await HandleSnapshotAction(snapshot.TargetKey, action, token);
         await using var session = await SqliteDbSession.StartAsync(this, token);
 
@@ -140,7 +140,7 @@ public sealed class SqliteDb(SqlConnectionInfo connection) : ILogixDb
     /// <inheritdoc />
     public async Task DeleteSnapshotsFor(string targetKey, CancellationToken token = default)
     {
-        await EnsureMigrated();
+        await EnsureCreatedAndMigrated();
         const string sql = "DELETE FROM target where target_key = @target_key ";
         var param = new { target_key = targetKey };
         await ExecuteSqlAsync(sql, param, token);
@@ -150,11 +150,11 @@ public sealed class SqliteDb(SqlConnectionInfo connection) : ILogixDb
     public async Task DeleteSnapshotsBefore(DateTime importDate, string? targetKey = null,
         CancellationToken token = default)
     {
-        await EnsureMigrated();
+        await EnsureCreatedAndMigrated();
         const string sql =
             """
             DELETE FROM snapshot 
-                   WHERE @target_key is null or target_id = (SELECT target_id FROM target where target_key = @target_key)
+                   WHERE (@target_key is null or target_id = (SELECT target_id FROM target where target_key = @target_key))
                    AND import_date < @import_date
             """;
         var param = new { target_key = targetKey, import_date = importDate };
@@ -164,13 +164,17 @@ public sealed class SqliteDb(SqlConnectionInfo connection) : ILogixDb
     /// <inheritdoc />
     public async Task DeleteSnapshotLatest(string targetKey, CancellationToken token = default)
     {
-        await EnsureMigrated();
+        await EnsureCreatedAndMigrated();
         const string sql =
             """
             DELETE FROM snapshot 
-                   WHERE @target_key is null or target_id = (SELECT target_id FROM target where target_key = @target_key)
-                   ORDER BY import_date DESC
-                   LIMIT 1
+            WHERE snapshot_id = (
+                SELECT snapshot_id 
+                FROM snapshot 
+                WHERE (@target_key IS NULL OR target_id = (SELECT target_id FROM target WHERE target_key = @target_key))
+                ORDER BY import_date DESC 
+                LIMIT 1
+            )
             """;
         var param = new { target_key = targetKey };
         await ExecuteSqlAsync(sql, param, token);
@@ -179,7 +183,7 @@ public sealed class SqliteDb(SqlConnectionInfo connection) : ILogixDb
     /// <inheritdoc />
     public async Task DeleteSnapshot(int snapshotId, CancellationToken token = default)
     {
-        await EnsureMigrated();
+        await EnsureCreatedAndMigrated();
         const string sql = "DELETE FROM snapshot WHERE snapshot_id = @snapshot_id;";
         var param = new { snapshot_id = snapshotId };
         await ExecuteSqlAsync(sql, param, token);
@@ -252,14 +256,17 @@ public sealed class SqliteDb(SqlConnectionInfo connection) : ILogixDb
     /// Thrown when there are unapplied migrations that need to be applied to bring
     /// the database to the required state.
     /// </exception>
-    private async Task EnsureMigrated()
+    private async Task EnsureCreatedAndMigrated()
     {
+        if (!File.Exists(_connection.DataSource))
+            throw new FileNotFoundException($"Database file not found: {_connection.DataSource}");
+
         await using var provider = BuildMigrationProvider(_connection.ToConnectionString());
         var runner = provider.GetRequiredService<IMigrationRunner>();
 
         if (runner.HasMigrationsToApplyUp())
         {
-            throw new MigrationRequiredException();
+            throw new MigrationRequiredException(_connection.DataSource);
         }
     }
 

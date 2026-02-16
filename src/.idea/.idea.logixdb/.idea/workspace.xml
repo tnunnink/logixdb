@@ -9,26 +9,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/LogixDb.Core/Common/SnapshotAction.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.SqlServer/Imports/SqliteAoiImport.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.SqlServer/Imports/SqliteAoiParameterImport.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.SqlServer/Imports/SqliteControllerImport.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.SqlServer/Imports/SqliteDataTypeImport.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.SqlServer/Imports/SqliteDataTypeMemberImport.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.SqlServer/Imports/SqliteModuleImport.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.SqlServer/Imports/SqliteProgramImport.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.SqlServer/Imports/SqliteRoutineImport.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.SqlServer/Imports/SqliteRungImport.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.SqlServer/Imports/SqliteTaskImport.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/Snapshots/SqliteDbDeleteSnapshotTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/Snapshots/SnapshotReplaceCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/Snapshots/SnapshotReplaceCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Core/Abstractions/ILogixDb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Core/Abstractions/ILogixDb.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.SqlServer/Imports/SqlServerTagImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.SqlServer/Imports/SqlServerTagImport.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/SqliteDbDropTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/SqliteDbGetSnapshotTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/SqliteDbListSnapshotTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/SqliteDbPurgeTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Core/Exceptions/MigrationRequiredException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Core/Exceptions/MigrationRequiredException.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.SqlServer/SqlServerDb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.SqlServer/SqlServerDb.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Sqlite/Imports/SqliteElementImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Sqlite/Imports/SqliteElementImport.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Sqlite/Imports/SqliteSnapshotImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Sqlite/Imports/SqliteSnapshotImport.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Sqlite/SqliteDb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Sqlite/SqliteDb.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Sqlite/SqliteExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Sqlite/SqliteExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Sqlite/SqliteQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Sqlite/SqliteQuery.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/Snapshots/SqliteDbAddSnapshotTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/SqliteDbAddSnapshotTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/Snapshots/SqliteDbDeleteSnapshotTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/SqliteDbDeleteSnapshotTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/SqliteMigrate.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/SqliteDbMigrateTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/SqliteTestFixture.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/SqliteTestFixture.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/logix.db" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/logix.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Testing/TestSource.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Testing/TestSource.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +95,10 @@
     <setting file="file://$PROJECT_DIR$/../test/LogixDb.SqlServer.Tests/SqlServerTestFixture.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/Migrations/M20260211Tests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/Migrations/M20260212TEsts.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/Snapshots/SqliteDbDeleteSnapshotTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/SqliteDbDropTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/SqliteDbGetSnapshotTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/SqliteDbListSnapshotTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/SqliteDbPurgeTests.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
   <component name="KubernetesApiProvider"><![CDATA[{
@@ -130,6 +128,7 @@
   "keyToString": {
     "318f4a3c-5272-44c4-bb3a-c90e76056755.executor": "Debug",
     "53b9e772-009f-4a96-81f8-64fdb3c217f4.executor": "Debug",
+    "77be6975-875d-4c36-a792-f24ed0629adb.executor": "Debug",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -202,7 +201,7 @@
       <workItem from="1770636653430" duration="1418000" />
       <workItem from="1770638186305" duration="3881000" />
       <workItem from="1770648816599" duration="48627000" />
-      <workItem from="1770806804536" duration="146340000" />
+      <workItem from="1770806804536" duration="152877000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor `Snapshot` implementation, add `SqlConnectionInfo` and `SqlAuthentication`, update extensions, and target .NET 10.">
       <option name="closed" value="true" />
@@ -372,7 +371,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771186958029</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Implement snapshot and import refactoring:  &#10;- **Snapshots**: Introduced `SnapshotAction` for managing snapshot behaviors (`Append`, `ReplaceLatest`, `ReplaceAll`) and updated snapshot handling in SQLite and SQL Server databases.  &#10;- **Imports**: Added modular SQL Server import classes (`SqlServerAoiImport`, `SqlServerControllerImport`, `SqlServerDataTypeImport`, etc.) for element processing.  &#10;- **Refactoring**: Consolidated and simplified SQL operations, improved exception handling, and extended snapshot-related methods across database layers.  &#10;- **Testing**: Added tests for snapshot delete scenarios, including `DeleteSnapshotsFor`, `DeleteSnapshotLatest`, and `DeleteSnapshotsBefore`.  &#10;- **General**: Updated XML configuration, enhanced comments, and removed redundant database-layer code.">
+      <option name="closed" value="true" />
+      <created>1771189994763</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1771189994763</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -403,7 +410,8 @@
     <MESSAGE value="Remove redundant `dimensions` column assertion from `M20260207Tests`." />
     <MESSAGE value="Update `M20260207Tests` to assert `constant` column type as `bit` instead of `int`." />
     <MESSAGE value="Extract SQL Server container lifecycle management to `SqlServerTestContainer` class and refactor `SqlServerTestFixture` for static test utilities." />
-    <option name="LAST_COMMIT_MESSAGE" value="Extract SQL Server container lifecycle management to `SqlServerTestContainer` class and refactor `SqlServerTestFixture` for static test utilities." />
+    <MESSAGE value="Implement snapshot and import refactoring:  &#10;- **Snapshots**: Introduced `SnapshotAction` for managing snapshot behaviors (`Append`, `ReplaceLatest`, `ReplaceAll`) and updated snapshot handling in SQLite and SQL Server databases.  &#10;- **Imports**: Added modular SQL Server import classes (`SqlServerAoiImport`, `SqlServerControllerImport`, `SqlServerDataTypeImport`, etc.) for element processing.  &#10;- **Refactoring**: Consolidated and simplified SQL operations, improved exception handling, and extended snapshot-related methods across database layers.  &#10;- **Testing**: Added tests for snapshot delete scenarios, including `DeleteSnapshotsFor`, `DeleteSnapshotLatest`, and `DeleteSnapshotsBefore`.  &#10;- **General**: Updated XML configuration, enhanced comments, and removed redundant database-layer code." />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement snapshot and import refactoring:  &#10;- **Snapshots**: Introduced `SnapshotAction` for managing snapshot behaviors (`Append`, `ReplaceLatest`, `ReplaceAll`) and updated snapshot handling in SQLite and SQL Server databases.  &#10;- **Imports**: Added modular SQL Server import classes (`SqlServerAoiImport`, `SqlServerControllerImport`, `SqlServerDataTypeImport`, etc.) for element processing.  &#10;- **Refactoring**: Consolidated and simplified SQL operations, improved exception handling, and extended snapshot-related methods across database layers.  &#10;- **Testing**: Added tests for snapshot delete scenarios, including `DeleteSnapshotsFor`, `DeleteSnapshotLatest`, and `DeleteSnapshotsBefore`.  &#10;- **General**: Updated XML configuration, enhanced comments, and removed redundant database-layer code." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -425,13 +433,52 @@
           <line>59</line>
           <properties documentPath="C:\Users\tnunn\Projects\logixdb\src\LogixDb.SqlServer\SqlServerDb.cs" containingFunctionPresentation="Method 'Migrate'">
             <startOffsets>
-              <option value="2349" />
+              <option value="2326" />
             </startOffsets>
             <endOffsets>
-              <option value="2350" />
+              <option value="2327" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/SqliteTestFixture.cs</url>
+          <line>47</line>
+          <properties documentPath="C:\Users\tnunn\Projects\logixdb\test\LogixDb.Sqlite.Tests\SqliteTestFixture.cs" containingFunctionPresentation="Method 'TearDown'">
+            <startOffsets>
+              <option value="1881" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1905" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/LogixDb.Sqlite/SqliteDb.cs</url>
+          <line>166</line>
+          <properties documentPath="C:\Users\tnunn\Projects\logixdb\src\LogixDb.Sqlite\SqliteDb.cs" containingFunctionPresentation="Method 'DeleteSnapshotLatest'">
+            <startOffsets>
+              <option value="6335" />
+            </startOffsets>
+            <endOffsets>
+              <option value="6368" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/LogixDb.Sqlite/SqliteDb.cs</url>
+          <line>159</line>
+          <properties documentPath="C:\Users\tnunn\Projects\logixdb\src\LogixDb.Sqlite\SqliteDb.cs" containingFunctionPresentation="Method 'DeleteSnapshotsBefore'">
+            <startOffsets>
+              <option value="6075" />
+            </startOffsets>
+            <endOffsets>
+              <option value="6144" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="54" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
