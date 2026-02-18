@@ -9,15 +9,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../.github/workflows/release.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../.github/workflows/release.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/ListCommandTests.List_EmptyDatabase_ShouldReturnZeroExitCode.verified.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/ListCommandTests.List_WithTargetFilter_ShouldReturnZeroExitCode.verified.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/ListCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/ListCommandTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/MigrateCommandTests.Migrate_ValidSqliteConnectionPath_ShouldCreateDatabaseFile.verified.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/MigrateCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/MigrateCommandTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/UploadCommandTests.Upload_FileNotFound_ShouldReturnExpectedErrorCode.verified.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/UploadCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/UploadCommandTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/LogixDb.Cli.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/LogixDb.Cli.Tests.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -202,7 +195,7 @@
       <workItem from="1770648816599" duration="48627000" />
       <workItem from="1770806804536" duration="189173000" />
       <workItem from="1771415351700" duration="807000" />
-      <workItem from="1771416228683" duration="3768000" />
+      <workItem from="1771416228683" duration="4804000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor `Snapshot` implementation, add `SqlConnectionInfo` and `SqlAuthentication`, update extensions, and target .NET 10.">
       <option name="closed" value="true" />
@@ -476,7 +469,23 @@
       <option name="project" value="LOCAL" />
       <updated>1771440337176</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Remove verification file references and related assertions from CLI tests.">
+      <option name="closed" value="true" />
+      <created>1771441706034</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1771441706034</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Remove `Verify.NUnit` package reference from CLI test project.">
+      <option name="closed" value="true" />
+      <created>1771441722114</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1771441722114</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -484,10 +493,19 @@
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Update SnapshotTests to use LocalTest source instead of hardcoded file path." />
-    <MESSAGE value="Remove outdated installation instructions from README." />
     <MESSAGE value="Refactor database layer: introduce SqlServer support, enhance migration handling, standardize connection workflows, and update SQLite database operations for improved consistency and async support." />
     <MESSAGE value="Remove unused `ExitCodes`, `Format`, and `SqlAuthentication` classes; replace with consolidated `ErrorCodes`. Refactor mappings (`TableName` overrides). Simplify CLI app setup and enhance database handling (`SqliteDatabase`)." />
     <MESSAGE value="Remove CLI commands, database factory abstractions, related tests, and SQLite/SQL Server factory implementations; introduce `SqliteQuery` for snapshot-related SQL operations. Updated testing setup. Worked on SqlServer support." />
@@ -511,7 +529,9 @@
     <MESSAGE value="Rename `ImportCommand` to `UploadCommand` and `ExportCommand` to `DownloadCommand` in test cases and methods. Add L5X file generation to tests for enhanced coverage. Update namespaces, test resources, and verification files for consistency." />
     <MESSAGE value="Update `UploadCommand` description for improved clarity: &quot;Imports&quot; → &quot;Uploads&quot;" />
     <MESSAGE value="Update `.idea` workspace configuration: adjust paths, rename commands, and increment task counter." />
-    <option name="LAST_COMMIT_MESSAGE" value="Update `.idea` workspace configuration: adjust paths, rename commands, and increment task counter." />
+    <MESSAGE value="Remove verification file references and related assertions from CLI tests." />
+    <MESSAGE value="Remove `Verify.NUnit` package reference from CLI test project." />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove `Verify.NUnit` package reference from CLI test project." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -31,6 +31,23 @@ jobs:
       
     - name: Pack
       run: dotnet pack src/LogixDb.Cli/LogixDb.Cli.csproj --configuration Release --no-build --output ./artifacts
+
+    - name: Publish EXE
+      run: >
+        dotnet publish src/LogixDb.Cli/LogixDb.Cli.csproj
+        -c Release
+        -r win-x64
+        --self-contained true
+        /p:PublishSingleFile=true
+        /p:IncludeNativeLibrariesForSelfExtract=true
+        /p:DebugType=None
+        /p:DebugSymbols=false
+        -o artifacts/cli/win-x64
+
+    - name: Zip EXE
+      shell: pwsh
+      run: |
+        Compress-Archive -Path artifacts/cli/win-x64/* -DestinationPath artifacts/logixdb-win-x64.zip
       
     - name: Extract version from tag
       id: get_version
