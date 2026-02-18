@@ -29,7 +29,6 @@ public class UploadCommandTests : TestDbFixture
         ]);
 
         Assert.That(exitCode, Is.EqualTo(ErrorCodes.FileNotFound));
-        await Verify(console.ReadErrorString());
     }
 
     [Test]

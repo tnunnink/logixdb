@@ -9,7 +9,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/UploadCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/UploadCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/ListCommandTests.List_EmptyDatabase_ShouldReturnZeroExitCode.verified.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/ListCommandTests.List_WithTargetFilter_ShouldReturnZeroExitCode.verified.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/ListCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/ListCommandTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/MigrateCommandTests.Migrate_ValidSqliteConnectionPath_ShouldCreateDatabaseFile.verified.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/MigrateCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/MigrateCommandTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/UploadCommandTests.Upload_FileNotFound_ShouldReturnExpectedErrorCode.verified.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/UploadCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/UploadCommandTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/LogixDb.Cli.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/LogixDb.Cli.Tests.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,6 +86,7 @@
     <setting file="file://$PROJECT_DIR$/LogixDb.Sqlite/Imports/SqliteDataTypeMemberImport.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Sqlite/Imports/SqliteSnapshotImport.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Sqlite/SqliteExtensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../test/LogixDb.Cli.Tests/ModuleInitializer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../test/LogixDb.Core.Tests/SnapshotTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../test/LogixDb.SqlServer.Tests/Migrations/M20260206Tests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../test/LogixDb.SqlServer.Tests/SqlServerTestFixture.cs" root0="FORCE_HIGHLIGHTING" />
@@ -155,7 +164,7 @@
   <component name="RecapUselessUpdatesCounter">
     <option name="suspendCountdown" value="8" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected=".NET Project.LogixDb">
     <configuration name="LogixDb" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="$PROJECT_DIR$/LogixDb.Cli/bin/Debug/net10.0/LogixDb.Cli.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -177,6 +186,9 @@
         <option name="Build" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue=".NET Project.LogixDb" />
+    </list>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -190,7 +202,7 @@
       <workItem from="1770648816599" duration="48627000" />
       <workItem from="1770806804536" duration="189173000" />
       <workItem from="1771415351700" duration="807000" />
-      <workItem from="1771416228683" duration="2642000" />
+      <workItem from="1771416228683" duration="3768000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor `Snapshot` implementation, add `SqlConnectionInfo` and `SqlAuthentication`, update extensions, and target .NET 10.">
       <option name="closed" value="true" />
@@ -448,7 +460,23 @@
       <option name="project" value="LOCAL" />
       <updated>1771439958366</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Update `UploadCommand` description for improved clarity: &quot;Imports&quot; → &quot;Uploads&quot;">
+      <option name="closed" value="true" />
+      <created>1771440285607</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1771440285607</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Update `.idea` workspace configuration: adjust paths, rename commands, and increment task counter.">
+      <option name="closed" value="true" />
+      <created>1771440337176</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1771440337176</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -458,8 +486,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Add GitHub Actions for CI and release workflows with .NET build, test, and package steps" />
-    <MESSAGE value="Add sample L5X XML file for testing Logix project imports. Updated TestSource.cs to point to embedded resource. Made local example explicit for now." />
     <MESSAGE value="Update SnapshotTests to use LocalTest source instead of hardcoded file path." />
     <MESSAGE value="Remove outdated installation instructions from README." />
     <MESSAGE value="Refactor database layer: introduce SqlServer support, enhance migration handling, standardize connection workflows, and update SQLite database operations for improved consistency and async support." />
@@ -483,7 +509,9 @@
     <MESSAGE value="Refactor tests and database layer:&#10;- Update test setup methods to async across SQLite and SQL Server tests.&#10;- Add comprehensive tests for `SqlServerDbAddSnapshot`.&#10;- Rename and reorganize test files for consistency.&#10;- Remove `value_hash` column from `TagMap` and related components.&#10;- Improve `TableMap` to handle null values and ensure efficient row addition.&#10;- Refactor `SqlServerElementImport` to enhance bulk copy logic and column mapping.&#10;- Update migration files for `RungTable` and remove unnecessary columns (`value_hash`)." />
     <MESSAGE value="Add `UploadCommandTests` with comprehensive test cases for L5X file imports. Rename CLI `ImportCommand` to `UploadCommand` and update references accordingly. Upgrade test packages and adjust namespaces for consistency." />
     <MESSAGE value="Rename `ImportCommand` to `UploadCommand` and `ExportCommand` to `DownloadCommand` in test cases and methods. Add L5X file generation to tests for enhanced coverage. Update namespaces, test resources, and verification files for consistency." />
-    <option name="LAST_COMMIT_MESSAGE" value="Rename `ImportCommand` to `UploadCommand` and `ExportCommand` to `DownloadCommand` in test cases and methods. Add L5X file generation to tests for enhanced coverage. Update namespaces, test resources, and verification files for consistency." />
+    <MESSAGE value="Update `UploadCommand` description for improved clarity: &quot;Imports&quot; → &quot;Uploads&quot;" />
+    <MESSAGE value="Update `.idea` workspace configuration: adjust paths, rename commands, and increment task counter." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update `.idea` workspace configuration: adjust paths, rename commands, and increment task counter." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

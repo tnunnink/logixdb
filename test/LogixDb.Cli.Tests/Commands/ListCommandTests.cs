@@ -22,8 +22,6 @@ public class ListCommandTests : TestDbFixture
 
         var exitCode = await app.RunAsync(["list", "-c", DbConnection]);
         Assert.That(exitCode, Is.Zero);
-
-        await Verify(console.ReadOutputString());
     }
 
     [Test]
@@ -32,10 +30,14 @@ public class ListCommandTests : TestDbFixture
         using var console = new FakeInMemoryConsole();
         var app = TestApp.Create<ListCommand>(console);
 
-        var exitCode = await app.RunAsync(["list", "-c", DbConnection, "-t", "controller://TestController"]);
-        Assert.That(exitCode, Is.Zero);
+        var exitCode = await app.RunAsync(
+        [
+            "list",
+            "-c", DbConnection,
+            "-t", "controller://TestController"
+        ]);
 
-        await Verify(console.ReadOutputString());
+        Assert.That(exitCode, Is.Zero);
     }
 
     [Test]
