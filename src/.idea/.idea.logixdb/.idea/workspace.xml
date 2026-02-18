@@ -9,7 +9,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../.github/workflows/release.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../.github/workflows/release.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -195,7 +194,7 @@
       <workItem from="1770648816599" duration="48627000" />
       <workItem from="1770806804536" duration="189173000" />
       <workItem from="1771415351700" duration="807000" />
-      <workItem from="1771416228683" duration="4804000" />
+      <workItem from="1771416228683" duration="6023000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor `Snapshot` implementation, add `SqlConnectionInfo` and `SqlAuthentication`, update extensions, and target .NET 10.">
       <option name="closed" value="true" />
@@ -485,7 +484,23 @@
       <option name="project" value="LOCAL" />
       <updated>1771441722114</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Add publish and packaging steps for Windows EXE in release workflow.">
+      <option name="closed" value="true" />
+      <created>1771442757313</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1771442757313</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Bump CLI version to 0.2.1 and update release workflow to include Windows EXE artifact.">
+      <option name="closed" value="true" />
+      <created>1771444076161</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1771444076161</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -506,8 +521,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Refactor database layer: introduce SqlServer support, enhance migration handling, standardize connection workflows, and update SQLite database operations for improved consistency and async support." />
-    <MESSAGE value="Remove unused `ExitCodes`, `Format`, and `SqlAuthentication` classes; replace with consolidated `ErrorCodes`. Refactor mappings (`TableName` overrides). Simplify CLI app setup and enhance database handling (`SqliteDatabase`)." />
     <MESSAGE value="Remove CLI commands, database factory abstractions, related tests, and SQLite/SQL Server factory implementations; introduce `SqliteQuery` for snapshot-related SQL operations. Updated testing setup. Worked on SqlServer support." />
     <MESSAGE value="Refactor database layer: replace service provider-based migration handling with scoped provider instances; remove IDisposable/AsyncDisposable from `ILogixDb`, standardize connection handling, and update relevant tests." />
     <MESSAGE value="Update `MsSqlBuilder` image to use `mssql:2022-latest` in SQL Server test fixture." />
@@ -531,7 +544,9 @@
     <MESSAGE value="Update `.idea` workspace configuration: adjust paths, rename commands, and increment task counter." />
     <MESSAGE value="Remove verification file references and related assertions from CLI tests." />
     <MESSAGE value="Remove `Verify.NUnit` package reference from CLI test project." />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove `Verify.NUnit` package reference from CLI test project." />
+    <MESSAGE value="Add publish and packaging steps for Windows EXE in release workflow." />
+    <MESSAGE value="Bump CLI version to 0.2.1 and update release workflow to include Windows EXE artifact." />
+    <option name="LAST_COMMIT_MESSAGE" value="Bump CLI version to 0.2.1 and update release workflow to include Windows EXE artifact." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
