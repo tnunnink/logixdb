@@ -32,4 +32,10 @@
       <ProjectReference Include="..\LogixDb.Testing\LogixDb.Testing.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="Commands\UploadCommandTests.Upload_FileNotFound_ShouldReturnExpectedErrorCode.verified.txt">
+        <DependentUpon>UploadCommandTests.cs</DependentUpon>
+      </None>
+    </ItemGroup>
+
 </Project>

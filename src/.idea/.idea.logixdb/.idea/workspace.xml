@@ -9,28 +9,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/ImportCommandTests.Import_FileNotFound_ShouldReturnExpectedErrorCode.verified.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/ImportCommandTests.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../test/LogixDb.SqlServer.Tests/SqlServerDbDeleteSnapshotTests.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../test/LogixDb.SqlServer.Tests/SqlServerDbDropTests.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../test/LogixDb.SqlServer.Tests/SqlServerDbGetSnapshotTests.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../test/LogixDb.SqlServer.Tests/SqlServerDbListSnapshotTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Core/LogixDb.Core.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Core/LogixDb.Core.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Core/Maps/AoiMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Core/Maps/AoiMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Core/Maps/AoiParameterMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Core/Maps/AoiParameterMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Core/Maps/TagMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Core/Maps/TagMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260207/M003CreateTagTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260207/M003CreateTagTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.SqlServer/LogixDb.SqlServer.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.SqlServer/LogixDb.SqlServer.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Sqlite/LogixDb.Sqlite.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Sqlite/LogixDb.Sqlite.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Sqlite/SqliteDb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Sqlite/SqliteDb.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/UploadCommandTests.Import_FileNotFound_ShouldReturnExpectedErrorCode.verified.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/UploadCommandTests.Upload_FileNotFound_ShouldReturnExpectedErrorCode.verified.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/UploadCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/UploadCommandTests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/LogixDb.Cli.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/LogixDb.Cli.Tests.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Core.Tests/LogixDb.Core.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Core.Tests/LogixDb.Core.Tests.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Core.Tests/TableMapTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Core.Tests/TagMapTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.SqlServer.Tests/LogixDb.SqlServer.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.SqlServer.Tests/LogixDb.SqlServer.Tests.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/LogixDb.Sqlite.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/LogixDb.Sqlite.Tests.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Testing/LogixDb.Testing.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Testing/LogixDb.Testing.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Testing/TestSource.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Testing/TestSource.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,15 +44,15 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/96a4897426224033b6305246f316e05619e400/31/df0c4c19/Dimensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/96a4897426224033b6305246f316e05619e400/a9/350d78f8/Module.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/1b768892bf2e34dd6b8d8f15f37fe67ea78348d57d5269781271b8fec7b24/Faker[T].cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/55afacaa275eb9aa8aadbc1420aeb0c378a73abed5ec3382898d9b1a9692fa/Status.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/66c11b6d5c9f67e9393eb38c6814fa56a806075c646650933c3d55d7dbe2/IColumnTypeSyntax.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7125402fdd6cb657e2eb4aba784bd5e17e3e6bd152935988f4e9ac51c2b5b7/MigrationRunner.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/86dd65be73c4f94c26d4f01963d2d229468847c17dc4830c3e6528d8ca032/SqlBulkCopy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d3c187e0b88b1a56f2518fb9f4b5ee5ed6e9116d93a507969a932c16801033/TaskAwaitAdapter.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d7ac96b4d18c930f644337672a35ac31dabfdd2248536e2acfc9b7a9eace/Faker.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Cli/App.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Cli/Commands/DbCommand.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/LogixDb.Cli/Commands/ExportCommand.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/LogixDb.Cli/Commands/ImportCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Cli/Commands/MigrateCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Cli/Commands/PurgeCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Core/Common/ColumnType.cs" root0="FORCE_HIGHLIGHTING" />
@@ -100,7 +82,6 @@
     <setting file="file://$PROJECT_DIR$/LogixDb.Sqlite/Imports/SqliteSnapshotImport.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Sqlite/SqliteExtensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../test/LogixDb.Core.Tests/SnapshotTests.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../test/LogixDb.Core.Tests/TableMapTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../test/LogixDb.SqlServer.Tests/Migrations/M20260206Tests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../test/LogixDb.SqlServer.Tests/SqlServerTestFixture.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/Migrations/M20260211Tests.cs" root0="FORCE_HIGHLIGHTING" />
@@ -215,7 +196,7 @@
       <workItem from="1770648816599" duration="48627000" />
       <workItem from="1770806804536" duration="189173000" />
       <workItem from="1771415351700" duration="807000" />
-      <workItem from="1771416228683" duration="1575000" />
+      <workItem from="1771416228683" duration="2238000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor `Snapshot` implementation, add `SqlConnectionInfo` and `SqlAuthentication`, update extensions, and target .NET 10.">
       <option name="closed" value="true" />
@@ -457,7 +438,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771338269366</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Add `UploadCommandTests` with comprehensive test cases for L5X file imports. Rename CLI `ImportCommand` to `UploadCommand` and update references accordingly. Upgrade test packages and adjust namespaces for consistency.">
+      <option name="closed" value="true" />
+      <created>1771439326592</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1771439326592</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -467,7 +456,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Remove unused mappings (`CrossReferenceMap`), commands (`MigrateCommand`), and extensions (`ServiceExtensions`); refactor setup for CLI services and database imports for improved clarity." />
     <MESSAGE value="Remove outdated SQLite import classes, update README with detailed documentation, and refine .csproj for NuGet packaging." />
     <MESSAGE value="Add GitHub Actions for CI and release workflows with .NET build, test, and package steps" />
     <MESSAGE value="Add sample L5X XML file for testing Logix project imports. Updated TestSource.cs to point to embedded resource. Made local example explicit for now." />
@@ -492,7 +480,8 @@
     <MESSAGE value="Add cancellation token support across CLI commands for improved async handling. Update `list`, `migrate`, `prune`, `purge`, `import`, `export`, and `drop` commands for consistency and enhanced validation. Add new tests for `ListCommand` functionality." />
     <MESSAGE value="Refactor database layer and CLI tests:  &#10;- Replace `SqliteQuery` with `SqlStatement` and update method references for consistency.  &#10;- Add new SQL commands for snapshot and target deletion.  &#10;- Introduce `TestDbFixture` for shared test database setup and teardown logic.  &#10;- Add and update tests for `ListCommand` and `MigrateCommand`.  &#10;- Remove unused classes and reorganize test files for clarity." />
     <MESSAGE value="Refactor tests and database layer:&#10;- Update test setup methods to async across SQLite and SQL Server tests.&#10;- Add comprehensive tests for `SqlServerDbAddSnapshot`.&#10;- Rename and reorganize test files for consistency.&#10;- Remove `value_hash` column from `TagMap` and related components.&#10;- Improve `TableMap` to handle null values and ensure efficient row addition.&#10;- Refactor `SqlServerElementImport` to enhance bulk copy logic and column mapping.&#10;- Update migration files for `RungTable` and remove unnecessary columns (`value_hash`)." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor tests and database layer:&#10;- Update test setup methods to async across SQLite and SQL Server tests.&#10;- Add comprehensive tests for `SqlServerDbAddSnapshot`.&#10;- Rename and reorganize test files for consistency.&#10;- Remove `value_hash` column from `TagMap` and related components.&#10;- Improve `TableMap` to handle null values and ensure efficient row addition.&#10;- Refactor `SqlServerElementImport` to enhance bulk copy logic and column mapping.&#10;- Update migration files for `RungTable` and remove unnecessary columns (`value_hash`)." />
+    <MESSAGE value="Add `UploadCommandTests` with comprehensive test cases for L5X file imports. Rename CLI `ImportCommand` to `UploadCommand` and update references accordingly. Upgrade test packages and adjust namespaces for consistency." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add `UploadCommandTests` with comprehensive test cases for L5X file imports. Rename CLI `ImportCommand` to `UploadCommand` and update references accordingly. Upgrade test packages and adjust namespaces for consistency." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
