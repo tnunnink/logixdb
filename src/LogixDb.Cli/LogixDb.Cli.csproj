@@ -10,6 +10,7 @@
         <PackAsTool>true</PackAsTool>
         <PackageOutputPath>.nupkg</PackageOutputPath>
         <ToolCommandName>logixdb</ToolCommandName>
+        <AssemblyName>logixdb</AssemblyName>
         <PackageId>LogixDb</PackageId>
         <Version>0.2.2</Version>
         <Authors>Timothy Nunnink</Authors>

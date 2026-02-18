@@ -8,9 +8,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -194,7 +192,7 @@
       <workItem from="1770648816599" duration="48627000" />
       <workItem from="1770806804536" duration="189173000" />
       <workItem from="1771415351700" duration="807000" />
-      <workItem from="1771416228683" duration="6023000" />
+      <workItem from="1771416228683" duration="6382000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor `Snapshot` implementation, add `SqlConnectionInfo` and `SqlAuthentication`, update extensions, and target .NET 10.">
       <option name="closed" value="true" />
@@ -500,7 +498,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771444076161</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Bump CLI version to 0.2.2 and update `.idea` workspace configuration.">
+      <option name="closed" value="true" />
+      <created>1771444110256</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1771444110256</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -521,7 +527,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Remove CLI commands, database factory abstractions, related tests, and SQLite/SQL Server factory implementations; introduce `SqliteQuery` for snapshot-related SQL operations. Updated testing setup. Worked on SqlServer support." />
     <MESSAGE value="Refactor database layer: replace service provider-based migration handling with scoped provider instances; remove IDisposable/AsyncDisposable from `ILogixDb`, standardize connection handling, and update relevant tests." />
     <MESSAGE value="Update `MsSqlBuilder` image to use `mssql:2022-latest` in SQL Server test fixture." />
     <MESSAGE value="Update GitHub Actions to use `ubuntu-latest` runners and switch from PowerShell to Bash for version extraction." />
@@ -546,7 +551,8 @@
     <MESSAGE value="Remove `Verify.NUnit` package reference from CLI test project." />
     <MESSAGE value="Add publish and packaging steps for Windows EXE in release workflow." />
     <MESSAGE value="Bump CLI version to 0.2.1 and update release workflow to include Windows EXE artifact." />
-    <option name="LAST_COMMIT_MESSAGE" value="Bump CLI version to 0.2.1 and update release workflow to include Windows EXE artifact." />
+    <MESSAGE value="Bump CLI version to 0.2.2 and update `.idea` workspace configuration." />
+    <option name="LAST_COMMIT_MESSAGE" value="Bump CLI version to 0.2.2 and update `.idea` workspace configuration." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
