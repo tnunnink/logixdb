@@ -9,23 +9,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Core.Tests/TableMapTests.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../test/LogixDb.SqlServer.Tests/SqlServerDbAddSnapshotTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/ImportCommandTests.Import_FileNotFound_ShouldReturnExpectedErrorCode.verified.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/ImportCommandTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/LogixDb.SqlServer.Tests/SqlServerDbDeleteSnapshotTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/LogixDb.SqlServer.Tests/SqlServerDbDropTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/LogixDb.SqlServer.Tests/SqlServerDbGetSnapshotTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/LogixDb.SqlServer.Tests/SqlServerDbListSnapshotTests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Core/Abstractions/TableMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Core/Abstractions/TableMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Core/LogixDb.Core.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Core/LogixDb.Core.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Core/Maps/AoiMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Core/Maps/AoiMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Core/Maps/AoiParameterMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Core/Maps/AoiParameterMap.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Core/Maps/TagMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Core/Maps/TagMap.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260207/M003CreateTagTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260207/M003CreateTagTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M010CreateRungTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M010CreateRungTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.SqlServer/Imports/SqlServerElementImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.SqlServer/Imports/SqlServerElementImport.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.SqlServer/SqlServerDb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.SqlServer/SqlServerDb.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.SqlServer.Tests/Migrations/M20260207Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.SqlServer.Tests/Migrations/M20260207Tests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.SqlServer.Tests/SqlServerMigrate.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.SqlServer.Tests/SqlServerMigrateTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/Migrations/M20260207Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/Migrations/M20260207Tests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/SqliteDbAddSnapshotTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/SqliteDbAddSnapshotTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/SqliteDbDeleteSnapshotTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/SqliteDbDeleteSnapshotTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/SqliteDbGetSnapshotTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/SqliteDbGetSnapshotTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/SqliteDbListSnapshotTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/SqliteDbListSnapshotTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.SqlServer/LogixDb.SqlServer.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.SqlServer/LogixDb.SqlServer.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Sqlite/LogixDb.Sqlite.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Sqlite/LogixDb.Sqlite.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Sqlite/SqliteDb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Sqlite/SqliteDb.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/LogixDb.Cli.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/LogixDb.Cli.Tests.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Core.Tests/LogixDb.Core.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Core.Tests/LogixDb.Core.Tests.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Core.Tests/TableMapTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Core.Tests/TagMapTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.SqlServer.Tests/LogixDb.SqlServer.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.SqlServer.Tests/LogixDb.SqlServer.Tests.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/LogixDb.Sqlite.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/LogixDb.Sqlite.Tests.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Testing/LogixDb.Testing.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Testing/LogixDb.Testing.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +41,7 @@
     <option name="firstShow" value="false" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="2" />
+    <option name="cachedIndexableFilesCount" value="1" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
@@ -105,22 +110,22 @@
     <setting file="file://$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/SqliteDbListSnapshotTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/SqliteDbPurgeTests.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
-  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
-  <component name="KubernetesApiProvider"><![CDATA[{
-  "isMigrated": true
-}]]></component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="AISelfReview" />
+    <option name="selectedTabId" value="SWEA" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "c28515ff",
-  "associatedIndex": 1
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;c28515ff&quot;,
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="39QmQ4pxCnGxbRJjHGuw7Ue0Xwv" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -129,42 +134,42 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "306e4faf-75f3-49db-b83f-ba259752c159.executor": "Debug",
-    "318f4a3c-5272-44c4-bb3a-c90e76056755.executor": "Debug",
-    "53b9e772-009f-4a96-81f8-64fdb3c217f4.executor": "Debug",
-    "77be6975-875d-4c36-a792-f24ed0629adb.executor": "Debug",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "b4cc6f81-828c-4c64-9c79-3d968c07a77c.executor": "Debug",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "main",
-    "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "C:/Users/tnunnink/Documents/Projects/logixdb/src/LogixDb.sln",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "SQL Dialects",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;306e4faf-75f3-49db-b83f-ba259752c159.executor&quot;: &quot;Debug&quot;,
+    &quot;318f4a3c-5272-44c4-bb3a-c90e76056755.executor&quot;: &quot;Debug&quot;,
+    &quot;53b9e772-009f-4a96-81f8-64fdb3c217f4.executor&quot;: &quot;Debug&quot;,
+    &quot;77be6975-875d-4c36-a792-f24ed0629adb.executor&quot;: &quot;Debug&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;b4cc6f81-828c-4c64-9c79-3d968c07a77c.executor&quot;: &quot;Debug&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/tnunnink/Documents/Projects/logixdb/src/LogixDb.sln&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;ml.llm.AcpAgentsConfigurable&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "sqlite"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlite&quot;
     ],
-    "com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect": [
-      "SQLite",
-      "TSQL"
+    &quot;com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect&quot;: [
+      &quot;SQLite&quot;,
+      &quot;TSQL&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecapSpentCounter">
     <option name="endsOfQuotaMs" value="1773082809547" />
     <option name="spentUsd" value="0.012066999" />
@@ -208,7 +213,9 @@
       <workItem from="1770636653430" duration="1418000" />
       <workItem from="1770638186305" duration="3881000" />
       <workItem from="1770648816599" duration="48627000" />
-      <workItem from="1770806804536" duration="176392000" />
+      <workItem from="1770806804536" duration="189173000" />
+      <workItem from="1771415351700" duration="807000" />
+      <workItem from="1771416228683" duration="1575000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor `Snapshot` implementation, add `SqlConnectionInfo` and `SqlAuthentication`, update extensions, and target .NET 10.">
       <option name="closed" value="true" />
@@ -442,7 +449,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771298102491</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Refactor tests and database layer:&#10;- Update test setup methods to async across SQLite and SQL Server tests.&#10;- Add comprehensive tests for `SqlServerDbAddSnapshot`.&#10;- Rename and reorganize test files for consistency.&#10;- Remove `value_hash` column from `TagMap` and related components.&#10;- Improve `TableMap` to handle null values and ensure efficient row addition.&#10;- Refactor `SqlServerElementImport` to enhance bulk copy logic and column mapping.&#10;- Update migration files for `RungTable` and remove unnecessary columns (`value_hash`).">
+      <option name="closed" value="true" />
+      <created>1771338269366</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1771338269366</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -452,7 +467,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Refactor data import and mapping layers: streamline generics for `ColumnMap` and `TableMap`, introduce detailed import classes (e.g., `SqliteTaskImport`, `SqliteProgramImport`), and add `CrossReferenceMap`." />
     <MESSAGE value="Remove unused mappings (`CrossReferenceMap`), commands (`MigrateCommand`), and extensions (`ServiceExtensions`); refactor setup for CLI services and database imports for improved clarity." />
     <MESSAGE value="Remove outdated SQLite import classes, update README with detailed documentation, and refine .csproj for NuGet packaging." />
     <MESSAGE value="Add GitHub Actions for CI and release workflows with .NET build, test, and package steps" />
@@ -477,7 +491,8 @@
     <MESSAGE value="Add cancellation token support to CLI commands for enhanced async operation handling. Update `export` command with improved validation, descriptions, and exception handling." />
     <MESSAGE value="Add cancellation token support across CLI commands for improved async handling. Update `list`, `migrate`, `prune`, `purge`, `import`, `export`, and `drop` commands for consistency and enhanced validation. Add new tests for `ListCommand` functionality." />
     <MESSAGE value="Refactor database layer and CLI tests:  &#10;- Replace `SqliteQuery` with `SqlStatement` and update method references for consistency.  &#10;- Add new SQL commands for snapshot and target deletion.  &#10;- Introduce `TestDbFixture` for shared test database setup and teardown logic.  &#10;- Add and update tests for `ListCommand` and `MigrateCommand`.  &#10;- Remove unused classes and reorganize test files for clarity." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor database layer and CLI tests:  &#10;- Replace `SqliteQuery` with `SqlStatement` and update method references for consistency.  &#10;- Add new SQL commands for snapshot and target deletion.  &#10;- Introduce `TestDbFixture` for shared test database setup and teardown logic.  &#10;- Add and update tests for `ListCommand` and `MigrateCommand`.  &#10;- Remove unused classes and reorganize test files for clarity." />
+    <MESSAGE value="Refactor tests and database layer:&#10;- Update test setup methods to async across SQLite and SQL Server tests.&#10;- Add comprehensive tests for `SqlServerDbAddSnapshot`.&#10;- Rename and reorganize test files for consistency.&#10;- Remove `value_hash` column from `TagMap` and related components.&#10;- Improve `TableMap` to handle null values and ensure efficient row addition.&#10;- Refactor `SqlServerElementImport` to enhance bulk copy logic and column mapping.&#10;- Update migration files for `RungTable` and remove unnecessary columns (`value_hash`)." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor tests and database layer:&#10;- Update test setup methods to async across SQLite and SQL Server tests.&#10;- Add comprehensive tests for `SqlServerDbAddSnapshot`.&#10;- Rename and reorganize test files for consistency.&#10;- Remove `value_hash` column from `TagMap` and related components.&#10;- Improve `TableMap` to handle null values and ensure efficient row addition.&#10;- Refactor `SqlServerElementImport` to enhance bulk copy logic and column mapping.&#10;- Update migration files for `RungTable` and remove unnecessary columns (`value_hash`)." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -495,19 +510,6 @@
           <option name="timeStamp" value="3" />
         </breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/../test/LogixDb.Core.Tests/TableMapTests.cs</url>
-          <line>17</line>
-          <properties documentPath="C:\Users\tnunn\Projects\logixdb\test\LogixDb.Core.Tests\TableMapTests.cs" containingFunctionPresentation="Method 'GenerateTable_ForTagMap_ShouldHaveExpectedRowCount'">
-            <startOffsets>
-              <option value="399" />
-            </startOffsets>
-            <endOffsets>
-              <option value="431" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="67" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/LogixDb.SqlServer/Imports/SqlServerElementImport.cs</url>
           <line>45</line>
           <properties documentPath="C:\Users\tnunn\Projects\logixdb\src\LogixDb.SqlServer\Imports\SqlServerElementImport.cs" containingFunctionPresentation="Method 'Process'">
@@ -519,6 +521,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="69" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/LogixDb.SqlServer/SqlServerDb.cs</url>
+          <line>70</line>
+          <properties documentPath="C:\Users\tnunn\Projects\logixdb\src\LogixDb.SqlServer\SqlServerDb.cs" containingFunctionPresentation="Method 'Drop'">
+            <startOffsets>
+              <option value="2695" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2763" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="70" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

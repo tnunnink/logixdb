@@ -3,7 +3,7 @@ using LogixDb.Cli.Commands;
 using LogixDb.Core.Common;
 using LogixDb.Testing;
 
-namespace LogixDb.Cli.Tests;
+namespace LogixDb.Cli.Tests.Commands;
 
 [TestFixture]
 public class ListCommandTests : TestDbFixture

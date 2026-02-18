@@ -16,7 +16,7 @@ public class M003CreateTagTable : AutoReversingMigration
             .WithColumn("base_name").AsString(128).NotNullable()
             .WithColumn("parent_name").AsString(128).Nullable()
             .WithColumn("tag_name").AsString(128).NotNullable()
-            .WithColumn("tag_depth").AsByte().NotNullable()
+            .WithColumn("tag_depth").AsByte().Nullable()
             .WithColumn("tag_value").AsString(256).Nullable()
             .WithColumn("data_type").AsString(128).Nullable()
             .WithColumn("description").AsString(512).Nullable()

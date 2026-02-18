@@ -30,8 +30,7 @@ public class AoiMap : TableMap<AddOnInstruction>
         ColumnMap<AddOnInstruction>.For(a => a.CreatedBy, "created_by"),
         ColumnMap<AddOnInstruction>.For(a => a.EditedDate, "edited_date"),
         ColumnMap<AddOnInstruction>.For(a => a.EditedBy, "edited_by"),
-        //todo this is a bug in L5Sharp so for now we will omit it.
-        //ColumnMap<AddOnInstruction>.For(a => a.SoftwareRevision?.ToString(), "software_revision"),
+        ColumnMap<AddOnInstruction>.For(a => a.SoftwareRevision?.ToString(), "software_revision"),
         ColumnMap<AddOnInstruction>.For(a => a.AdditionalHelpText, "help_text"),
         ColumnMap<AddOnInstruction>.For(a => a.IsEncrypted, "is_encrypted"),
         //todo SQL Server can't import the default date 1/1/0001. It has a minimum range. Need to find a general solution for dates.

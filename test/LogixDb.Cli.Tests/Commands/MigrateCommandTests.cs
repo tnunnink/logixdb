@@ -1,7 +1,7 @@
 using CliFx.Infrastructure;
 using LogixDb.Cli.Commands;
 
-namespace LogixDb.Cli.Tests;
+namespace LogixDb.Cli.Tests.Commands;
 
 [TestFixture]
 public class MigrateCommandTests : TestDbFixture

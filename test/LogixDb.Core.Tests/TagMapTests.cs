@@ -5,10 +5,10 @@ using LogixDb.Core.Maps;
 namespace LogixDb.Core.Tests;
 
 [TestFixture]
-public class TableMapTests
+public class TagMapTests
 {
     [Test]
-    public void GenerateTable_ForTagMap_ShouldHaveExpectedRowCount()
+    public void GenerateTable_WithValidRecordsAndId_ShouldHaveExpectedRowCount()
     {
         var map = new TagMap();
         List<Tag> tags = [new("First", 1), new("Second", 2), new("Third", 3)];

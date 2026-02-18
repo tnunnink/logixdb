@@ -8,7 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="L5Sharp" Version="6.0.0-beta.7" />
+      <PackageReference Include="L5Sharp" Version="6.0.0-beta.10" />
     </ItemGroup>
 
 </Project>

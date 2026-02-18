@@ -9,7 +9,10 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="coverlet.collector" Version="6.0.4"/>
+        <PackageReference Include="coverlet.collector" Version="8.0.0">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.0.1" />
         <PackageReference Include="NUnit" Version="4.4.0" />
         <PackageReference Include="NUnit.Analyzers" Version="4.11.2">
@@ -27,15 +30,6 @@
     <ItemGroup>
       <ProjectReference Include="..\..\src\LogixDb.Cli\LogixDb.Cli.csproj" />
       <ProjectReference Include="..\LogixDb.Testing\LogixDb.Testing.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <None Update="ListCommandTests.List_WithTargetFilter_ShouldReturnZeroExitCode.verified.txt">
-        <DependentUpon>ListCommandTests.cs</DependentUpon>
-      </None>
-      <None Update="ListCommandTests.List_EmptyDatabase_ShouldReturnZeroExitCode.verified.txt">
-        <DependentUpon>ListCommandTests.cs</DependentUpon>
-      </None>
     </ItemGroup>
 
 </Project>

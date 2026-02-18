@@ -26,6 +26,6 @@ public class TagMap : TableMap<Tag>
         ColumnMap<Tag>.For(t => t.Dimensions.IsEmpty ? t.DataType : $"{t.DataType}{t.Dimensions.ToIndex()}", "data_type"),
         ColumnMap<Tag>.For(t => t.Description, "description"),
         ColumnMap<Tag>.For(t => t.ExternalAccess?.Name, "external_access"),
-        ColumnMap<Tag>.For(t => t.Constant, "constant"),
+        ColumnMap<Tag>.For(t => t.Constant, "constant")
     ];
 }

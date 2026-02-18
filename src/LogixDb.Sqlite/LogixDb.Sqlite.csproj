@@ -13,8 +13,8 @@
     </ItemGroup>
     
     <ItemGroup>
-        <PackageReference Include="L5Sharp" Version="6.0.0-beta.7"/>
-        <PackageReference Include="L5Sharp.Gateway" Version="1.0.0-beta.1"/>
+        <PackageReference Include="L5Sharp" Version="6.0.0-beta.10" />
+        <PackageReference Include="L5Sharp.Gateway" Version="1.0.1-beta.1" />
         <PackageReference Include="Dapper" Version="2.1.66"/>
         <PackageReference Include="FluentMigrator" Version="8.0.1"/>
         <PackageReference Include="FluentMigrator.Runner.Core" Version="8.0.1"/>

@@ -11,7 +11,7 @@ namespace LogixDb.Cli.Commands;
 /// Represents a command for exporting snapshots to L5X files in the LogixDb CLI.
 /// </summary>
 /// <remarks>
-/// The <see cref="ExportCommand"/> class provides functionality to export a specific snapshot
+/// The <see cref="DownloadCommand"/> class provides functionality to export a specific snapshot
 /// to an L5X file by specifying either a target key (to export the latest snapshot for that target)
 /// or a snapshot ID (to export a specific snapshot).
 /// This command inherits from <see cref="DbCommand"/>, allowing database connection configuration.
@@ -23,8 +23,8 @@ namespace LogixDb.Cli.Commands;
 /// - OutputPath: Specifies the output file path for the exported L5X file.
 /// </example>
 [PublicAPI]
-[Command("export", Description = "Export a snapshot to an L5X file by target or ID")]
-public class ExportCommand : DbCommand
+[Command("download", Description = "Downloads a snapshot to an L5X file by target or ID")]
+public class DownloadCommand : DbCommand
 {
     [CommandOption("output", 'o', Description = "Output file path for the exported L5X file (defaults to <TargetKey>.L5X)")]
     public string? OutputPath { get; init; }
