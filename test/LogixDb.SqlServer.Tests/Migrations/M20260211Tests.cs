@@ -32,7 +32,7 @@ public class M20260211Tests : SqlServerTestFixture
             await AssertColumnDefinition("controller", "download_documentation", "bit");
             await AssertColumnDefinition("controller", "download_properties", "bit");
             await AssertColumnDefinition("controller", "ethernet_ip_mode", "nvarchar");
-            await AssertColumnDefinition("controller", "record_hash", "nvarchar");
+            await AssertColumnDefinition("controller", "record_hash", "varbinary");
 
             await AssertPrimaryKey("controller", "controller_id");
             await AssertForeignKey("controller", "snapshot_id", "snapshot", "snapshot_id");
@@ -55,7 +55,7 @@ public class M20260211Tests : SqlServerTestFixture
             await AssertColumnDefinition("data_type", "type_class", "nvarchar");
             await AssertColumnDefinition("data_type", "type_family", "nvarchar");
             await AssertColumnDefinition("data_type", "description", "nvarchar");
-            await AssertColumnDefinition("data_type", "record_hash", "nvarchar");
+            await AssertColumnDefinition("data_type", "record_hash", "varbinary");
 
             await AssertPrimaryKey("data_type", "type_id");
             await AssertForeignKey("data_type", "snapshot_id", "snapshot", "snapshot_id");
@@ -85,7 +85,7 @@ public class M20260211Tests : SqlServerTestFixture
             await AssertColumnDefinition("data_type_member", "hidden", "bit");
             await AssertColumnDefinition("data_type_member", "target", "nvarchar");
             await AssertColumnDefinition("data_type_member", "bit_number", "tinyint");
-            await AssertColumnDefinition("data_type_member", "record_hash", "nvarchar");
+            await AssertColumnDefinition("data_type_member", "record_hash", "varbinary");
 
             await AssertPrimaryKey("data_type_member", "member_id");
             await AssertForeignKey("data_type_member", "snapshot_id", "snapshot", "snapshot_id");
@@ -115,7 +115,7 @@ public class M20260211Tests : SqlServerTestFixture
             await AssertColumnDefinition("task", "event_trigger", "nvarchar");
             await AssertColumnDefinition("task", "event_tag", "nvarchar");
             await AssertColumnDefinition("task", "enable_timeout", "bit");
-            await AssertColumnDefinition("task", "record_hash", "nvarchar");
+            await AssertColumnDefinition("task", "record_hash", "varbinary");
 
             await AssertPrimaryKey("task", "task_id");
             await AssertForeignKey("task", "snapshot_id", "snapshot", "snapshot_id");
@@ -145,7 +145,7 @@ public class M20260211Tests : SqlServerTestFixture
             await AssertColumnDefinition("program", "has_test_edits", "bit");
             await AssertColumnDefinition("program", "parent_name", "nvarchar");
             await AssertColumnDefinition("program", "task_name", "nvarchar");
-            await AssertColumnDefinition("program", "record_hash", "nvarchar");
+            await AssertColumnDefinition("program", "record_hash", "varbinary");
 
             await AssertPrimaryKey("program", "program_id");
             await AssertForeignKey("program", "snapshot_id", "snapshot", "snapshot_id");
@@ -165,16 +165,15 @@ public class M20260211Tests : SqlServerTestFixture
 
             await AssertColumnDefinition("routine", "routine_id", "int");
             await AssertColumnDefinition("routine", "snapshot_id", "int");
-            await AssertColumnDefinition("routine", "scope_type", "nvarchar");
             await AssertColumnDefinition("routine", "container_name", "nvarchar");
             await AssertColumnDefinition("routine", "routine_name", "nvarchar");
             await AssertColumnDefinition("routine", "routine_type", "nvarchar");
             await AssertColumnDefinition("routine", "description", "nvarchar");
-            await AssertColumnDefinition("routine", "record_hash", "nvarchar");
+            await AssertColumnDefinition("routine", "record_hash", "varbinary");
 
             await AssertPrimaryKey("routine", "routine_id");
             await AssertForeignKey("routine", "snapshot_id", "snapshot", "snapshot_id");
-            await AssertUniqueIndex("routine", "snapshot_id", "container_name", "routine_name", "scope_type");
+            await AssertUniqueIndex("routine", "snapshot_id", "container_name", "routine_name");
             await AssertIndex("routine", "record_hash", "snapshot_id");
         }
     }
@@ -190,16 +189,17 @@ public class M20260211Tests : SqlServerTestFixture
 
             await AssertColumnDefinition("rung", "rung_id", "int");
             await AssertColumnDefinition("rung", "snapshot_id", "int");
+            await AssertColumnDefinition("rung", "container_name", "nvarchar");
             await AssertColumnDefinition("rung", "routine_name", "nvarchar");
             await AssertColumnDefinition("rung", "rung_number", "int");
             await AssertColumnDefinition("rung", "comment", "nvarchar");
             await AssertColumnDefinition("rung", "code", "nvarchar");
-            await AssertColumnDefinition("rung", "code_hash", "nvarchar");
-            await AssertColumnDefinition("rung", "record_hash", "nvarchar");
+            await AssertColumnDefinition("rung", "code_hash", "varbinary");
+            await AssertColumnDefinition("rung", "record_hash", "varbinary");
 
             await AssertPrimaryKey("rung", "rung_id");
             await AssertForeignKey("rung", "snapshot_id", "snapshot", "snapshot_id");
-            await AssertIndex("rung", "snapshot_id", "routine_name", "rung_number");
+            await AssertUniqueIndex("rung", "snapshot_id", "container_name", "routine_name", "rung_number");
             await AssertIndex("rung", "record_hash", "snapshot_id");
             await AssertIndex("rung", "code_hash", "snapshot_id");
         }

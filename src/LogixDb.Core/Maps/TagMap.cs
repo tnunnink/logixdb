@@ -18,10 +18,10 @@ public class TagMap : TableMap<Tag>
     public override IReadOnlyList<ColumnMap<Tag>> Columns =>
     [
         ColumnMap<Tag>.For(t => t.Scope.Container, "container_name"),
+        ColumnMap<Tag>.For(t => t.TagName.LocalPath, "tag_name"),
         ColumnMap<Tag>.For(t => t.TagName.Base, "base_name"),
         ColumnMap<Tag>.For(t => t.Parent?.TagName.LocalPath, "parent_name"),
-        ColumnMap<Tag>.For(t => t.TagName.LocalPath, "tag_name"),
-        ColumnMap<Tag>.For(t => (byte)t.TagName.Depth, "tag_depth"),
+        ColumnMap<Tag>.For(t => t.TagName.Element, "member_name"),
         ColumnMap<Tag>.For(t => t.Value.IsAtomic() ? t.Value.ToString() : null, "tag_value"),
         ColumnMap<Tag>.For(t => t.Dimensions.IsEmpty ? t.DataType : $"{t.DataType}{t.Dimensions.ToIndex()}", "data_type"),
         ColumnMap<Tag>.For(t => t.Description, "description"),

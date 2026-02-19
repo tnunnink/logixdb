@@ -22,8 +22,8 @@ public class M002CreateSnapshotTable : AutoReversingMigration
             .WithColumn("import_date").AsDateTime().NotNullable().WithDefault(SystemMethods.CurrentUTCDateTime)
             .WithColumn("import_user").AsString(64).NotNullable().WithDefaultValue(Environment.UserName)
             .WithColumn("import_machine").AsString(64).NotNullable().WithDefaultValue(Environment.MachineName)
-            .WithColumn("source_hash").AsString(64).Nullable()
-            .WithColumn("source_data").AsBinary(int.MaxValue).Nullable();
+            .WithColumn("source_hash").AsBinary(16).NotNullable()
+            .WithColumn("source_data").AsBinary(int.MaxValue).NotNullable();
 
         Create.Index()
             .OnTable("snapshot")

@@ -23,7 +23,6 @@ public class M009CreateRoutineTable : AutoReversingMigration
             .OnColumn("snapshot_id").Ascending()
             .OnColumn("container_name").Ascending()
             .OnColumn("routine_name").Ascending()
-            .OnColumn("scope_type").Ascending()
             .WithOptions().Unique();
 
         Create.Index()

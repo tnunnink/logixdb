@@ -200,7 +200,7 @@ public abstract class SqliteTestFixture
         if (!hasMatch)
             throw new AssertionException(
                 $"""
-                 Expected UNIQUE index on '{tableName}' for ({string.Join(", ", columns)}), 
+                 Expected index on '{tableName}' for ({string.Join(", ", columns)}), 
                  but none was found. Found unique indexes: {string.Join(", ", indexes)}
                  """
             );

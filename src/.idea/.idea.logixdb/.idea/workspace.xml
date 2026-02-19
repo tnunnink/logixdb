@@ -9,32 +9,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/DownloadCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/ExportCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/ListCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/ListCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/UploadCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/ImportCommand.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Core/Abstractions/TableMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Core/Abstractions/TableMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Core/Common/ColumnMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Core/Common/ColumnMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Core/Common/Extensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Core/Common/Extensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Core/Common/Snapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Core/Common/Snapshot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Core/Maps/RoutineMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Core/Maps/RoutineMap.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Core/Maps/RungMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Core/Maps/RungMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260207/M003CreateTagTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260207/M003CreateTagTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M004CreateControllerTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M004CreateControllerTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M005CreateDataTypeTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M005CreateDataTypeTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M006CreateDataTypeMemberTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M006CreateDataTypeMemberTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M007CreateTaskTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M007CreateTaskTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M008CreateProgramTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M008CreateProgramTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Core/Maps/TagMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Core/Maps/TagMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260206/M002CreateSnapshotTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260206/M002CreateSnapshotTable.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M009CreateRoutineTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M009CreateRoutineTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M010CreateRungTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M010CreateRungTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260212/M011CreateAoiTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260212/M011CreateAoiTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260212/M012CreateAoiParameterTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260212/M012CreateAoiParameterTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260212/M013CreateModuleTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260212/M013CreateModuleTable.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Sqlite/Imports/SqliteElementImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Sqlite/Imports/SqliteElementImport.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/UploadCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/ImportCommandTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Core.Tests/SnapshotTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Core.Tests/SnapshotTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.SqlServer.Tests/Migrations/M20260206Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.SqlServer.Tests/Migrations/M20260206Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.SqlServer.Tests/Migrations/M20260207Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.SqlServer.Tests/Migrations/M20260207Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.SqlServer.Tests/Migrations/M20260211Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.SqlServer.Tests/Migrations/M20260211Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.SqlServer.Tests/Migrations/M20260212Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.SqlServer.Tests/Migrations/M20260212Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/Migrations/M20260206Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/Migrations/M20260206Tests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/Migrations/M20260207Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/Migrations/M20260207Tests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/Migrations/M20260211Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/Migrations/M20260211Tests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/Migrations/M20260212Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/Migrations/M20260212Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/SqliteTestFixture.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/SqliteTestFixture.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -218,7 +206,7 @@
       <workItem from="1770648816599" duration="48627000" />
       <workItem from="1770806804536" duration="189173000" />
       <workItem from="1771415351700" duration="807000" />
-      <workItem from="1771416228683" duration="16750000" />
+      <workItem from="1771416228683" duration="17727000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor `Snapshot` implementation, add `SqlConnectionInfo` and `SqlAuthentication`, update extensions, and target .NET 10.">
       <option name="closed" value="true" />
@@ -548,7 +536,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771444652178</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="Rename `UploadCommand` to `ImportCommand` and `DownloadCommand` to `ExportCommand`. Update associated tests, namespaces, column mappings, and migration files for consistency. Replace string-based `record_hash` fields with binary type. Enhance serialization logic and add new helper methods.">
+      <option name="closed" value="true" />
+      <created>1771501912769</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1771501912769</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -569,7 +565,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Update GitHub Actions to use `ubuntu-latest` runners and switch from PowerShell to Bash for version extraction." />
     <MESSAGE value="Refactor: Standardize column mappings and table schemas, remove deprecated fields, and update references for consistency across migrations and mapping files. Updated and fixed tests" />
     <MESSAGE value="Remove redundant `dimensions` column assertion from `M20260207Tests`." />
     <MESSAGE value="Update `M20260207Tests` to assert `constant` column type as `bit` instead of `int`." />
@@ -594,7 +589,8 @@
     <MESSAGE value="Bump CLI version to 0.2.2 and update `.idea` workspace configuration." />
     <MESSAGE value="Bump CLI version to 0.2.2, update `.idea` workspace configuration, and set assembly name in project file." />
     <MESSAGE value="Bump CLI version to 0.2.3 in project file." />
-    <option name="LAST_COMMIT_MESSAGE" value="Bump CLI version to 0.2.3 in project file." />
+    <MESSAGE value="Rename `UploadCommand` to `ImportCommand` and `DownloadCommand` to `ExportCommand`. Update associated tests, namespaces, column mappings, and migration files for consistency. Replace string-based `record_hash` fields with binary type. Enhance serialization logic and add new helper methods." />
+    <option name="LAST_COMMIT_MESSAGE" value="Rename `UploadCommand` to `ImportCommand` and `DownloadCommand` to `ExportCommand`. Update associated tests, namespaces, column mappings, and migration files for consistency. Replace string-based `record_hash` fields with binary type. Enhance serialization logic and add new helper methods." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -611,19 +607,6 @@
           <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
           <option name="timeStamp" value="3" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/LogixDb.SqlServer/Imports/SqlServerElementImport.cs</url>
-          <line>45</line>
-          <properties documentPath="C:\Users\tnunn\Projects\logixdb\src\LogixDb.SqlServer\Imports\SqlServerElementImport.cs" containingFunctionPresentation="Method 'Process'">
-            <startOffsets>
-              <option value="2502" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2550" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="69" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/LogixDb.SqlServer/SqlServerDb.cs</url>
           <line>70</line>

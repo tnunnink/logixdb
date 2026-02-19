@@ -42,7 +42,7 @@ public class M20260206Tests : SqliteTestFixture
             await AssertColumnDefinition("snapshot", "import_date", "datetime");
             await AssertColumnDefinition("snapshot", "import_user", "text");
             await AssertColumnDefinition("snapshot", "import_machine", "text");
-            await AssertColumnDefinition("snapshot", "source_hash", "text");
+            await AssertColumnDefinition("snapshot", "source_hash", "blob");
             await AssertColumnDefinition("snapshot", "source_data", "blob");
 
             await AssertPrimaryKey("snapshot", "snapshot_id");

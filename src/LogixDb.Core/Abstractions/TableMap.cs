@@ -69,7 +69,7 @@ public abstract class TableMap<T> where T : class
 
         table.Columns.Add(new DataColumn("snapshot_id", typeof(int)));
         table.Columns.AddRange(Columns.Select(c => new DataColumn(c.Name, c.Type.ToType())).ToArray());
-        table.Columns.Add(new DataColumn("record_hash", typeof(string)));
+        table.Columns.Add(new DataColumn("record_hash", typeof(byte[])));
 
         // Precompile an ordered array of column name and getter pairs for iteration. We need to iterate in deterministic
         // order to preserve the integrity of the computed hash. 

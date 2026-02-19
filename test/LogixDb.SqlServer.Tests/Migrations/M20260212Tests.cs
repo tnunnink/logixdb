@@ -33,7 +33,7 @@ public class M20260212Tests : SqlServerTestFixture
             await AssertColumnDefinition("aoi", "signature_id", "nvarchar");
             await AssertColumnDefinition("aoi", "signature_timestamp", "datetime");
             await AssertColumnDefinition("aoi", "component_class", "nvarchar");
-            await AssertColumnDefinition("aoi", "record_hash", "nvarchar");
+            await AssertColumnDefinition("aoi", "record_hash", "varbinary");
 
             await AssertPrimaryKey("aoi", "aoi_id");
             await AssertForeignKey("aoi", "snapshot_id", "snapshot", "snapshot_id");
@@ -65,7 +65,7 @@ public class M20260212Tests : SqlServerTestFixture
             await AssertColumnDefinition("aoi_parameter", "visible", "bit");
             await AssertColumnDefinition("aoi_parameter", "required", "bit");
             await AssertColumnDefinition("aoi_parameter", "constant", "bit");
-            await AssertColumnDefinition("aoi_parameter", "record_hash", "nvarchar");
+            await AssertColumnDefinition("aoi_parameter", "record_hash", "varbinary");
 
             await AssertPrimaryKey("aoi_parameter", "parameter_id");
             await AssertForeignKey("aoi_parameter", "snapshot_id", "snapshot", "snapshot_id");
@@ -99,7 +99,7 @@ public class M20260212Tests : SqlServerTestFixture
             await AssertColumnDefinition("module", "safety_enabled", "bit");
             await AssertColumnDefinition("module", "ip_address", "nvarchar");
             await AssertColumnDefinition("module", "slot_number", "tinyint");
-            await AssertColumnDefinition("module", "record_hash", "nvarchar");
+            await AssertColumnDefinition("module", "record_hash", "varbinary");
 
             await AssertPrimaryKey("module", "module_id");
             await AssertForeignKey("module", "snapshot_id", "snapshot", "snapshot_id");

@@ -15,11 +15,10 @@ public class M20260207Tests : SqliteTestFixture
             await AssertColumnDefinition("tag", "tag_id", "integer");
             await AssertColumnDefinition("tag", "snapshot_id", "integer");
             await AssertColumnDefinition("tag", "container_name", "text");
+            await AssertColumnDefinition("tag", "tag_name", "text");
             await AssertColumnDefinition("tag", "base_name", "text");
             await AssertColumnDefinition("tag", "parent_name", "text");
-            await AssertColumnDefinition("tag", "tag_name", "text");
             await AssertColumnDefinition("tag", "member_name", "text");
-            await AssertColumnDefinition("tag", "tag_depth", "integer");
             await AssertColumnDefinition("tag", "tag_value", "text");
             await AssertColumnDefinition("tag", "data_type", "text");
             await AssertColumnDefinition("tag", "description", "text");
@@ -30,6 +29,8 @@ public class M20260207Tests : SqliteTestFixture
             await AssertPrimaryKey("tag", "tag_id");
             await AssertForeignKey("tag", "snapshot_id", "snapshot", "snapshot_id");
             await AssertUniqueIndex("tag", "snapshot_id", "container_name", "tag_name");
+            await AssertIndex("tag", "tag_name", "snapshot_id");
+            await AssertIndex("tag", "record_hash", "snapshot_id");
         }
     }
 }

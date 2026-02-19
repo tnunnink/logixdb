@@ -17,7 +17,6 @@ public class RoutineMap : TableMap<Routine>
     /// <inheritdoc />
     public override IReadOnlyList<ColumnMap<Routine>> Columns =>
     [
-        ColumnMap<Routine>.For(r => r.Scope.Level.Name, "scope_type"),
         ColumnMap<Routine>.For(r => r.Scope.Container, "container_name"),
         ColumnMap<Routine>.For(r => r.Name, "routine_name"),
         ColumnMap<Routine>.For(r => r.Type.Name, "routine_type"),

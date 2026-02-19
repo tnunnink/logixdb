@@ -48,7 +48,7 @@ public abstract class SqliteElementImport<TElement>(TableMap<TElement> map) : IL
         // Manually add the content hash parameter since it is not part of the column map and computed from the column values.
         var columns = map.Columns.ToList();
         columns.ForEach(c => command.Parameters.Add($"@{c.Name}", c.Type.ToSqliteType()));
-        command.Parameters.Add("@record_hash", SqliteType.Text);
+        command.Parameters.Add("@record_hash", SqliteType.Blob);
         command.Prepare();
 
         // Precompile an ordered array of binders that map parameters to their getter function.

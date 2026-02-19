@@ -42,7 +42,7 @@ public class M20260206Tests : SqlServerTestFixture
             await AssertColumnDefinition("snapshot", "import_date", "datetime");
             await AssertColumnDefinition("snapshot", "import_user", "nvarchar");
             await AssertColumnDefinition("snapshot", "import_machine", "nvarchar");
-            await AssertColumnDefinition("snapshot", "source_hash", "nvarchar");
+            await AssertColumnDefinition("snapshot", "source_hash", "varbinary");
             await AssertColumnDefinition("snapshot", "source_data", "varbinary");
 
             await AssertPrimaryKey("snapshot", "snapshot_id");
