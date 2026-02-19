@@ -12,7 +12,7 @@
         <ToolCommandName>logixdb</ToolCommandName>
         <AssemblyName>logixdb</AssemblyName>
         <PackageId>LogixDb</PackageId>
-        <Version>0.2.3</Version>
+        <Version>0.3.0</Version>
         <Authors>Timothy Nunnink</Authors>
         <Description>A CLI tool for transforming Rockwell Automation L5X content into a SQL database for analysis and versioning</Description>
         <PackageProjectUrl>https://github.com/yourusername/logixdb</PackageProjectUrl>
