@@ -24,7 +24,7 @@ public class ImportCommandTests : TestDbFixture
         var app = TestApp.Create<ImportCommand>(console);
 
         var exitCode = await app.RunAsync([
-            "upload", "-c", DbConnection,
+            "import", "-c", DbConnection,
             "-s", "Fake.L5X"
         ]);
 
@@ -43,7 +43,7 @@ public class ImportCommandTests : TestDbFixture
         var app = TestApp.Create<ImportCommand>(console);
 
         var exitCode = await app.RunAsync([
-            "upload", "-c", DbConnection,
+            "import", "-c", DbConnection,
             "-s", testFile
         ]);
 
@@ -63,7 +63,7 @@ public class ImportCommandTests : TestDbFixture
         var app = TestApp.Create<ImportCommand>(console);
 
         var exitCode = await app.RunAsync([
-            "upload", "-c", DbConnection,
+            "import", "-c", DbConnection,
             "-s", testFile,
             "-t", "Controller://CustomTarget"
         ]);
@@ -90,7 +90,7 @@ public class ImportCommandTests : TestDbFixture
         var app = TestApp.Create<ImportCommand>(console);
 
         var exitCode = await app.RunAsync([
-            "upload", "-c", DbConnection,
+            "import", "-c", DbConnection,
             "-s", testFile,
             "-t", "TestTarget",
             "-a", "ReplaceLatest"
