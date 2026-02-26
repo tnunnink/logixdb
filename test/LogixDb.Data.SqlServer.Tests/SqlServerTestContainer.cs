@@ -48,6 +48,7 @@ public static class SqlServerTestContainer
         var connection = new SqlConnectionInfo(
             SqlProvider.SqlServer,
             _container.Hostname,
+            Database: "logix",
             Port: _container.GetMappedPublicPort(),
             User: "sa",
             Password: "LogixDb!Test123"
