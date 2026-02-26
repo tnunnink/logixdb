@@ -4,6 +4,7 @@ public class FtacMonitorService : BackgroundService
 {
     protected override Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        throw new NotImplementedException();
+        //todo implement using SqlDependency
+        return Task.CompletedTask;
     }
 }
