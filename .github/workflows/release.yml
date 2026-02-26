@@ -44,10 +44,23 @@ jobs:
         /p:DebugSymbols=false
         -o artifacts/cli/win-x64
 
+    - name: Publish Service
+      run: >
+        dotnet publish src/LogixDb.Service/LogixDb.Service.csproj
+        -c Release
+        -r win-x64
+        --self-contained true
+        /p:PublishSingleFile=true
+        /p:IncludeNativeLibrariesForSelfExtract=true
+        /p:DebugType=None
+        /p:DebugSymbols=false
+        -o artifacts/service/win-x64
+
     - name: Zip EXE
       shell: pwsh
       run: |
         Compress-Archive -Path artifacts/cli/win-x64/* -DestinationPath artifacts/logixdb-win-x64.zip
+        Compress-Archive -Path artifacts/service/win-x64/* -DestinationPath artifacts/logixdb-service-win-x64.zip
       
     - name: Extract version from tag
       id: get_version
@@ -64,6 +77,7 @@ jobs:
         files: | 
           ./artifacts/*.nupkg
           ./artifacts/logixdb-win-x64.zip
+          ./artifacts/logixdb-service-win-x64.zip
         generate_release_notes: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

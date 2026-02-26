@@ -10,9 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../.github/workflows/release.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../.github/workflows/release.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Service/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/appsettings.Development.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlServerTestContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlServerTestContainer.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +39,17 @@
     &quot;assignee&quot;: &quot;tnunnink&quot;
   }
 }</component>
+  <component name="GitHubPullRequestState"><![CDATA[{
+  "prStates": [
+    {
+      "id": {
+        "id": "PR_kwDORMER-c7Gpr8H",
+        "number": 3
+      },
+      "lastSeen": 1772141677084
+    }
+  ]
+}]]></component>
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
     "url": "git@github.com:/tnunnink/LogixDb.git",
@@ -106,6 +116,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    ".NET Launch Settings Profile.LogixDb.Service.executor": "Run",
     "306e4faf-75f3-49db-b83f-ba259752c159.executor": "Debug",
     "318f4a3c-5272-44c4-bb3a-c90e76056755.executor": "Debug",
     "3f4fd6fd-71f5-429d-8c2d-7a56fbddd42f.executor": "Debug",
@@ -149,7 +160,7 @@
   <component name="RecapUselessUpdatesCounter">
     <option name="suspendCountdown" value="8" />
   </component>
-  <component name="RunManager" selected=".NET Project.LogixDb">
+  <component name="RunManager" selected=".NET Launch Settings Profile.LogixDb.Service">
     <configuration name="LogixDb" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="$PROJECT_DIR$/LogixDb.Cli/bin/Debug/net10.0/LogixDb.Cli.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -206,7 +217,7 @@
       <workItem from="1771415351700" duration="807000" />
       <workItem from="1771416228683" duration="35778000" />
       <workItem from="1771814694581" duration="1734000" />
-      <workItem from="1772139840925" duration="1447000" />
+      <workItem from="1772139840925" duration="3011000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor `Snapshot` implementation, add `SqlConnectionInfo` and `SqlAuthentication`, update extensions, and target .NET 10.">
       <option name="closed" value="true" />
@@ -576,7 +587,23 @@
       <option name="project" value="LOCAL" />
       <updated>1771538161300</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="Fixed test fixture database setting. Update appsettings development configuration and adjust IDE workspace settings">
+      <option name="closed" value="true" />
+      <created>1772141463112</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1772141463112</updated>
+    </task>
+    <task id="LOCAL-00048" summary="Update `ImportCommandTests` to rename test methods for consistency with `ImportCommand`.">
+      <option name="closed" value="true" />
+      <created>1772141525604</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1772141525604</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -603,8 +630,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Implement snapshot and import refactoring:  &#10;- **Snapshots**: Introduced `SnapshotAction` for managing snapshot behaviors (`Append`, `ReplaceLatest`, `ReplaceAll`) and updated snapshot handling in SQLite and SQL Server databases.  &#10;- **Imports**: Added modular SQL Server import classes (`SqlServerAoiImport`, `SqlServerControllerImport`, `SqlServerDataTypeImport`, etc.) for element processing.  &#10;- **Refactoring**: Consolidated and simplified SQL operations, improved exception handling, and extended snapshot-related methods across database layers.  &#10;- **Testing**: Added tests for snapshot delete scenarios, including `DeleteSnapshotsFor`, `DeleteSnapshotLatest`, and `DeleteSnapshotsBefore`.  &#10;- **General**: Updated XML configuration, enhanced comments, and removed redundant database-layer code." />
-    <MESSAGE value="Add comprehensive tests for SQLite snapshot operations and enhance query logic&#10;&#10;- Added new test cases for list, delete, drop, get, and purge snapshot scenarios in SQLite.&#10;- Updated `SqliteQuery` to include `target_key` in snapshot-related SQL queries.&#10;- Improved exception handling for database migrations by enhancing `MigrationRequiredException` messages.&#10;- Ensured migration needs are checked correctly during snapshot operations.&#10;- Refactored `SqliteDb` methods to use `EnsureCreatedAndMigrated` for improved consistency." />
     <MESSAGE value="Refactor CLI commands: consolidate and rename commands (`snapshot` to generalized names like `import`, `list`, `delete`), remove `SnapshotReplaceCommand`, and standardize namespaces for consistency. Optimize Snapshot model and related test adjustments." />
     <MESSAGE value="Enhance CLI commands: improve comments, add examples, better exception handling, and parameter updates for `list`, `migrate`, `delete` (renamed to `prune`), and `import`. Introduce `export` command." />
     <MESSAGE value="Improve CLI commands with enhanced exception handling, updated output formatting (added `hash` to tables), and refactored methods for `list`, `prune`, `purge`, `import`, and `drop`. Ensure consistent namespace use." />
@@ -628,7 +653,9 @@
     <MESSAGE value="Update `ImportCommandTests` to replace &quot;upload&quot; with &quot;import&quot; for consistency with renamed `ImportCommand`." />
     <MESSAGE value="Bump CLI version to 0.3.0 in project file." />
     <MESSAGE value="Update CLI to version 0.3.1 and improve command descriptions, snapshot table imports/exports, and README documentation." />
-    <option name="LAST_COMMIT_MESSAGE" value="Update CLI to version 0.3.1 and improve command descriptions, snapshot table imports/exports, and README documentation." />
+    <MESSAGE value="Fixed test fixture database setting. Update appsettings development configuration and adjust IDE workspace settings" />
+    <MESSAGE value="Update `ImportCommandTests` to rename test methods for consistency with `ImportCommand`." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update `ImportCommandTests` to rename test methods for consistency with `ImportCommand`." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -670,19 +697,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerDb.cs</url>
-          <line>257</line>
-          <properties documentPath="C:\Users\tnunn\Projects\LogixDb\src\LogixDb.Data.SqlServer\SqlServerDb.cs" containingFunctionPresentation="Method 'EnsureCreated'">
-            <startOffsets>
-              <option value="10282" />
-            </startOffsets>
-            <endOffsets>
-              <option value="10350" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
