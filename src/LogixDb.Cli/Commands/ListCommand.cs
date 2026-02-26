@@ -3,8 +3,8 @@ using CliFx.Exceptions;
 using CliFx.Infrastructure;
 using JetBrains.Annotations;
 using LogixDb.Cli.Common;
-using LogixDb.Core.Abstractions;
-using LogixDb.Core.Common;
+using LogixDb.Data;
+using LogixDb.Data.Abstractions;
 using Spectre.Console;
 
 namespace LogixDb.Cli.Commands;

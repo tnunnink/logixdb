@@ -6,10 +6,10 @@ using JetBrains.Annotations;
 using L5Sharp.Core;
 using LogixConverter.LogixSdk;
 using LogixDb.Cli.Common;
-using LogixDb.Core.Abstractions;
-using LogixDb.Core.Common;
+using LogixDb.Data;
+using LogixDb.Data.Abstractions;
 using Spectre.Console;
-using Snapshot = LogixDb.Core.Common.Snapshot;
+using Snapshot = LogixDb.Data.Snapshot;
 
 namespace LogixDb.Cli.Commands;
 

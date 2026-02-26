@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <LangVersion>latest</LangVersion>
+        <UserSecretsId>dotnet-LogixDb.Service-c38521d1-70d6-4011-b625-345937d1a284</UserSecretsId>
+        <Version>0.4.0</Version>
+        <Authors>Timothy Nunnink</Authors>
+        <Description>Logix Ingestion and FTAC Monitoring Windows Service.</Description>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="LogixConverter.LogixSdk" Version="0.1.0"/>
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.3"/>
+        <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="10.0.3"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\LogixDb.Data.Sqlite\LogixDb.Data.Sqlite.csproj"/>
+        <ProjectReference Include="..\LogixDb.Data.SqlServer\LogixDb.Data.SqlServer.csproj"/>
+        <ProjectReference Include="..\LogixDb.Data\LogixDb.Data.csproj"/>
+    </ItemGroup>
+</Project>

@@ -1,6 +1,6 @@
-using LogixDb.Core.Abstractions;
-using LogixDb.Core.Common;
-using LogixDb.Sqlite;
+using LogixDb.Data;
+using LogixDb.Data.Abstractions;
+using LogixDb.Data.Sqlite;
 
 namespace LogixDb.Cli.Tests;
 

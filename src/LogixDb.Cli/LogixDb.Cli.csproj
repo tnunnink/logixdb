@@ -6,13 +6,12 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <LangVersion>latest</LangVersion>
-        <!-- NuGet Package Configuration -->
         <PackAsTool>true</PackAsTool>
         <PackageOutputPath>.nupkg</PackageOutputPath>
         <ToolCommandName>logixdb</ToolCommandName>
         <AssemblyName>logixdb</AssemblyName>
         <PackageId>LogixDb</PackageId>
-        <Version>0.3.2</Version>
+        <Version>0.4.0</Version>
         <Authors>Timothy Nunnink</Authors>
         <Description>A CLI tool for transforming Rockwell Automation L5X content into a SQL database for analysis and versioning</Description>
         <PackageProjectUrl>https://github.com/yourusername/logixdb</PackageProjectUrl>
@@ -35,8 +34,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\LogixDb.Sqlite\LogixDb.Sqlite.csproj" />
-      <ProjectReference Include="..\LogixDb.SqlServer\LogixDb.SqlServer.csproj" />
+      <ProjectReference Include="..\LogixDb.Data.Sqlite\LogixDb.Data.Sqlite.csproj" />
+      <ProjectReference Include="..\LogixDb.Data.SqlServer\LogixDb.Data.SqlServer.csproj" />
     </ItemGroup>
 
     <ItemGroup>

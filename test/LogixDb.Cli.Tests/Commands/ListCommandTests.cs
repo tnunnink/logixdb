@@ -1,6 +1,6 @@
 using CliFx.Infrastructure;
 using LogixDb.Cli.Commands;
-using LogixDb.Core.Common;
+using LogixDb.Data;
 using LogixDb.Testing;
 
 namespace LogixDb.Cli.Tests.Commands;

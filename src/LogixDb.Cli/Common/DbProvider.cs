@@ -1,7 +1,7 @@
-using LogixDb.Core.Abstractions;
-using LogixDb.Core.Common;
-using LogixDb.Sqlite;
-using LogixDb.SqlServer;
+using LogixDb.Data;
+using LogixDb.Data.Abstractions;
+using LogixDb.Data.Sqlite;
+using LogixDb.Data.SqlServer;
 
 namespace LogixDb.Cli.Common;
 

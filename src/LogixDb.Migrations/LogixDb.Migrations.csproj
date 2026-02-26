@@ -14,7 +14,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\LogixDb.Core\LogixDb.Core.csproj" />
+      <ProjectReference Include="..\LogixDb.Data\LogixDb.Data.csproj" />
     </ItemGroup>
 
 </Project>

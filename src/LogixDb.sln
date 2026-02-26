@@ -4,23 +4,27 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BEBDA5AC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogixDb.Cli", "LogixDb.Cli\LogixDb.Cli.csproj", "{B5766C67-B5F6-4978-9258-EA8AAF242DDC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogixDb.Sqlite", "LogixDb.Sqlite\LogixDb.Sqlite.csproj", "{4AEF2B32-42BB-4892-B17B-CB14E7AA0F7C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogixDb.Data.Sqlite", "LogixDb.Data.Sqlite\LogixDb.Data.Sqlite.csproj", "{4AEF2B32-42BB-4892-B17B-CB14E7AA0F7C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogixDb.SqlServer", "LogixDb.SqlServer\LogixDb.SqlServer.csproj", "{EE45F858-3361-4220-A85E-B76258782A92}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogixDb.Data.SqlServer", "LogixDb.Data.SqlServer\LogixDb.Data.SqlServer.csproj", "{EE45F858-3361-4220-A85E-B76258782A92}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogixDb.Migrations", "LogixDb.Migrations\LogixDb.Migrations.csproj", "{DBFEC497-660A-4C44-A370-FD726CF9A079}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogixDb.Core", "LogixDb.Core\LogixDb.Core.csproj", "{32C44799-68EF-4867-9E9A-E88A294648F3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogixDb.Data", "LogixDb.Data\LogixDb.Data.csproj", "{32C44799-68EF-4867-9E9A-E88A294648F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogixDb.Sqlite.Tests", "..\test\LogixDb.Sqlite.Tests\LogixDb.Sqlite.Tests.csproj", "{3194B7A6-F02D-49A7-A9D4-5386F296794C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogixDb.Data.Sqlite.Tests", "..\test\LogixDb.Data.Sqlite.Tests\LogixDb.Data.Sqlite.Tests.csproj", "{3194B7A6-F02D-49A7-A9D4-5386F296794C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogixDb.SqlServer.Tests", "..\test\LogixDb.SqlServer.Tests\LogixDb.SqlServer.Tests.csproj", "{8F484DD9-D3B5-4AC6-9F9A-568B0FCCE03E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogixDb.Data.SqlServer.Tests", "..\test\LogixDb.Data.SqlServer.Tests\LogixDb.Data.SqlServer.Tests.csproj", "{8F484DD9-D3B5-4AC6-9F9A-568B0FCCE03E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogixDb.Core.Tests", "..\test\LogixDb.Core.Tests\LogixDb.Core.Tests.csproj", "{CAC56592-2058-4898-B584-5A780EB005CD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogixDb.Data.Tests", "..\test\LogixDb.Data.Tests\LogixDb.Data.Tests.csproj", "{CAC56592-2058-4898-B584-5A780EB005CD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogixDb.Testing", "..\test\LogixDb.Testing\LogixDb.Testing.csproj", "{021E8BE9-47AA-44C1-8C7B-D08252A07715}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogixDb.Cli.Tests", "..\test\LogixDb.Cli.Tests\LogixDb.Cli.Tests.csproj", "{7A170846-E09F-499A-9277-9A62C1553CD3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogixDb.Service", "LogixDb.Service\LogixDb.Service.csproj", "{3D846A13-A293-4492-A23E-A76454918370}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogixDb.Service.Tests", "..\test\LogixDb.Service.Tests\LogixDb.Service.Tests.csproj", "{30FDC754-9159-4A19-9958-C207F8BED4AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -68,6 +72,14 @@ Global
 		{7A170846-E09F-499A-9277-9A62C1553CD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A170846-E09F-499A-9277-9A62C1553CD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A170846-E09F-499A-9277-9A62C1553CD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D846A13-A293-4492-A23E-A76454918370}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D846A13-A293-4492-A23E-A76454918370}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D846A13-A293-4492-A23E-A76454918370}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D846A13-A293-4492-A23E-A76454918370}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30FDC754-9159-4A19-9958-C207F8BED4AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30FDC754-9159-4A19-9958-C207F8BED4AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30FDC754-9159-4A19-9958-C207F8BED4AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30FDC754-9159-4A19-9958-C207F8BED4AE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{3194B7A6-F02D-49A7-A9D4-5386F296794C} = {BEBDA5AC-09CA-4C26-8BC3-1A33360D1405}
@@ -75,5 +87,6 @@ Global
 		{CAC56592-2058-4898-B584-5A780EB005CD} = {BEBDA5AC-09CA-4C26-8BC3-1A33360D1405}
 		{021E8BE9-47AA-44C1-8C7B-D08252A07715} = {BEBDA5AC-09CA-4C26-8BC3-1A33360D1405}
 		{7A170846-E09F-499A-9277-9A62C1553CD3} = {BEBDA5AC-09CA-4C26-8BC3-1A33360D1405}
+		{30FDC754-9159-4A19-9958-C207F8BED4AE} = {BEBDA5AC-09CA-4C26-8BC3-1A33360D1405}
 	EndGlobalSection
 EndGlobal
