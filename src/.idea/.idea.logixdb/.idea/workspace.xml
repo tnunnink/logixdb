@@ -10,7 +10,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/LogixDb.Service/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/appsettings.Development.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/Common/SourceInfoTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/LogixDb.Service.Tests.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/Services/SourceIngestionServiceTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/Services/SourceUploadServiceTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Configuration/FtacConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Configuration/FtacConfig.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Configuration/IngestionConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Configuration/IngestionConfig.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.sln" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.sln" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,6 +101,7 @@
     "318f4a3c-5272-44c4-bb3a-c90e76056755.executor": "Debug",
     "53b9e772-009f-4a96-81f8-64fdb3c217f4.executor": "Debug",
     "77be6975-875d-4c36-a792-f24ed0629adb.executor": "Debug",
+    "7ce84f90-6ae2-4e9e-860e-eb90f45871f3.executor": "Debug",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -187,15 +195,7 @@
       <workItem from="1771866509642" duration="98000" />
       <workItem from="1771867546555" duration="22488000" />
       <workItem from="1771950210397" duration="14990000" />
-      <workItem from="1772050677920" duration="31094000" />
-    </task>
-    <task id="LOCAL-00001" summary="Refactor `Snapshot` implementation, add `SqlConnectionInfo` and `SqlAuthentication`, update extensions, and target .NET 10.">
-      <option name="closed" value="true" />
-      <created>1770671360234</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1770671360234</updated>
+      <workItem from="1772050677920" duration="31710000" />
     </task>
     <task id="LOCAL-00002" summary="Sqlite development and migration development of initial database tables.">
       <option name="closed" value="true" />
@@ -581,7 +581,15 @@
       <option name="project" value="LOCAL" />
       <updated>1772136044631</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="Update appsettings with LogixConfig section and adjust IDE workspace settings.">
+      <option name="closed" value="true" />
+      <created>1772136461144</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1772136461145</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -602,7 +610,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Enhance CLI commands: improve comments, add examples, better exception handling, and parameter updates for `list`, `migrate`, `delete` (renamed to `prune`), and `import`. Introduce `export` command." />
     <MESSAGE value="Improve CLI commands with enhanced exception handling, updated output formatting (added `hash` to tables), and refactored methods for `list`, `prune`, `purge`, `import`, and `drop`. Ensure consistent namespace use." />
     <MESSAGE value="Add cancellation token support to CLI commands for enhanced async operation handling. Update `export` command with improved validation, descriptions, and exception handling." />
     <MESSAGE value="Add cancellation token support across CLI commands for improved async handling. Update `list`, `migrate`, `prune`, `purge`, `import`, `export`, and `drop` commands for consistency and enhanced validation. Add new tests for `ListCommand` functionality." />
@@ -627,7 +634,8 @@
     <MESSAGE value="New Service feature addition:" />
     <MESSAGE value="Bump version to 0.4.0 in project file." />
     <MESSAGE value="Update appsettings configuration, implement placeholder for FtacMonitorService, and refine project metadata." />
-    <option name="LAST_COMMIT_MESSAGE" value="Update appsettings configuration, implement placeholder for FtacMonitorService, and refine project metadata." />
+    <MESSAGE value="Update appsettings with LogixConfig section and adjust IDE workspace settings." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update appsettings with LogixConfig section and adjust IDE workspace settings." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -644,6 +652,19 @@
           <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
           <option name="timeStamp" value="3" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/../test/LogixDb.Service.Tests/Common/SourceInfoTests.cs</url>
+          <line>18</line>
+          <properties documentPath="C:\Users\tnunnink\Documents\Projects\LogixDb\test\LogixDb.Service.Tests\Common\SourceInfoTests.cs" containingFunctionPresentation="Method 'Create_L5XFile_ShouldReturnCorrectSourceInfo'">
+            <startOffsets>
+              <option value="521" />
+            </startOffsets>
+            <endOffsets>
+              <option value="998" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

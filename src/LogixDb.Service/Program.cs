@@ -63,3 +63,5 @@ app.MapPost("/ingest", async ([FromForm] IFormFile file, HttpRequest request, So
 }).DisableAntiforgery();
 
 await app.RunAsync();
+
+public partial class Program { }
