@@ -1,5 +1,4 @@
 using CliFx.Infrastructure;
-using L5Sharp.Core;
 using LogixDb.Cli.Commands;
 using LogixDb.Cli.Common;
 using LogixDb.Data;
@@ -18,7 +17,7 @@ public class ImportCommandTests : TestDbFixture
     }
 
     [Test]
-    public async Task Upload_FileNotFound_ShouldReturnExpectedErrorCode()
+    public async Task Import_FileNotFound_ShouldReturnExpectedErrorCode()
     {
         using var console = new FakeInMemoryConsole();
         var app = TestApp.Create<ImportCommand>(console);
@@ -32,7 +31,7 @@ public class ImportCommandTests : TestDbFixture
     }
 
     [Test]
-    public async Task Upload_WithValidFile_ShouldImportSuccessfully()
+    public async Task Import_WithValidFile_ShouldImportSuccessfully()
     {
         //Generate and save L5X to the local directory for command.
         var testFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Test.L5X");
@@ -52,7 +51,7 @@ public class ImportCommandTests : TestDbFixture
     }
 
     [Test]
-    public async Task Upload_WithTargetOverride_ShouldUseCustomTarget()
+    public async Task Import_WithTargetOverride_ShouldUseCustomTarget()
     {
         //Generate and save L5X to the local directory for command.
         var testFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Test.L5X");
@@ -76,7 +75,7 @@ public class ImportCommandTests : TestDbFixture
     }
 
     [Test]
-    public async Task Upload_WithReplaceLatestAction_ShouldReplaceLatest()
+    public async Task Import_WithReplaceLatestAction_ShouldReplaceLatest()
     {
         //Generate and save L5X to the local directory for command.
         var testFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Test.L5X");
