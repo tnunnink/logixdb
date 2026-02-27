@@ -130,7 +130,14 @@ public class SourceIngestionService(
     /// <returns>A task that represents the asynchronous operation, containing the path to the temporary .L5X file.</returns>
     private async Task<string> ConvertOrCopy(SourceInfo source, CancellationToken token)
     {
-        var tempFile = Path.Combine(Path.GetTempPath(), $"{source.SourceId:N}.L5X");
+        var tempLocation = Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData),
+            "LogixDb",
+            "Temp"
+        );
+        Directory.CreateDirectory(tempLocation);
+
+        var tempFile = Path.Combine(tempLocation, $"{source.SourceId:N}.L5X");
 
         switch (source.FileType)
         {
