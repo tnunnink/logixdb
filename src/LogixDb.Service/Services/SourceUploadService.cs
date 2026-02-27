@@ -22,7 +22,10 @@ namespace LogixDb.Service.Services;
 /// <param name="logger">
 /// The logger instance used to log information, errors, and warnings during the upload process.
 /// </param>
-public class SourceUploadService(Channel<SourceInfo> channel, IOptions<LogixConfig> options, ILogger<SourceUploadService> logger)
+public class SourceUploadService(
+    Channel<SourceInfo> channel,
+    IOptions<LogixConfig> options,
+    ILogger<SourceUploadService> logger)
 {
     /// <summary>
     /// Asynchronously uploads a file to the server and queues it for processing.

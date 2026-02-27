@@ -10,12 +10,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Service/Common/AssetInfo.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Service/Services/FtacDownloadService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerDb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerDb.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Common/SourceInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Common/SourceInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Services/SourceIngestionService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Services/SourceIngestionService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Services/SourceUploadService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Services/SourceUploadService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/LogixDb.Cli.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/LogixDb.Cli.Tests.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/LogixDb.Data.SqlServer.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/LogixDb.Data.SqlServer.Tests.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/LogixDb.Data.Sqlite.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/LogixDb.Data.Sqlite.Tests.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Tests/LogixDb.Data.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Tests/LogixDb.Data.Tests.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/LogixDb.Service.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/LogixDb.Service.Tests.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +31,7 @@
     <option name="firstShow" value="false" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="2" />
+    <option name="cachedIndexableFilesCount" value="1" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
@@ -43,40 +48,14 @@
     &quot;assignee&quot;: &quot;tnunnink&quot;
   }
 }</component>
-  <component name="GitHubPullRequestState">{
-  &quot;prStates&quot;: [
-    {
-      &quot;id&quot;: {
-        &quot;id&quot;: &quot;PR_kwDORMER-c7Gpr8H&quot;,
-        &quot;number&quot;: 3
-      },
-      &quot;lastSeen&quot;: 1772141677084
-    }
-  ]
-}</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;git@github.com:/tnunnink/LogixDb.git&quot;,
-    &quot;accountId&quot;: &quot;44eadc35-9d54-442c-b32c-a90545d57e74&quot;
+    &quot;url&quot;: &quot;https://github.com/tnunnink/LogixDb.git&quot;,
+    &quot;accountId&quot;: &quot;d2f60ef5-5ad0-40c1-a277-9835f109efbf&quot;
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/96a4897426224033b6305246f316e05619e400/31/df0c4c19/Dimensions.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/96a4897426224033b6305246f316e05619e400/a9/350d78f8/Module.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/1b768892bf2e34dd6b8d8f15f37fe67ea78348d57d5269781271b8fec7b24/Faker[T].cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/4152225b7d08a17bd419f4af340a03a6bcd8ca729a41a997d7566857bd8ec/ContextUtils.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/55afacaa275eb9aa8aadbc1420aeb0c378a73abed5ec3382898d9b1a9692fa/Status.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/66c11b6d5c9f67e9393eb38c6814fa56a806075c646650933c3d55d7dbe2/IColumnTypeSyntax.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/69bc68e9420a6e628e801fd8651369ad2af3593c76dcc11a4270ec68d/ExecutionContext.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6f75ba8b1dce306ddb8d7bce0e56526443ca2dd6934e2b2f8ada32ed153cf5/BeforeAndAfterTestCommand.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7125402fdd6cb657e2eb4aba784bd5e17e3e6bd152935988f4e9ac51c2b5b7/MigrationRunner.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/86dd65be73c4f94c26d4f01963d2d229468847c17dc4830c3e6528d8ca032/SqlBulkCopy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/a4fe58ebeb8a1660294cf7ecda6faf894105f33152029b687f66293f43d287b/AsyncToSyncAdapter.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/cbf7e25d7e28b919da22174d17d071a3ea3b5603f28f384c31cf3f94d22c93f/DelegatingTestCommand.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/cfd42c9cad8cc5d48effcc51ca25015e7906d5f10495cacc32090b4fcfbd199/SimpleWorkItem.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d3c187e0b88b1a56f2518fb9f4b5ee5ed6e9116d93a507969a932c16801033/TaskAwaitAdapter.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d7ac96b4d18c930f644337672a35ac31dabfdd2248536e2acfc9b7a9eace/Faker.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/dcc1c53b951176c16a285d49aabaf7eb56ad2ee829288f986374fa30e5fc5c9a/TestMethodCommand.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/AppData/Roaming/NuGet/NuGet.Config" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Cli/App.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Cli/Commands/DbCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Cli/Commands/ExportCommand.cs" root0="FORCE_HIGHLIGHTING" />
@@ -93,6 +72,10 @@
     <setting file="file://$PROJECT_DIR$/LogixDb.Migrations/M20260211/M010CreateRungTable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Migrations/M20260212/M011CreateAoiTable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Migrations/M20260212/M013CreateModuleTable.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LogixDb.Service/Common/AssetInfo.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LogixDb.Service/Common/Extensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LogixDb.Service/Common/FileType.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LogixDb.Service/Services/FtacDownloadService.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -104,7 +87,7 @@
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="AISelfReview" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;c28515ff&quot;,
@@ -118,51 +101,50 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Launch Settings Profile.LogixDb.Service.executor&quot;: &quot;Run&quot;,
-    &quot;306e4faf-75f3-49db-b83f-ba259752c159.executor&quot;: &quot;Debug&quot;,
-    &quot;318f4a3c-5272-44c4-bb3a-c90e76056755.executor&quot;: &quot;Debug&quot;,
-    &quot;3f4fd6fd-71f5-429d-8c2d-7a56fbddd42f.executor&quot;: &quot;Debug&quot;,
-    &quot;53b9e772-009f-4a96-81f8-64fdb3c217f4.executor&quot;: &quot;Debug&quot;,
-    &quot;77be6975-875d-4c36-a792-f24ed0629adb.executor&quot;: &quot;Debug&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;b4cc6f81-828c-4c64-9c79-3d968c07a77c.executor&quot;: &quot;Debug&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/tnunnink/Documents/Projects/logixdb/src/LogixDb.sln&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;ml.llm.AcpAgentsConfigurable&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Launch Settings Profile.LogixDb.Service.executor": "Run",
+    "306e4faf-75f3-49db-b83f-ba259752c159.executor": "Debug",
+    "318f4a3c-5272-44c4-bb3a-c90e76056755.executor": "Debug",
+    "53b9e772-009f-4a96-81f8-64fdb3c217f4.executor": "Debug",
+    "77be6975-875d-4c36-a792-f24ed0629adb.executor": "Debug",
+    "7ce84f90-6ae2-4e9e-860e-eb90f45871f3.executor": "Debug",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "b4cc6f81-828c-4c64-9c79-3d968c07a77c.executor": "Debug",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "main",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "C:/Users/tnunnink/Documents/Projects/logixdb/src/LogixDb.sln",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "ml.llm.LLMAIWorkflowsConfigurable",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;sqlite&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlite"
     ],
-    &quot;com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect&quot;: [
-      &quot;SQLite&quot;,
-      &quot;TSQL&quot;
+    "com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect": [
+      "SQLite",
+      "TSQL"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecapSpentCounter">
     <option name="endsOfQuotaMs" value="1773082809547" />
-    <option name="spentUsd" value="0.012066999" />
+    <option name="spentUsd" value="0.100696936" />
   </component>
   <component name="RecapUselessUpdatesCounter">
-    <option name="suspendCountdown" value="8" />
+    <option name="suspendCountdown" value="0" />
   </component>
   <component name="RunManager" selected=".NET Launch Settings Profile.LogixDb.Service">
     <configuration name="LogixDb" type="DotNetProject" factoryName=".NET Project">
@@ -202,10 +184,6 @@
         <option name="Build" />
       </method>
     </configuration>
-    <list>
-      <item itemvalue=".NET Launch Settings Profile.LogixDb.Service" />
-      <item itemvalue=".NET Project.LogixDb" />
-    </list>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -221,8 +199,12 @@
       <workItem from="1771415351700" duration="807000" />
       <workItem from="1771416228683" duration="35778000" />
       <workItem from="1771814694581" duration="1734000" />
-      <workItem from="1772139840925" duration="4541000" />
-      <workItem from="1772161349237" duration="3496000" />
+      <workItem from="1771866509642" duration="98000" />
+      <workItem from="1771867546555" duration="22488000" />
+      <workItem from="1771950210397" duration="14990000" />
+      <workItem from="1772050677920" duration="32888000" />
+      <workItem from="1772138916904" duration="5187000" />
+      <workItem from="1772205427962" duration="2820000" />
     </task>
     <task id="LOCAL-00003" summary="Refactor migrations and database layer: standardize column lengths, replace `hash` with `record_hash`, add new attributes to tables, and improve SQLite session handling.">
       <option name="closed" value="true" />
@@ -576,45 +558,45 @@
       <option name="project" value="LOCAL" />
       <updated>1771538161300</updated>
     </task>
-    <task id="LOCAL-00047" summary="Fixed test fixture database setting. Update appsettings development configuration and adjust IDE workspace settings">
+    <task id="LOCAL-00047" summary="New Service feature addition:">
       <option name="closed" value="true" />
-      <created>1772141463112</created>
+      <created>1772121687775</created>
       <option name="number" value="00047" />
       <option name="presentableId" value="LOCAL-00047" />
       <option name="project" value="LOCAL" />
-      <updated>1772141463112</updated>
+      <updated>1772121687775</updated>
     </task>
-    <task id="LOCAL-00048" summary="Update `ImportCommandTests` to rename test methods for consistency with `ImportCommand`.">
+    <task id="LOCAL-00048" summary="Bump version to 0.4.0 in project file.">
       <option name="closed" value="true" />
-      <created>1772141525604</created>
+      <created>1772121716784</created>
       <option name="number" value="00048" />
       <option name="presentableId" value="LOCAL-00048" />
       <option name="project" value="LOCAL" />
-      <updated>1772141525604</updated>
+      <updated>1772121716784</updated>
     </task>
-    <task id="LOCAL-00049" summary="Add service publication to release workflow and compress output artifacts">
+    <task id="LOCAL-00049" summary="Update appsettings configuration, implement placeholder for FtacMonitorService, and refine project metadata.">
       <option name="closed" value="true" />
-      <created>1772142866703</created>
+      <created>1772136044631</created>
       <option name="number" value="00049" />
       <option name="presentableId" value="LOCAL-00049" />
       <option name="project" value="LOCAL" />
-      <updated>1772142866703</updated>
+      <updated>1772136044631</updated>
     </task>
-    <task id="LOCAL-00050" summary="Bump CLI and service versions to 0.4.1, add SQL migration for service account configuration, and update release workflow artifact naming.">
+    <task id="LOCAL-00050" summary="Update appsettings with LogixConfig section and adjust IDE workspace settings.">
       <option name="closed" value="true" />
-      <created>1772161125783</created>
+      <created>1772136461144</created>
       <option name="number" value="00050" />
       <option name="presentableId" value="LOCAL-00050" />
       <option name="project" value="LOCAL" />
-      <updated>1772161125783</updated>
+      <updated>1772136461145</updated>
     </task>
-    <task id="LOCAL-00051" summary="Update SQL migration to conditionally create login and user for service account only on Windows platforms. Adjust IDE workspace settings.">
+    <task id="LOCAL-00051" summary="Add unit tests for `SourceUploadService`, `SourceIngestionService`, and `SourceInfo` classes; update configuration models to use mutable properties; adjust solution and project files.">
       <option name="closed" value="true" />
-      <created>1772161564938</created>
+      <created>1772137342092</created>
       <option name="number" value="00051" />
       <option name="presentableId" value="LOCAL-00051" />
       <option name="project" value="LOCAL" />
-      <updated>1772161564942</updated>
+      <updated>1772137342092</updated>
     </task>
     <option name="localTasksCounter" value="52" />
     <servers />
@@ -624,12 +606,6 @@
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
-  <component name="UnknownFeatures">
-    <option featureType="dependencySupport" implementationName="executable:docker" />
-    <option featureType="dependencySupport" implementationName="dotnet:Microsoft.Identity.Client" />
-    <option featureType="dependencySupport" implementationName="executable:kubectl" />
-    <option featureType="dependencySupport" implementationName="dotnet:Microsoft.ApplicationInsights" />
-  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -663,12 +639,12 @@
     <MESSAGE value="Update `ImportCommandTests` to replace &quot;upload&quot; with &quot;import&quot; for consistency with renamed `ImportCommand`." />
     <MESSAGE value="Bump CLI version to 0.3.0 in project file." />
     <MESSAGE value="Update CLI to version 0.3.1 and improve command descriptions, snapshot table imports/exports, and README documentation." />
-    <MESSAGE value="Fixed test fixture database setting. Update appsettings development configuration and adjust IDE workspace settings" />
-    <MESSAGE value="Update `ImportCommandTests` to rename test methods for consistency with `ImportCommand`." />
-    <MESSAGE value="Add service publication to release workflow and compress output artifacts" />
-    <MESSAGE value="Bump CLI and service versions to 0.4.1, add SQL migration for service account configuration, and update release workflow artifact naming." />
-    <MESSAGE value="Update SQL migration to conditionally create login and user for service account only on Windows platforms. Adjust IDE workspace settings." />
-    <option name="LAST_COMMIT_MESSAGE" value="Update SQL migration to conditionally create login and user for service account only on Windows platforms. Adjust IDE workspace settings." />
+    <MESSAGE value="New Service feature addition:" />
+    <MESSAGE value="Bump version to 0.4.0 in project file." />
+    <MESSAGE value="Update appsettings configuration, implement placeholder for FtacMonitorService, and refine project metadata." />
+    <MESSAGE value="Update appsettings with LogixConfig section and adjust IDE workspace settings." />
+    <MESSAGE value="Add unit tests for `SourceUploadService`, `SourceIngestionService`, and `SourceInfo` classes; update configuration models to use mutable properties; adjust solution and project files." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add unit tests for `SourceUploadService`, `SourceIngestionService`, and `SourceInfo` classes; update configuration models to use mutable properties; adjust solution and project files." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -685,32 +661,6 @@
           <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
           <option name="timeStamp" value="3" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260206Tests.cs</url>
-          <line>8</line>
-          <properties documentPath="C:\Users\tnunn\Projects\LogixDb\test\LogixDb.Data.Sqlite.Tests\Migrations\M20260206Tests.cs" containingFunctionPresentation="Method 'MigrateUp_ToM001_CreatesTargetTableWithExpectedColumns'">
-            <startOffsets>
-              <option value="217" />
-            </startOffsets>
-            <endOffsets>
-              <option value="254" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260206Tests.cs</url>
-          <line>8</line>
-          <properties documentPath="C:\Users\tnunn\Projects\LogixDb\test\LogixDb.Data.SqlServer.Tests\Migrations\M20260206Tests.cs" containingFunctionPresentation="Method 'MigrateUp_ToM001_CreatesTargetTableWithExpectedColumns'">
-            <startOffsets>
-              <option value="223" />
-            </startOffsets>
-            <endOffsets>
-              <option value="260" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

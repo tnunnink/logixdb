@@ -12,7 +12,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="LogixConverter.LogixSdk" Version="0.1.0"/>
+        <PackageReference Include="LogixConverter.LogixSdk" Version="0.2.0" />
         <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.3"/>
         <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="10.0.3"/>
     </ItemGroup>
