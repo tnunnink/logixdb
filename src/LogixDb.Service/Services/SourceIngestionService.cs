@@ -89,7 +89,7 @@ public class SourceIngestionService(
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, "Error processing ingestion task for {FileName}", source.FileName);
+                logger.LogError(ex, "Error processing logix file {FileName}", source.FileName);
             }
         }
     }
@@ -163,7 +163,7 @@ public class SourceIngestionService(
 
         if (!result.Success)
         {
-            //throw new custom exception? 
+            throw new InvalidOperationException($"ACD conversion failed with error: '{result.Error}'");
         }
     }
 

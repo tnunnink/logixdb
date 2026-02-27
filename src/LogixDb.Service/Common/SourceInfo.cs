@@ -58,7 +58,7 @@ public sealed record SourceInfo
             SourceId = sourceId,
             FileType = fileType,
             FilePath = filePath,
-            FileName = fileName,
+            FileName = fileName
         };
 
         if (metadata is not null)

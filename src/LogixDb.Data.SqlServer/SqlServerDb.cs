@@ -236,7 +236,7 @@ public sealed class SqlServerDb(SqlConnectionInfo connection) : ILogixDb
         catch (SqlException e)
         {
             throw new InvalidOperationException(
-                $"Failed to connect to database with error {e.Message}. Ensure migration by running the 'migrate' command.");
+                $"Failed to connect to database with error '{e.Message}' Ensure migration by running the 'migrate' command.");
         }
 
         await using var provider = BuildMigrationProvider(_connection.ToConnectionString());

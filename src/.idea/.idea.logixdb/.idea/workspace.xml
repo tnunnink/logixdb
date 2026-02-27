@@ -9,7 +9,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="" />
+    <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerDb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerDb.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Common/SourceInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Common/SourceInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Services/SourceIngestionService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Services/SourceIngestionService.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -215,14 +222,7 @@
       <workItem from="1771416228683" duration="35778000" />
       <workItem from="1771814694581" duration="1734000" />
       <workItem from="1772139840925" duration="4541000" />
-    </task>
-    <task id="LOCAL-00002" summary="Sqlite development and migration development of initial database tables.">
-      <option name="closed" value="true" />
-      <created>1770854668673</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1770854668673</updated>
+      <workItem from="1772161349237" duration="3496000" />
     </task>
     <task id="LOCAL-00003" summary="Refactor migrations and database layer: standardize column lengths, replace `hash` with `record_hash`, add new attributes to tables, and improve SQLite session handling.">
       <option name="closed" value="true" />
@@ -608,7 +608,15 @@
       <option name="project" value="LOCAL" />
       <updated>1772161125783</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="Update SQL migration to conditionally create login and user for service account only on Windows platforms. Adjust IDE workspace settings.">
+      <option name="closed" value="true" />
+      <created>1772161564938</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1772161564942</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -635,7 +643,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Improve CLI commands with enhanced exception handling, updated output formatting (added `hash` to tables), and refactored methods for `list`, `prune`, `purge`, `import`, and `drop`. Ensure consistent namespace use." />
     <MESSAGE value="Add cancellation token support to CLI commands for enhanced async operation handling. Update `export` command with improved validation, descriptions, and exception handling." />
     <MESSAGE value="Add cancellation token support across CLI commands for improved async handling. Update `list`, `migrate`, `prune`, `purge`, `import`, `export`, and `drop` commands for consistency and enhanced validation. Add new tests for `ListCommand` functionality." />
     <MESSAGE value="Refactor database layer and CLI tests:  &#10;- Replace `SqliteQuery` with `SqlStatement` and update method references for consistency.  &#10;- Add new SQL commands for snapshot and target deletion.  &#10;- Introduce `TestDbFixture` for shared test database setup and teardown logic.  &#10;- Add and update tests for `ListCommand` and `MigrateCommand`.  &#10;- Remove unused classes and reorganize test files for clarity." />
@@ -660,7 +667,8 @@
     <MESSAGE value="Update `ImportCommandTests` to rename test methods for consistency with `ImportCommand`." />
     <MESSAGE value="Add service publication to release workflow and compress output artifacts" />
     <MESSAGE value="Bump CLI and service versions to 0.4.1, add SQL migration for service account configuration, and update release workflow artifact naming." />
-    <option name="LAST_COMMIT_MESSAGE" value="Bump CLI and service versions to 0.4.1, add SQL migration for service account configuration, and update release workflow artifact naming." />
+    <MESSAGE value="Update SQL migration to conditionally create login and user for service account only on Windows platforms. Adjust IDE workspace settings." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update SQL migration to conditionally create login and user for service account only on Windows platforms. Adjust IDE workspace settings." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
