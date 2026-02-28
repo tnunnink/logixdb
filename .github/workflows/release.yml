@@ -67,13 +67,13 @@ jobs:
         
         # Copy Service binaries (merging into the same folder)
         # Note: Common DLLs will be overwritten, ensuring consistency
-        Copy-Item -Path artifacts/service/win-x64/* -Destination artifacts/combined -Recurse
+        Copy-Item -Path artifacts/service/win-x64/* -Destination artifacts/combined -Recurse -Exclude "appsettings.Development.json"
         
         # Copy the Setup script from the scripts folder
         Copy-Item -Path scripts/Setup-LogixDb.ps1 -Destination artifacts/combined
         
-        # Copy appsettings.json as a sample/template
-        Copy-Item -Path src/LogixDb.Service/appsettings.json -Destination artifacts/combined/appsettings.sample.json
+        # Copy appsettings.json
+        Copy-Item -Path src/LogixDb.Service/appsettings.json -Destination artifacts/combined/appsettings.json
 
     - name: Zip Combined Release
       shell: pwsh

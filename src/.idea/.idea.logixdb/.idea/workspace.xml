@@ -10,10 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../scripts/Setup-LogixDb.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/../scripts/Setup-LogixDb.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.github/workflows/release.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../.github/workflows/release.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/appsettings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -196,15 +194,7 @@
       <workItem from="1771950210397" duration="14990000" />
       <workItem from="1772050677920" duration="32888000" />
       <workItem from="1772138916904" duration="5187000" />
-      <workItem from="1772205427962" duration="27893000" />
-    </task>
-    <task id="LOCAL-00012" summary="Refactor database layer: introduce SqlServer support, enhance migration handling, standardize connection workflows, and update SQLite database operations for improved consistency and async support.">
-      <option name="closed" value="true" />
-      <created>1770982514753</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1770982514753</updated>
+      <workItem from="1772205427962" duration="28324000" />
     </task>
     <task id="LOCAL-00013" summary="Remove unused `ExitCodes`, `Format`, and `SqlAuthentication` classes; replace with consolidated `ErrorCodes`. Refactor mappings (`TableName` overrides). Simplify CLI app setup and enhance database handling (`SqliteDatabase`).">
       <option name="closed" value="true" />
@@ -590,7 +580,15 @@
       <option name="project" value="LOCAL" />
       <updated>1772298380981</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="Bump version to 0.4.7 in project files.">
+      <option name="closed" value="true" />
+      <created>1772299477176</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1772299477176</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -611,7 +609,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Remove `Verify.NUnit` package reference from CLI test project." />
     <MESSAGE value="Add publish and packaging steps for Windows EXE in release workflow." />
     <MESSAGE value="Bump CLI version to 0.2.1 and update release workflow to include Windows EXE artifact." />
     <MESSAGE value="Bump CLI version to 0.2.2 and update `.idea` workspace configuration." />
@@ -636,7 +633,8 @@
     <MESSAGE value="Bump version to 0.4.6 in project files." />
     <MESSAGE value="Add `Setup-LogixDb.ps1` script for LogixDb service setup and deployment." />
     <MESSAGE value="Add Setup-LogixDb.ps1 script for LogixDb deployment and service configuration." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Setup-LogixDb.ps1 script for LogixDb deployment and service configuration." />
+    <MESSAGE value="Bump version to 0.4.7 in project files." />
+    <option name="LAST_COMMIT_MESSAGE" value="Bump version to 0.4.7 in project files." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
