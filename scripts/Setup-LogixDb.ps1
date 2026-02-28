@@ -57,10 +57,17 @@ try {
 # 5. Register Service and Path
 Write-Step "Configuring Windows Service..."
 $exePath = Join-Path $InstallDir "LogixDb.Service.exe"
+
 if (Get-Service $ServiceName -ErrorAction SilentlyContinue) {
+    Write-Step "Updating existing service..."
+    # Update binary path, account, and start type
     sc.exe config $ServiceName binPath= "`"$exePath`"" obj= "$ServiceAccount" start= auto
 } else {
-    New-Service -Name $ServiceName -BinaryPathName "`"$exePath`"" -DisplayName "LogixDb" -Description "LogixDb Ingestion and FTAC Monitor" -StartupType Automatic -Account $ServiceAccount
+    Write-Step "Creating new service..."
+    # Create the service with all properties in one go
+    # Note: Spaces after '=' are MANDATORY for sc.exe commands
+    sc.exe create $ServiceName binPath= "`"$exePath`"" obj= "$ServiceAccount" start= auto DisplayName= "LogixDb"
+    sc.exe description $ServiceName "LogixDb Ingestion and FTAC Monitor"
 }
 
 # Add to PATH

@@ -6,7 +6,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <LangVersion>latest</LangVersion>
         <UserSecretsId>dotnet-LogixDb.Service-c38521d1-70d6-4011-b625-345937d1a284</UserSecretsId>
-        <Version>0.4.8</Version>
+        <Version>0.4.9</Version>
         <Authors>Timothy Nunnink</Authors>
         <Description>Logix Ingestion and FTAC Monitoring Windows Service.</Description>
     </PropertyGroup>

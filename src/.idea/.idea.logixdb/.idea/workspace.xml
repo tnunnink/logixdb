@@ -10,8 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../.github/workflows/release.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../.github/workflows/release.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Service/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../scripts/Setup-LogixDb.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/../scripts/Setup-LogixDb.ps1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -194,23 +195,7 @@
       <workItem from="1771950210397" duration="14990000" />
       <workItem from="1772050677920" duration="32888000" />
       <workItem from="1772138916904" duration="5187000" />
-      <workItem from="1772205427962" duration="28324000" />
-    </task>
-    <task id="LOCAL-00013" summary="Remove unused `ExitCodes`, `Format`, and `SqlAuthentication` classes; replace with consolidated `ErrorCodes`. Refactor mappings (`TableName` overrides). Simplify CLI app setup and enhance database handling (`SqliteDatabase`).">
-      <option name="closed" value="true" />
-      <created>1771018402196</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1771018402196</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Remove CLI commands, database factory abstractions, related tests, and SQLite/SQL Server factory implementations; introduce `SqliteQuery` for snapshot-related SQL operations. Updated testing setup. Worked on SqlServer support.">
-      <option name="closed" value="true" />
-      <created>1771126690344</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1771126690344</updated>
+      <workItem from="1772205427962" duration="30050000" />
     </task>
     <task id="LOCAL-00015" summary="Refactor database layer: replace service provider-based migration handling with scoped provider instances; remove IDisposable/AsyncDisposable from `ILogixDb`, standardize connection handling, and update relevant tests.">
       <option name="closed" value="true" />
@@ -588,7 +573,23 @@
       <option name="project" value="LOCAL" />
       <updated>1772299477176</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="Update configuration and release workflow: simplify `LogixConfig`, adjust appsettings handling, and exclude development-specific settings from release artifacts.">
+      <option name="closed" value="true" />
+      <created>1772299915012</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1772299915012</updated>
+    </task>
+    <task id="LOCAL-00063" summary="Bump version to 0.4.8 in project files.">
+      <option name="closed" value="true" />
+      <created>1772300112657</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1772300112658</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -609,8 +610,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Add publish and packaging steps for Windows EXE in release workflow." />
-    <MESSAGE value="Bump CLI version to 0.2.1 and update release workflow to include Windows EXE artifact." />
     <MESSAGE value="Bump CLI version to 0.2.2 and update `.idea` workspace configuration." />
     <MESSAGE value="Bump CLI version to 0.2.2, update `.idea` workspace configuration, and set assembly name in project file." />
     <MESSAGE value="Bump CLI version to 0.2.3 in project file." />
@@ -634,7 +633,9 @@
     <MESSAGE value="Add `Setup-LogixDb.ps1` script for LogixDb service setup and deployment." />
     <MESSAGE value="Add Setup-LogixDb.ps1 script for LogixDb deployment and service configuration." />
     <MESSAGE value="Bump version to 0.4.7 in project files." />
-    <option name="LAST_COMMIT_MESSAGE" value="Bump version to 0.4.7 in project files." />
+    <MESSAGE value="Update configuration and release workflow: simplify `LogixConfig`, adjust appsettings handling, and exclude development-specific settings from release artifacts." />
+    <MESSAGE value="Bump version to 0.4.8 in project files." />
+    <option name="LAST_COMMIT_MESSAGE" value="Bump version to 0.4.8 in project files." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
