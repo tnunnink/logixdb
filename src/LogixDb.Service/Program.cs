@@ -4,21 +4,23 @@ using System.Threading.Channels;
 using LogixConverter.Abstractions;
 using LogixConverter.LogixSdk;
 using LogixDb.Service.Configuration;
-using LogixDb.Service.Services;
+using LogixDb.Service.Workers;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Host.UseWindowsService(o => o.ServiceName = "LogixDb");
 builder.Services.Configure<LogixConfig>(builder.Configuration.GetSection(nameof(LogixConfig)));
 builder.Services.AddSingleton(Channel.CreateUnbounded<SourceInfo>());
-builder.Services.AddSingleton<SourceUploadService>();
+builder.Services.AddSingleton(Channel.CreateUnbounded<AssetInfo>());
 builder.Services.AddSingleton<ILogixFileConverter, LogixSdkConverter>();
-builder.Services.AddLogixDb(builder.Configuration.GetSection(nameof(LogixConfig)).Get<LogixConfig>());
+builder.Services.AddSingleton<SourceUploadService>();
 builder.Services.AddHostedService<SourceIngestionService>();
+builder.Services.AddLogixDb(builder.Configuration.GetSection(nameof(LogixConfig)).Get<LogixConfig>());
 
 // Add the FtacMonitor service if enabled in configuration. By default, it is disabled. Users need to opt in.
 if (builder.Configuration.GetSection(nameof(LogixConfig)).Get<LogixConfig>()?.FtacService.Enabled is true)
 {
     builder.Services.AddHostedService<FtacMonitorService>();
+    builder.Services.AddHostedService<FtacDownloadService>();
 }
 
 var app = builder.Build();
@@ -63,5 +65,3 @@ app.MapPost("/ingest", async ([FromForm] IFormFile file, HttpRequest request, So
 }).DisableAntiforgery();
 
 await app.RunAsync();
-
-public partial class Program { }

@@ -39,17 +39,17 @@ public sealed record SourceInfo
     public Dictionary<string, string> Metadata { get; } = [];
 
     /// <summary>
-    /// Creates a new instance of the SourceInfo class based on the provided file, drop path,
-    /// and optional metadata.
+    /// Creates a new <see cref="SourceInfo"/> instance with a generated unique identifier,
+    /// file type parsed from the file extension, and a computed file path within the specified drop directory.
+    /// Optionally populates the metadata dictionary with provided key-value pairs.
     /// </summary>
-    /// <param name="file">The uploaded file to base the SourceInfo instance on.</param>
-    /// <param name="dropPath">The target directory path where the file will be stored.</param>
-    /// <param name="metadata">Optional metadata associated with the source, represented as a dictionary.</param>
-    /// <returns>Returns a newly created instance of the SourceInfo class containing the file and metadata details.</returns>
-    public static SourceInfo Create(IFormFile file, string dropPath, IDictionary<string, string>? metadata = null)
+    /// <param name="fileName">The original name of the file, including its extension, used to determine the file type.</param>
+    /// <param name="dropPath">The directory path where the file will be stored, combined with the generated source ID and file type.</param>
+    /// <param name="metadata">An optional collection of key-value pairs to populate the <see cref="Metadata"/> dictionary.</param>
+    /// <returns>A new <see cref="SourceInfo"/> instance with all required properties initialized.</returns>
+    public static SourceInfo Create(string fileName, string dropPath, IDictionary<string, string>? metadata = null)
     {
         var sourceId = Guid.NewGuid();
-        var fileName = file.FileName;
         var fileType = Enum.Parse<FileType>(Path.GetExtension(fileName).Trim('.'));
         var filePath = Path.Combine(dropPath, $"{sourceId:N}.{fileType}");
 

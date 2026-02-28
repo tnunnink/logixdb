@@ -3,7 +3,7 @@ using LogixDb.Service.Common;
 using LogixDb.Service.Configuration;
 using Microsoft.Extensions.Options;
 
-namespace LogixDb.Service.Services;
+namespace LogixDb.Service.Workers;
 
 /// <summary>
 /// Handles the uploading and queuing of source files for further processing.
@@ -47,7 +47,7 @@ public class SourceUploadService(
         Directory.CreateDirectory(dropPath);
 
         // Create the source record from the provided args
-        var source = SourceInfo.Create(file, dropPath, metadata);
+        var source = SourceInfo.Create(file.FileName, dropPath, metadata);
 
         // Upload the file to the local server drop path
         await using (var stream = new FileStream(source.FilePath, FileMode.Create))

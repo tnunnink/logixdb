@@ -10,17 +10,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/LogixDb.Service/Common/AssetInfo.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.Service/Services/FtacDownloadService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Common/AssetInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Common/AssetInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Common/SourceInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Common/SourceInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Services/SourceUploadService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Services/SourceUploadService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Service/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/LogixDb.Cli.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/LogixDb.Cli.Tests.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/LogixDb.Data.SqlServer.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/LogixDb.Data.SqlServer.Tests.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/LogixDb.Data.Sqlite.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/LogixDb.Data.Sqlite.Tests.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Tests/LogixDb.Data.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Tests/LogixDb.Data.Tests.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/LogixDb.Service.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/LogixDb.Service.Tests.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Services/FtacDownloadService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Workers/FtacDownloadService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Services/FtacMonitorService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Workers/FtacMonitorService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Services/SourceIngestionService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Workers/SourceIngestionService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Services/SourceUploadService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Workers/SourceUploadService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/Common/SourceInfoTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/Common/SourceInfoTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/Services/SourceIngestionServiceTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/Services/SourceIngestionServiceTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/Services/SourceUploadServiceTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/Services/SourceUploadServiceTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +76,6 @@
     <setting file="file://$PROJECT_DIR$/LogixDb.Service/Common/AssetInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Service/Common/Extensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Service/Common/FileType.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/LogixDb.Service/Services/FtacDownloadService.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -204,31 +204,7 @@
       <workItem from="1771950210397" duration="14990000" />
       <workItem from="1772050677920" duration="32888000" />
       <workItem from="1772138916904" duration="5187000" />
-      <workItem from="1772205427962" duration="2820000" />
-    </task>
-    <task id="LOCAL-00003" summary="Refactor migrations and database layer: standardize column lengths, replace `hash` with `record_hash`, add new attributes to tables, and improve SQLite session handling.">
-      <option name="closed" value="true" />
-      <created>1770897624153</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1770897624153</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Refactor database layer: remove unused migrations, standardize column definitions, add detailed entity mappings (e.g., `ProgramMap`, `TaskMap`, `RoutineMap`), and adjust `description` column size in `data_type`.">
-      <option name="closed" value="true" />
-      <created>1770916095876</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1770916095876</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Refactor data import and mapping layers: streamline generics for `ColumnMap` and `TableMap`, introduce detailed import classes (e.g., `SqliteTaskImport`, `SqliteProgramImport`), and add `CrossReferenceMap`.">
-      <option name="closed" value="true" />
-      <created>1770916888934</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1770916888934</updated>
+      <workItem from="1772205427962" duration="20332000" />
     </task>
     <task id="LOCAL-00006" summary="Remove unused mappings (`CrossReferenceMap`), commands (`MigrateCommand`), and extensions (`ServiceExtensions`); refactor setup for CLI services and database imports for improved clarity.">
       <option name="closed" value="true" />
@@ -598,7 +574,31 @@
       <option name="project" value="LOCAL" />
       <updated>1772137342092</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="Update package references, add `AssetInfo` and `FtacDownloadService`, modify appsettings defaults, and adjust project formatting.">
+      <option name="closed" value="true" />
+      <created>1772208278925</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1772208278925</updated>
+    </task>
+    <task id="LOCAL-00053" summary="Bump version to 0.4.3 in project files.">
+      <option name="closed" value="true" />
+      <created>1772208298734</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1772208298734</updated>
+    </task>
+    <task id="LOCAL-00054" summary="Update temporary file path in `SourceIngestionService` and bump version to 0.4.4.">
+      <option name="closed" value="true" />
+      <created>1772213267653</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1772213267654</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -619,9 +619,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Add cancellation token support to CLI commands for enhanced async operation handling. Update `export` command with improved validation, descriptions, and exception handling." />
-    <MESSAGE value="Add cancellation token support across CLI commands for improved async handling. Update `list`, `migrate`, `prune`, `purge`, `import`, `export`, and `drop` commands for consistency and enhanced validation. Add new tests for `ListCommand` functionality." />
-    <MESSAGE value="Refactor database layer and CLI tests:  &#10;- Replace `SqliteQuery` with `SqlStatement` and update method references for consistency.  &#10;- Add new SQL commands for snapshot and target deletion.  &#10;- Introduce `TestDbFixture` for shared test database setup and teardown logic.  &#10;- Add and update tests for `ListCommand` and `MigrateCommand`.  &#10;- Remove unused classes and reorganize test files for clarity." />
     <MESSAGE value="Refactor tests and database layer:&#10;- Update test setup methods to async across SQLite and SQL Server tests.&#10;- Add comprehensive tests for `SqlServerDbAddSnapshot`.&#10;- Rename and reorganize test files for consistency.&#10;- Remove `value_hash` column from `TagMap` and related components.&#10;- Improve `TableMap` to handle null values and ensure efficient row addition.&#10;- Refactor `SqlServerElementImport` to enhance bulk copy logic and column mapping.&#10;- Update migration files for `RungTable` and remove unnecessary columns (`value_hash`)." />
     <MESSAGE value="Add `UploadCommandTests` with comprehensive test cases for L5X file imports. Rename CLI `ImportCommand` to `UploadCommand` and update references accordingly. Upgrade test packages and adjust namespaces for consistency." />
     <MESSAGE value="Rename `ImportCommand` to `UploadCommand` and `ExportCommand` to `DownloadCommand` in test cases and methods. Add L5X file generation to tests for enhanced coverage. Update namespaces, test resources, and verification files for consistency." />
@@ -644,7 +641,10 @@
     <MESSAGE value="Update appsettings configuration, implement placeholder for FtacMonitorService, and refine project metadata." />
     <MESSAGE value="Update appsettings with LogixConfig section and adjust IDE workspace settings." />
     <MESSAGE value="Add unit tests for `SourceUploadService`, `SourceIngestionService`, and `SourceInfo` classes; update configuration models to use mutable properties; adjust solution and project files." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add unit tests for `SourceUploadService`, `SourceIngestionService`, and `SourceInfo` classes; update configuration models to use mutable properties; adjust solution and project files." />
+    <MESSAGE value="Update package references, add `AssetInfo` and `FtacDownloadService`, modify appsettings defaults, and adjust project formatting." />
+    <MESSAGE value="Bump version to 0.4.3 in project files." />
+    <MESSAGE value="Update temporary file path in `SourceIngestionService` and bump version to 0.4.4." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update temporary file path in `SourceIngestionService` and bump version to 0.4.4." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

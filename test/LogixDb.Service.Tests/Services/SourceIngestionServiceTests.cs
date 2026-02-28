@@ -5,7 +5,7 @@ using LogixDb.Data;
 using LogixDb.Data.Sqlite;
 using LogixDb.Service.Common;
 using LogixDb.Service.Configuration;
-using LogixDb.Service.Services;
+using LogixDb.Service.Workers;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;

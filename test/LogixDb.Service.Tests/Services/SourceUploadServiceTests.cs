@@ -1,7 +1,7 @@
 using System.Threading.Channels;
 using LogixDb.Service.Common;
 using LogixDb.Service.Configuration;
-using LogixDb.Service.Services;
+using LogixDb.Service.Workers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;

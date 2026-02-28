@@ -9,7 +9,7 @@ using LogixDb.Service.Configuration;
 using Microsoft.Extensions.Options;
 using Task = System.Threading.Tasks.Task;
 
-namespace LogixDb.Service.Services;
+namespace LogixDb.Service.Workers;
 
 /// <summary>
 /// A background service that ingests sources from a channel and processes them using the specified database
