@@ -1,231 +1,117 @@
 # LogixDb
 
-A simple command line tool that converts Rockwell Automation Logix projects into a SQL database
-for analysis, change tracking, and versioning.
+A tool for managing and automating ingestion of Rockwell Automation Logix Designer ACD/L5X project files
+into a structured and transparent SQL database schema, enabling workflows such as project analysis, validation,
+documentation, change tracking, and versioning.
 
-## Overview
+## Motivation
 
-LogixDb imports Rockwell L5X files into a structured SQL database, enabling:
+Analyzing and extracting data from Rockwell PLC projects is often slow and manual. Without opening Studio 5000, there is
+no straightforward way to centrally manage or review code across multiple projects. For system integrators and
+developers, tasks like comparing configurations, validating logic versions, or bulk-extracting data remain difficult.
 
-- **Analysis**: Query and analyze tags, logic, and configurations using SQL queries
-- **Comparison**: Compare snapshots of PLC programs to identify differences across versions or plants/sites
-- **Documentation**: Generate reports and documentation from controller data
-- **Change Management**: Maintain a history of program modifications to projects or assets
-- **Tool Development**: Build any tools on top of the database to supplement automation development workflows.
+LogixDb was built to make PLC code analysis and data extraction developer-friendly. By parsing PLC files into a
+structured SQL schema, it enables developers and controls engineers to leverage the power of SQL to write custom
+queries, views, and procedures for project analysis, validation, and documentation.
 
-Currently, supports SQLite and SQL Server.
+## Features
+
+This tool currently offers a couple of entry points for users to work with.
+
+| Entry Point | Description                                                                                                                                                                                                                                                                                               |
+|-------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **CLI**     | Command-line interface for interactive and scripted operations. Ideal for manual imports, exports, and database management tasks. Supports all core commands including `migrate`, `import`, `export`, `list`, `prune`, `purge`, and `drop`.                                                               |
+| **Service** | Windows service for automated background processing. Monitors directories for new ACD/L5X files and automatically converts and ingests them into the database. Also includes an API endpoint for ingestion of files. Useful for continuous integration scenarios and teams using version control systems. |
+
+## Database Providers
+
+This tool currently supports both Microsoft SQL Server and SQLite database providers.
+
+| Provider       | Description                                                                                                                                                                                                                                                                             |
+|----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **SQLite**     | Ideal for single-developer or quick analysis scenarios. Free and open source with no additional server-side software required. Developers can quickly transform PLC projects into SQLite databases on the fly. Generated database files can be queried using any preferred client.      |
+| **SQL Server** | Designed for team environments, especially those using version control systems like FTAC, Git, or SVN. Enables centralized data management and supports advanced features such as stored procedures, triggers, tSQLt, and custom tooling for enhanced collaboration and data integrity. |
+
+This tool enables automated ingestion of L5X and ACD files into either database provider.
+
+## ACD File Conversion
+
+This project uses the Rockwell Logix Designer SDK to convert ACD files into L5X so that
+they can be parsed and ingested. As of now, this conversion is a bit slow as it spins up a headless Studio 5k
+instance before saving the project as an L5X. This issue was a driver in building the Windows service
+component of the tool so that ACD files could be converted, parsed, and ingested in the background, as changes
+are committed to version control.
 
 ## Installation
 
-### Standalone Executable
+LogixDb is distributed as a single ZIP package containing self-contained executables for both the CLI tool and the
+Windows service. No .NET runtime installation is required.
 
-Pre-built executables are available on the [Releases](https://github.com/yourusername/logixdb/releases) page for use
-without a .NET installation.
+### Prerequisites
 
-1. Download the appropriate executable (`logixdb-win-x64.zip`).
-2. Extract the contents to a folder of your choice (e.g., `C:\Program Files\LogixDb`).
-3. (Optional) Add the folder to your system's PATH environment variable to run `logixdb` from any command prompt.
+- Windows 10 or later
+- PowerShell 5.1 or later (for automated installation)
+- Rockwell Logix Designer SDK (required for ACD file conversion)
 
-### .NET Tool
+### Quick Install (Recommended)
 
-LogixDb is also available as a .NET global tool via NuGet package:
-
-1. Download the NuGet package (e.g., `logixdb.1.0.0.nupkg`) from
-   the [Releases](https://github.com/yourusername/logixdb/releases) page.
-2. Install it using the .NET CLI by adding the local package as a source:
-
-   ```bash
-   dotnet tool install -g LogixDb --add-source /path/to/downloaded/package
+1. Download the latest release ZIP from the [releases page](https://github.com/tnunnink/LogixDb/releases)
+2. Extract the ZIP to a temporary location
+3. Open PowerShell as an Administrator
+4. Navigate to the extracted directory
+5. Unblock the PowerShell script:
+   ```powershell
+   Unblock-File -Path .\Setup-LogixDb.ps1
+   ```
+6. Run the installation script:
+   ```powershell
+   .\Setup-LogixDb.ps1
    ```
 
-   Replace `/path/to/downloaded/package` with the actual path to the downloaded `.nupkg` file.
+## Quick Start
 
-Once installed, the `logixdb` command is available globally.
+Get up and running with the CLI in seconds using a local SQLite database:
 
-## Commands
+1. **Create and migrate the database**
+   ```powershell
+   logixdb migrate --connection ".\LogixDb.db"
+   ```
 
-All commands require a `--connection` (`-c`) argument specifying either a file path
-(SQLite) or a `server/database` string (SQL Server). The provider is inferred
-automatically, or can be set explicitly with `--provider`.
+2. **Import an L5X or ACD file**
+   ```powershell
+   logixdb import --connection ".\LogixDb.db" --source "C:\Projects\MyProject.acd"
+   ```
 
-#### `migrate`
+3. **List imported snapshots**
+   ```powershell
+   logixdb list -c ".\LogixDb.db"
+   ```
 
-Creates or migrates the database schema to the latest version.
+## Scope & Limitations
 
-```bash
-logixdb migrate -c ./mydb.db
-logixdb migrate -c localhost/Logix
-```
+### Supported Objects
 
-### `import`
+LogixDb currently parses and ingests the following Logix objects:
 
-Imports an L5X file as a new snapshot into the database.
+- **Project Metadata**: Controller info, software revision, and export timestamps.
+- **Tags**: Controller and program-scoped tags, including data types and comments.
+- **Routines**: Logic content (currently stored as raw XML/L5X segments for further analysis).
+- **Add-On Instructions (AOIs)**: Definitions and logic.
+- **Tasks & Programs**: Scheduling and organizational structure.
 
-```bash
-logixdb import -c ./mydb.db -s ./MyController.L5X
-logixdb import -c ./mydb.db -s ./MyController.L5X --action ReplaceLatest
-logixdb import -c ./mydb.db -s ./MyController.L5X --target "controller://PlantA"
-```
+### Limitations
 
-| Option     | Short | Description                                            |
-|------------|-------|--------------------------------------------------------|
-| `--source` | `-s`  | Path to the L5X file *(required)*                      |
-| `--target` | `-t`  | Target key override (if default key is not desired)    |
-| `--action` | `-a`  | `Append` *(default)*, `ReplaceLatest`, or `ReplaceAll` |
-
-### `list`
-
-Lists all snapshots in the database, optionally filtered by target.
-
-```bash
-logixdb list -c ./mydb.db
-logixdb list -c ./mydb.db --target "controller://PlantA"
-```
-
-### `export`
-
-Exports a snapshot back to an L5X file.
-
-```bash
-logixdb export -c ./mydb.db --target "controller://PlantA"
-logixdb export -c ./mydb.db --id 42 --output ./output.L5X
-```
-
-### `prune`
-
-Deletes snapshots by ID, date, or target.
-
-```bash
-logixdb prune -c ./mydb.db --id 42
-logixdb prune -c ./mydb.db --latest --target "controller://PlantA"
-logixdb prune -c ./mydb.db --before 2025-01-01
-logixdb prune -c ./mydb.db --before 2025-01-01 --target "controller://PlantA"
-```
-
-### `purge`
-
-Removes all data from the database while preserving the schema.
-
-```bash
-logixdb purge -c ./mydb.db
-```
-
-### `drop`
-
-Permanently drops the entire database. Prompts for confirmation.
-
-```bash
-logixdb drop -c ./mydb.db
-```
-
-### Global Options (all commands)
-
-| Option         | Short | Description                                                       |
-|----------------|-------|-------------------------------------------------------------------|
-| `--connection` | `-c`  | File path (SQLite) or `server/database` (SQL Server) *(required)* |
-| `--provider`   | `-p`  | `Sqlite` or `SqlServer` — inferred if not specified               |
-| `--user`       |       | SQL Server username                                               |
-| `--password`   |       | SQL Server password                                               |
-| `--port`       |       | SQL Server port (default: `1433`)                                 |
-| `--encrypt`    |       | Enable connection encryption                                      |
-| `--trust`      |       | Trust server certificate without validation                       |
-
----
-
-## Schema
-
-Each import creates a **snapshot** tied to a **target** (a specific project or
-asset). All data tables reference a snapshot, so you can query across multiple
-imports and track changes over time.
-
-### `target`
-
-Represents a unique PLC project or asset being tracked.
-
-| Column       | Type        | Description                          |
-|--------------|-------------|--------------------------------------|
-| `target_id`  | int PK      | Auto-increment primary key           |
-| `target_key` | string(128) | Unique identifier for the target     |
-| `created_on` | datetime    | When the target was first registered |
-
-### `snapshot`
-
-A single import of an L5X file associated with a target.
-
-| Column              | Type        | Description                            |
-|---------------------|-------------|----------------------------------------|
-| `snapshot_id`       | int PK      | Auto-increment primary key             |
-| `target_id`         | int FK      | Reference to `target`                  |
-| `target_type`       | string(128) | Type of the target (e.g. `controller`) |
-| `target_name`       | string(128) | Name of the target                     |
-| `is_partial`        | bool        | Whether this is a partial export       |
-| `schema_revision`   | string(16)  | L5X schema revision                    |
-| `software_revision` | string(16)  | Studio 5000 software revision          |
-| `export_date`       | datetime    | When the L5X was exported from Studio  |
-| `import_date`       | datetime    | When the snapshot was imported         |
-| `import_user`       | string(64)  | User who ran the import                |
-| `import_machine`    | string(64)  | Machine the import was run from        |
-| `source_hash`       | binary(16)  | MD5 hash of the source file            |
-| `source_data`       | binary      | Compressed source L5X                  |
-
-### `controller`
-
-Top-level controller configuration from the project.
-
-| Column                  | Type        |
-|-------------------------|-------------|
-| `controller_id`         | int PK      |
-| `snapshot_id`           | int FK      |
-| `controller_name`       | string(128) |
-| `processor`             | string(128) |
-| `revision`              | string(32)  |
-| `project_creation_date` | datetime    |
-| `last_modified_date`    | datetime    |
-| `comm_path`             | string(128) |
-| `record_hash`           | binary(16)  |
-
-### `tag`
-
-All tags across controller and program scopes, flattened to individual members.
-
-| Column            | Type        | Description                             |
-|-------------------|-------------|-----------------------------------------|
-| `tag_id`          | int PK      |                                         |
-| `snapshot_id`     | int FK      |                                         |
-| `container_name`  | string(128) | Scope (controller name or program name) |
-| `tag_name`        | string(256) | Full dot-notation tag path              |
-| `base_name`       | string(128) | Root tag name                           |
-| `parent_name`     | string(256) | Parent tag path (for nested members)    |
-| `member_name`     | string(128) | Leaf member name                        |
-| `tag_value`       | string(256) |                                         |
-| `data_type`       | string(128) |                                         |
-| `description`     | string(512) |                                         |
-| `external_access` | string(32)  |                                         |
-| `constant`        | bool        |                                         |
-
-### `data_type` / `data_type_member`
-
-User-defined data types and their members.
-
-### `aoi` / `aoi_parameter`
-
-Add-On Instructions and their parameters.
-
-### `task` / `program` / `routine` / `rung`
-
-The full program structure — tasks contain programs, programs contain routines,
-routines contain rungs. Rung `code` stores the raw ladder logic text.
-
-### `module`
-
-I/O module configuration from the controller's I/O tree.
+- **Logix Versions**: Supports any L5X version produced by Logix Designer. ACD conversion requires the corresponding
+  version of Logix Designer and the SDK to be installed.
+- **ACD Conversion Speed**: Converting ACD files involves spinning up a headless Logix Designer instance, which can take
+  15–30 seconds per file.
+- **Platform**: The CLI can run anywhere .NET is supported, but **ACD conversion is Windows-only** due to its dependency
+  on the Logix Designer SDK.
 
 ## Feedback
 
-We welcome feedback, bug reports, and feature requests! Please visit
-our [GitHub Issues](https://github.com/yourusername/logixdb/issues) page to share your thoughts or report problems. For
-questions or discussions, feel free to start a discussion in
-the [GitHub Discussions](https://github.com/yourusername/logixdb/discussions) section.
+Feedback, bug reports, and feature requests are welcome. Please use
+the [GitHub Issues](https://github.com/tnunnink/LogixDb/issues) page to share your thoughts or report problems.
 
 ## License
 
